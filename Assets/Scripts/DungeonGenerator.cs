@@ -1,0 +1,194 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DungeonGenerator : MonoBehaviour
+{
+
+    [SerializeField] private GameObject startingRoom;
+
+    public GameObject[] upRooms, rightRooms, downRooms, leftRooms, allRooms;
+
+    [Range(0, 100)][SerializeField] private int[] probabilities = new int[4];
+    [SerializeField] private List<GameObject> rooms;
+    [HideInInspector] public List<GameObject> spawnNodes;
+    [SerializeField] private bool randomStartingRoom = false;
+
+
+    [SerializeField] private int minRooms, maxRooms;
+    [SerializeField][Range(0, 0.5f)] float generationSpeed = 0;
+
+    private GameStateManager gameStateManager;
+
+
+
+    void Start()
+    {
+        gameStateManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameStateManager>();
+        GenerateDungeon();
+    }
+
+    public void GenerateDungeon()
+    {
+        gameStateManager.currentGameState = GameState.GeneratingDungeon;
+        Debug.Log("Starting Dungeon generation");
+        GameObject newRoom;
+        if (randomStartingRoom == false)
+        {
+            newRoom = Instantiate(startingRoom, transform);
+        }
+        else
+        {
+            newRoom = Instantiate(allRooms[Random.Range(0, allRooms.Length)], transform);
+        }
+
+        rooms.Add(newRoom);
+        spawnNodes.AddRange(newRoom.GetComponent<Room>().spawnNodes);
+        StartCoroutine(GenerationLoop());
+    }
+
+
+    private GameObject newRoom;
+
+    private int RandomRoom()
+    {
+        if (rooms.Count > maxRooms) //ends room creation if max rooms exceeded
+        {
+            return 4;
+        }
+
+        int sum = 0;
+        for (int i = 0; i < probabilities.Length; i++)
+        {
+            sum += probabilities[i];
+        }
+
+        int randomNumber = Random.Range(0, sum);
+        int[] j = new int[4];
+
+        j[0] = probabilities[0];
+        j[1] = j[0] + probabilities[1];
+        j[2] = j[1] + probabilities[2];
+        j[3] = j[2] + probabilities[3];
+
+        if (randomNumber < j[0])
+        {
+            return 0;
+        }
+        else if (randomNumber >= j[0] && randomNumber < j[1])
+        {
+            return 1;
+        }
+        else if (randomNumber >= j[1] && randomNumber < j[2])
+        {
+            return Random.Range(2, 4);
+        }
+        else
+        {
+            return 4;
+        }
+    }
+
+    IEnumerator GenerationLoop()
+    {
+        while (dungeonComplete == false)
+        {
+            for (int i = 0; i < spawnNodes.Count; i++)
+            {
+                var node = spawnNodes[i];
+                if (node == null) { break; }
+                string direction = node.GetComponent<SpawnNode>().nodeDirection;
+                switch (direction)
+                {
+                    case "u":
+                        newRoom = Instantiate(upRooms[RandomRoom()], node.transform.position, Quaternion.Euler(0, 0, 0), transform);
+                        break;
+                    case "r":
+                        newRoom = Instantiate(rightRooms[RandomRoom()], node.transform.position, Quaternion.Euler(0, 0, 0), transform);
+                        break;
+                    case "d":
+                        newRoom = Instantiate(downRooms[RandomRoom()], node.transform.position, Quaternion.Euler(0, 0, 0), transform);
+                        break;
+                    case "l":
+                        newRoom = Instantiate(leftRooms[RandomRoom()], node.transform.position, Quaternion.Euler(0, 0, 0), transform);
+                        break;
+                    default:
+                        Debug.Log("Error in direction selection");
+                        break;
+                }
+                i = -1;
+                spawnNodes.Remove(node);
+                Destroy(node);
+                spawnNodes.AddRange(newRoom.GetComponent<Room>().spawnNodes);
+                rooms.Add(newRoom);
+                yield return new WaitForSecondsRealtime(generationSpeed);
+            }
+            spawnNodes.RemoveAll(item => item == null);
+            yield return null;
+        }
+    }
+
+
+    private bool dungeonComplete = false;
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ResetDungeon();
+        }
+
+        //check if dungeon is complete
+        if (spawnNodes.Count == 0 && dungeonComplete == false)
+        {
+
+            if (rooms.Count < minRooms)
+            {
+                ResetDungeon();
+            }
+            else
+            {
+                gameStateManager.currentGameState = GameState.Playing;
+                dungeonComplete = true;
+                Debug.Log("Dungeon Complete");
+            }
+        }
+    }
+
+    private int resetTimes = 0;
+    void ResetDungeon()
+    {
+        if(dungeonComplete == false){
+            resetTimes++;
+        }
+        if(resetTimes > 5){ //if dungeon isn't complete withing 5 resets, probabilties will be randomized
+            resetTimes = 0;
+            Debug.Log("Too many resets");
+            RandomizeProbabilities();
+        }
+        Debug.Log("Resetting Dungeon");
+        StopAllCoroutines();
+        spawnNodes.Clear();
+
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+        rooms.Clear();
+        gameStateManager.currentGameState = GameState.GeneratingDungeon;
+        dungeonComplete = false;
+        GenerateDungeon();
+    }
+
+    void RandomizeProbabilities(){
+        for (int i = 0; i < probabilities.Length; i++)
+        {
+            probabilities[i] += Random.Range(-25, 25);
+            if(probabilities[i] < 0){
+                probabilities[i] = 0;
+            }
+            if(probabilities[i] > 100){
+                probabilities[i] = 100;
+            }
+        }
+    }
+}
