@@ -15,15 +15,29 @@ public class DungeonGenerator : MonoBehaviour
     [SerializeField] private bool randomStartingRoom = false;
 
 
-    [SerializeField] private int minRooms, maxRooms;
+    [Range(0, 255)][SerializeField] private int minRooms, maxRooms;
     [SerializeField][Range(0, 0.5f)] float generationSpeed = 0;
 
     private GameStateManager gameStateManager;
 
 
+    [SerializeField] private int seed;
+    private int calculaitonSeed = 0;
+
+    private float generationTimer = 0;
+
 
     void Start()
     {
+        if (seed == 0)
+        {
+            seed = Random.seed;
+        }
+
+        calculaitonSeed = seed;
+        Random.InitState(calculaitonSeed);
+
+
         gameStateManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameStateManager>();
         GenerateDungeon();
     }
@@ -31,7 +45,6 @@ public class DungeonGenerator : MonoBehaviour
     public void GenerateDungeon()
     {
         gameStateManager.currentGameState = GameState.GeneratingDungeon;
-        Debug.Log("Starting Dungeon generation");
         GameObject newRoom;
         if (randomStartingRoom == false)
         {
@@ -52,6 +65,8 @@ public class DungeonGenerator : MonoBehaviour
 
     private int RandomRoom()
     {
+        calculaitonSeed++;
+
         if (rooms.Count > maxRooms) //ends room creation if max rooms exceeded
         {
             return 4;
@@ -89,6 +104,8 @@ public class DungeonGenerator : MonoBehaviour
         }
     }
 
+    private float roomsPerSecond = 0;
+
     IEnumerator GenerationLoop()
     {
         while (dungeonComplete == false)
@@ -121,6 +138,7 @@ public class DungeonGenerator : MonoBehaviour
                 Destroy(node);
                 spawnNodes.AddRange(newRoom.GetComponent<Room>().spawnNodes);
                 rooms.Add(newRoom);
+                roomsPerSecond++;
                 yield return new WaitForSecondsRealtime(generationSpeed);
             }
             spawnNodes.RemoveAll(item => item == null);
@@ -149,14 +167,43 @@ public class DungeonGenerator : MonoBehaviour
             {
                 gameStateManager.currentGameState = GameState.Playing;
                 dungeonComplete = true;
-                Debug.Log("Dungeon Complete");
+                Debug.Log("Dungeon Complete" + " | " + " Rooms: " + rooms.Count + " | " + " Seed: " + seed + " | " + " Time: " + Mathf.Round(generationTimer * 100) / 100f + "s");
+                generationTimer = 0;
             }
         }
+
+        if (dungeonComplete == false)
+        {
+            generationTimer += Time.deltaTime;
+
+
+            //reset roomspersecond every second
+            roomsPerSecTimer += Time.deltaTime;
+            if (roomsPerSecTimer >= 1)
+            {
+                Debug.Log("Rooms per second: " + roomsPerSecond);
+
+
+
+                //estimated time remaining
+
+                float estimatedTime = (maxRooms - rooms.Count) / roomsPerSecond;
+                Debug.Log("Estimated time remaining: " + Mathf.Round(estimatedTime * 100) / 100f + "s");
+
+
+                roomsPerSecond = 0;
+                roomsPerSecTimer = 0;
+
+            }
+        }
+
     }
+    float roomsPerSecTimer = 0;
 
     private int resetTimes = 0;
     void ResetDungeon()
     {
+        /*
         if(dungeonComplete == false){
             resetTimes++;
         }
@@ -165,7 +212,11 @@ public class DungeonGenerator : MonoBehaviour
             Debug.Log("Too many resets");
             RandomizeProbabilities();
         }
-        Debug.Log("Resetting Dungeon");
+*/
+
+        seed = Random.seed;
+        calculaitonSeed = seed;
+
         StopAllCoroutines();
         spawnNodes.Clear();
 
@@ -179,14 +230,17 @@ public class DungeonGenerator : MonoBehaviour
         GenerateDungeon();
     }
 
-    void RandomizeProbabilities(){
+    void RandomizeProbabilities()
+    {
         for (int i = 0; i < probabilities.Length; i++)
         {
             probabilities[i] += Random.Range(-25, 25);
-            if(probabilities[i] < 0){
+            if (probabilities[i] < 0)
+            {
                 probabilities[i] = 0;
             }
-            if(probabilities[i] > 100){
+            if (probabilities[i] > 100)
+            {
                 probabilities[i] = 100;
             }
         }

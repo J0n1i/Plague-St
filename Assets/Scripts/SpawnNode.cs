@@ -17,7 +17,6 @@ public class SpawnNode : MonoBehaviour
             {
                 if (item.transform.gameObject.CompareTag("RoomSpawnCollider"))
                 {
-                    Debug.Log("A");
                     Destroy(gameObject);
                 }
 
@@ -25,7 +24,6 @@ public class SpawnNode : MonoBehaviour
                 {
                     if (item.transform.parent.parent != transform.parent.parent)
                     {
-                        Debug.Log("B");
                         Destroy(item.transform.gameObject);
                     }
                 }
