@@ -26,13 +26,24 @@ public class DungeonGenerator : MonoBehaviour
 
     private float generationTimer = 0;
 
+    [SerializeField] private string decodeSeed = "";
+
 
     void Start()
     {
+
+        if (decodeSeed != "")
+        {
+            DecodeSeed(decodeSeed);
+        }
+
         if (seed == 0)
         {
             seed = Random.seed;
         }
+
+        Debug.Log(EncodeSeed(seed));
+
 
         calculaitonSeed = seed;
         Random.InitState(calculaitonSeed);
@@ -41,6 +52,54 @@ public class DungeonGenerator : MonoBehaviour
         gameStateManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameStateManager>();
         GenerateDungeon();
     }
+
+    private string GenerateSeed()
+    {
+        //generate random 21 digi long hexadecimal
+        string seed = "";
+        for (int i = 0; i < 21; i++)
+        {
+            seed += Random.Range(0, 16).ToString("X");
+        }
+        return seed;
+    }
+
+
+    private string EncodeSeed(int seed)
+    {
+        string hex = "";
+        for (int i = 0; i < probabilities.Length; i++)
+        {
+            hex += probabilities[i].ToString("X2");
+        }
+
+        hex += randomStartingRoom ? "1" : "0";
+
+        hex += minRooms.ToString("X2");
+
+        hex += maxRooms.ToString("X2");
+
+        hex += seed.ToString("X8");
+
+        return hex;
+    }
+
+    private void DecodeSeed(string hex) //21 digit long hexadecimal
+    {
+        for (int i = 0; i < probabilities.Length; i++)
+        {
+            probabilities[i] = int.Parse(hex.Substring(i * 2, 2), System.Globalization.NumberStyles.HexNumber) % 101;
+        }
+
+        randomStartingRoom = hex.Substring(probabilities.Length * 2, 1) == "1";
+
+        minRooms = int.Parse(hex.Substring(probabilities.Length * 2 + 1, 2), System.Globalization.NumberStyles.HexNumber) % 256;
+        maxRooms = int.Parse(hex.Substring(probabilities.Length * 2 + 3, 2), System.Globalization.NumberStyles.HexNumber) % 256;
+
+        seed = int.Parse(hex.Substring(probabilities.Length * 2 + 5, 8), System.Globalization.NumberStyles.HexNumber);
+    }
+
+
 
     public void GenerateDungeon()
     {

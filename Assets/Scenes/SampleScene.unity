@@ -345,14 +345,15 @@ MonoBehaviour:
   - {fileID: 8019405642919801061, guid: 461f7c02cc3a898428d94ff8c0625ea3, type: 3}
   - {fileID: 8019405642919801061, guid: 983e87026544b1e41977a7f0a9a40cd0, type: 3}
   - {fileID: 8019405642919801061, guid: c52ee119bebc2cc449dd94e664dca149, type: 3}
-  probabilities: 0d000000000000000000000000000000
+  probabilities: 00000000000000000000000000000000
   rooms: []
   spawnNodes: []
   randomStartingRoom: 0
   minRooms: 0
   maxRooms: 255
-  generationSpeed: 0.038
+  generationSpeed: 0
   seed: 0
+  decodeSeed: 
 --- !u!4 &1078455421
 Transform:
   m_ObjectHideFlags: 0
