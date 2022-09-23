@@ -5,7 +5,7 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     public List<GameObject> spawnNodes;
-    void Awake()
+    void Start()
     {
         spawnNodes.Clear();
         for(int i = 0; i < transform.GetChild(2).childCount; i++){

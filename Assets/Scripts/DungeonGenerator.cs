@@ -10,7 +10,7 @@ public class DungeonGenerator : MonoBehaviour
     public GameObject[] upRooms, rightRooms, downRooms, leftRooms, allRooms;
 
     [Range(0, 100)][SerializeField] private int[] probabilities = new int[4];
-    [SerializeField] private List<GameObject> rooms;
+    public List<GameObject> rooms;
     [HideInInspector] public List<GameObject> spawnNodes;
     [SerializeField] private bool randomStartingRoom = false;
 
@@ -107,11 +107,11 @@ public class DungeonGenerator : MonoBehaviour
         GameObject newRoom;
         if (randomStartingRoom == false)
         {
-            newRoom = Instantiate(startingRoom, transform);
+            newRoom = Instantiate(startingRoom, transform.GetChild(0));
         }
         else
         {
-            newRoom = Instantiate(allRooms[Random.Range(0, allRooms.Length)], transform);
+            newRoom = Instantiate(allRooms[Random.Range(0, allRooms.Length)], transform.GetChild(0));
         }
 
         rooms.Add(newRoom);
@@ -177,16 +177,16 @@ public class DungeonGenerator : MonoBehaviour
                 switch (direction)
                 {
                     case "u":
-                        newRoom = Instantiate(upRooms[RandomRoom()], node.transform.position, Quaternion.Euler(0, 0, 0), transform);
+                        newRoom = Instantiate(upRooms[RandomRoom()], node.transform.position, Quaternion.Euler(0, 0, 0), transform.GetChild(0));
                         break;
                     case "r":
-                        newRoom = Instantiate(rightRooms[RandomRoom()], node.transform.position, Quaternion.Euler(0, 0, 0), transform);
+                        newRoom = Instantiate(rightRooms[RandomRoom()], node.transform.position, Quaternion.Euler(0, 0, 0), transform.GetChild(0));
                         break;
                     case "d":
-                        newRoom = Instantiate(downRooms[RandomRoom()], node.transform.position, Quaternion.Euler(0, 0, 0), transform);
+                        newRoom = Instantiate(downRooms[RandomRoom()], node.transform.position, Quaternion.Euler(0, 0, 0), transform.GetChild(0));
                         break;
                     case "l":
-                        newRoom = Instantiate(leftRooms[RandomRoom()], node.transform.position, Quaternion.Euler(0, 0, 0), transform);
+                        newRoom = Instantiate(leftRooms[RandomRoom()], node.transform.position, Quaternion.Euler(0, 0, 0), transform.GetChild(0));
                         break;
                     default:
                         Debug.Log("Error in direction selection");
@@ -228,6 +228,8 @@ public class DungeonGenerator : MonoBehaviour
                 dungeonComplete = true;
                 Debug.Log("Dungeon Complete" + " | " + " Rooms: " + rooms.Count + " | " + " Seed: " + seed + " | " + " Time: " + Mathf.Round(generationTimer * 100) / 100f + "s");
                 generationTimer = 0;
+
+                GetComponent<DungeonFinalizer>().InstantiateRooms();
             }
         }
 
@@ -279,7 +281,7 @@ public class DungeonGenerator : MonoBehaviour
         StopAllCoroutines();
         spawnNodes.Clear();
 
-        foreach (Transform child in transform)
+        foreach (Transform child in transform.GetChild(0))
         {
             Destroy(child.gameObject);
         }

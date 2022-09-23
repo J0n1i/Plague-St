@@ -18,9 +18,14 @@ public class CameraManager : MonoBehaviour
         if(player == null){
             player = GameObject.FindWithTag("Player");
         }
-        
+
         if(gameStateManager.currentGameState == GameState.Playing){
-            transform.position = Vector2.Lerp(transform.position, player.transform.position, Time.deltaTime * 5);
+
+        float x = Mathf.Round(player.transform.position.x / 37) * 37;
+        float y = Mathf.Round(player.transform.position.y / 23) * 23;
+
+        transform.position = Vector3.Lerp(transform.position, new Vector3(x, y, transform.position.z), Time.deltaTime *5 );
         }
+
     }
 }
