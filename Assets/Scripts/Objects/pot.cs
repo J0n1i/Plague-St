@@ -1,0 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class pot : MonoBehaviour
+{
+    public GameObject CoinDrop;
+    public GameObject HeartDrop;
+    private Animator animator;
+    // Start is called before the first frame update
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        
+    }
+    // Update is called once per frame
+    public void Smash()
+    {
+        animator.SetBool("smash", true);
+        StartCoroutine(breakCo());
+    }
+
+    IEnumerator breakCo()
+    {
+        yield return new WaitForSeconds(.3f);
+        this.gameObject.SetActive(false);
+        int dice = Random.Range(1, 101);
+        if(dice < 51){
+            Instantiate(CoinDrop, transform.position, Quaternion.identity);
+            
+        }else if (dice>50 && dice<56) {
+            Instantiate(HeartDrop, transform.position, Quaternion.identity);
+            
+        } else {
+            
+        }
+    }
+}

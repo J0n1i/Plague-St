@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     private GameStateManager gameStateManager;
     private bool paused = false;
     private bool playerSpawned = false;
     private GameObject player;
+    public GameObject canvas;
+
     [SerializeField] private GameObject playerPrefab;
     // Start is called before the first frame update
     void Start()
@@ -40,6 +42,7 @@ public class GameManager : MonoBehaviour
     private void SpawnPlayer(){
         player = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         playerSpawned = true;
+        canvas.gameObject.SetActive(true);
     }
 
     void PauseGame(bool pause)
