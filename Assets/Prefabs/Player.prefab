@@ -392,7 +392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  speed: 4
+  speed: 10
   currentHealth: {fileID: 11400000, guid: 560e642d3d224fd459fd2b52f06b574e, type: 2}
   playerHealthSignal: {fileID: 11400000, guid: daf9bd7210439774385e4ca67c64c8a8, type: 2}
   rollSpeed: 13
