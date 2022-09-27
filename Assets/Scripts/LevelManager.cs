@@ -10,6 +10,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform enemiesParent;
 
     [SerializeField] private GameObject[] enemyPrefabs;
+    [SerializeField] private GameObject[] furniturePrefabs;
+    [SerializeField] private GameObject[] potPrefabs;
 
     void Start()
     {
@@ -49,6 +51,7 @@ public class LevelManager : MonoBehaviour
         rooms[furthestRoom].roomType = Room.RoomType.BossRoom;
 
         StartCoroutine(InstantiateEnemies());
+         StartCoroutine(InstantiateFurniture());
     }
 
     IEnumerator InstantiateEnemies(){
@@ -70,4 +73,36 @@ public class LevelManager : MonoBehaviour
             }
         }
     }
+
+
+IEnumerator InstantiateFurniture(){
+        yield return new WaitForSeconds(0.1f);
+        for (int i = 0; i < rooms.Count; i++)
+        {
+            if (rooms[i].roomType == Room.RoomType.EnemyRoom)
+            {
+                int randomFurnitureAmount = 1;
+                for (int j = 0; j < randomFurnitureAmount; j++)
+                {
+                    int randomFurniture = Random.Range(0, furniturePrefabs.Length);
+                    Instantiate(furniturePrefabs[randomFurniture], rooms[i].roomLocation.position, Quaternion.identity);
+                }
+                
+            }
+        }
+    }
+IEnumerator InstantiatePots(){
+        yield return new WaitForSeconds(0.1f);
+        for (int i = 0; i < rooms.Count; i++)
+        {
+          int randomPotAmount = Random.Range(5, 10);
+                for (int j = 0; j < randomPotAmount; j++)
+                {
+                    int randomPot = Random.Range(0, potPrefabs.Length);
+                    int randomX = Random.Range(-15, 15);
+                    int randomY = Random.Range(-8, 6);
+                    Instantiate(potPrefabs[randomPot], rooms[i].roomLocation.position + new Vector3(randomX, randomY, 0), Quaternion.identity);
+                }
+        }
+}
 }
