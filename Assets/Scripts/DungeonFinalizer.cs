@@ -6,13 +6,14 @@ public class DungeonFinalizer : MonoBehaviour
 {
     [SerializeField] private GameObject roomPrefab;
 
-    [SerializeField] List<GameObject> rooms;
+    List<GameObject> rooms;
 
     private DungeonGenerator dungeonGenerator;
+    private LevelManager levelManager;
 
     void Start(){
         dungeonGenerator = GetComponent<DungeonGenerator>();
-        
+        levelManager = GetComponent<LevelManager>();
     }
 
     public void InstantiateRooms()
@@ -22,7 +23,6 @@ public class DungeonFinalizer : MonoBehaviour
         {
             Instantiate(roomPrefab, room.transform.position, Quaternion.identity, transform.GetChild(1));
         }
-
         StartCoroutine(DisableGenerationRooms());
     }
 
