@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f123a3bace1dcc043b555a2042cb1074, type: 3}
   m_Name: ReceivedCoin
   m_EditorClassIdentifier: 
-  listeners:
-  - {fileID: 0}
+  listeners: []
