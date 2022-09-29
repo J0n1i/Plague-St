@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private GameObject[] furniturePrefabs;
     [SerializeField] private GameObject[] potPrefabs;
+    [SerializeField] private GameObject[] chestPrefabs;
 
     void Start()
     {
@@ -49,7 +50,7 @@ public class LevelManager : MonoBehaviour
             }
         }
         rooms[furthestRoom].roomType = Room.RoomType.BossRoom;
-
+        StartCoroutine(InstantiateChests());
         StartCoroutine(InstantiateEnemies());
          StartCoroutine(InstantiateFurniture());
     }
@@ -103,6 +104,23 @@ IEnumerator InstantiatePots(){
                     int randomY = Random.Range(-8, 6);
                     Instantiate(potPrefabs[randomPot], rooms[i].roomLocation.position + new Vector3(randomX, randomY, 0), Quaternion.identity);
                 }
+        }
+}
+IEnumerator InstantiateChests(){
+        yield return new WaitForSeconds(0.1f);
+        for (int i = 0; i < rooms.Count; i++)
+        {
+            if (rooms[i].roomType == Room.RoomType.TreasureRoom)
+            {
+          int randomChestAmount = Random.Range(2, 5);
+                for (int j = 0; j < randomChestAmount; j++)
+                {
+                    int randomChest = Random.Range(0, chestPrefabs.Length);
+                    int randomX = Random.Range(-15, 15);
+                    int randomY = Random.Range(-8, 6);
+                    Instantiate(chestPrefabs[randomChest], rooms[i].roomLocation.position + new Vector3(randomX, randomY, 0), Quaternion.identity);
+                }
+            }
         }
 }
 }
