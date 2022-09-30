@@ -206,6 +206,8 @@ MonoBehaviour:
   - {fileID: 332491799395186784, guid: 5ce9b86d8bab5be4ab479aa701b782a5, type: 3}
   potPrefabs:
   - {fileID: 2964141704353862201, guid: a6751cd10e76a9b4995de1154db8ff29, type: 3}
+  chestPrefabs:
+  - {fileID: 3446665502613183302, guid: a34fa35588d5f844dacdeb36b00bfe0f, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
