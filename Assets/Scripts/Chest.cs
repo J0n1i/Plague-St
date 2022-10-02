@@ -9,6 +9,7 @@ public class Chest : MonoBehaviour
    private Animator animator;
    private bool isOpen;
    public GameObject HeartDrop;
+   public GameObject SpeedDrop;
    void Start()
     {
         animator = GetComponent<Animator>();
@@ -33,7 +34,14 @@ public class Chest : MonoBehaviour
     {
 
         animator.SetBool("isOpened", true);
-         Instantiate(HeartDrop, transform.position, Quaternion.identity);
+         int dice = Random.Range(1, 101);
+        if(dice <= 50){
+            Instantiate(SpeedDrop, transform.position, Quaternion.identity);
+            
+        }else if (dice>50) {
+            Instantiate(HeartDrop, transform.position, Quaternion.identity);
+            
+        }
         isOpen=true;
             playerInventory.coins -= 10;
             chestSignal.Raise();
