@@ -33,10 +33,10 @@ public class Enemy : MonoBehaviour {
                 roomSignal.Raise();
             }
         int dice = Random.Range(1, 101);
-        if(dice < 51){
+        if(dice < 71){
             Instantiate(CoinDrop, transform.position, Quaternion.identity);
             
-        }else if (dice>50 && dice<56) {
+        }else if (dice>70 && dice<80) {
             Instantiate(HeartDrop, transform.position, Quaternion.identity);
             
         } else {

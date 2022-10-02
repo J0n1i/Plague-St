@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour {
     private Animator animator;
     public FloatValue currentHealth;
     public SignalSender playerHealthSignal;
-    public float rollSpeed;
+    private float rollSpeed;
     public float rollLength = .6f;
     public float rollCooldown = 5f;
     private float activeMoveSpeed;
@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        rollSpeed = speed * 2.5f;
         activeMoveSpeed = speed;
         currentState = PlayerState.walk;
         animator = GetComponent<Animator>();
@@ -106,6 +107,14 @@ public class PlayerMovement : MonoBehaviour {
             StartCoroutine(RollCo());
         }
         }
+    public void SpeedPowerup(){
+        speed = speed * 1.1f;
+        rollSpeed = rollSpeed * 1.1f;
+        activeMoveSpeed = speed;
+        print(speed);
+        print(rollSpeed);
+       
+    }
 
     public void Knock(float knockTime, float damage)
     {

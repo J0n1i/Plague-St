@@ -208,6 +208,17 @@ MonoBehaviour:
   - {fileID: 2964141704353862201, guid: a6751cd10e76a9b4995de1154db8ff29, type: 3}
   chestPrefabs:
   - {fileID: 3446665502613183302, guid: a34fa35588d5f844dacdeb36b00bfe0f, type: 3}
+--- !u!114 &276490471 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6950644346175939415, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+  m_PrefabInstance: {fileID: 1870941328}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d55b6c139b5442f4d8db0824883261f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,7 +459,7 @@ Transform:
   - {fileID: 531996309}
   - {fileID: 1801588006}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1078455422
 MonoBehaviour:
@@ -474,6 +485,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1362860074 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6950644346032902602, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+  m_PrefabInstance: {fileID: 1870941328}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1362860079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362860074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4716569c7e735ee4ba0148d55f5a8739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signal: {fileID: 11400000, guid: c9951322a1627ed4e8d2228646c42f21, type: 2}
+  signalEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 276490471}
+        m_TargetAssemblyTypeName: HeartManager, Assembly-CSharp
+        m_MethodName: UpdateHearts
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1384563791
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +718,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6950644345181636764, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6950644345181636764, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
       propertyPath: m_AnchorMax.x
@@ -747,6 +791,34 @@ PrefabInstance:
     - target: {fileID: 6950644345181636764, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6950644346032902604, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+      propertyPath: signalEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6950644346032902604, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+      propertyPath: signalEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6950644346032902604, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+      propertyPath: signalEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 276490471}
+    - target: {fileID: 6950644346032902604, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+      propertyPath: signalEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6950644346032902604, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+      propertyPath: signalEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: UpdateHearts
+      objectReference: {fileID: 0}
+    - target: {fileID: 6950644346032902604, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+      propertyPath: signalEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: HeartManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6950644346032902604, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+      propertyPath: signalEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6950644346459714331, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
       propertyPath: m_IsActive
