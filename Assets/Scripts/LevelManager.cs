@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [HideInInspector] public List<GameObject> roomPrefabs;
+    public List<GameObject> roomPrefabs;
     [SerializeField] public List<Room> rooms;
     private DungeonGenerator dungeonGenerator;
-    [SerializeField] private Transform enemiesParent;
+    [SerializeField] private Transform enemiesParent, furnitureParent, potsParent, chestsParent;
 
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private GameObject[] furniturePrefabs;
@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour
     {
         for (int i = 0; i < roomPrefabs.Count; i++)
         {
-            var newRoom = new Room(i, Room.RoomType.EnemyRoom, 0, 0, roomPrefabs[i].transform);
+            var newRoom = new Room(i, Room.RoomType.EnemyRoom, 0, 0, roomPrefabs[i].transform, roomPrefabs[i]);
             rooms.Add(newRoom);
         }
 
@@ -52,10 +52,11 @@ public class LevelManager : MonoBehaviour
         rooms[furthestRoom].roomType = Room.RoomType.BossRoom;
         StartCoroutine(InstantiateChests());
         StartCoroutine(InstantiateEnemies());
-         StartCoroutine(InstantiateFurniture());
+        StartCoroutine(InstantiateFurniture());
     }
 
-    IEnumerator InstantiateEnemies(){
+    IEnumerator InstantiateEnemies()
+    {
         yield return new WaitForSeconds(0.1f);
         for (int i = 0; i < rooms.Count; i++)
         {
@@ -68,15 +69,16 @@ public class LevelManager : MonoBehaviour
                     int randomEnemy = Random.Range(0, enemyPrefabs.Length);
                     int randomX = Random.Range(-15, 15);
                     int randomY = Random.Range(-8, 6);
-                    Instantiate(enemyPrefabs[randomEnemy], rooms[i].roomLocation.position + new Vector3(randomX, randomY, 0), Quaternion.identity, enemiesParent);
+                    Instantiate(enemyPrefabs[randomEnemy], rooms[i].roomLocation.position + new Vector3(randomX, randomY, 0), Quaternion.identity, rooms[i].roomPrefab.transform.Find("Enemies"));
                 }
-                
+
             }
         }
     }
 
 
-IEnumerator InstantiateFurniture(){
+    IEnumerator InstantiateFurniture()
+    {
         yield return new WaitForSeconds(0.1f);
         for (int i = 0; i < rooms.Count; i++)
         {
@@ -86,41 +88,43 @@ IEnumerator InstantiateFurniture(){
                 for (int j = 0; j < randomFurnitureAmount; j++)
                 {
                     int randomFurniture = Random.Range(0, furniturePrefabs.Length);
-                    Instantiate(furniturePrefabs[randomFurniture], rooms[i].roomLocation.position, Quaternion.identity);
+                    Instantiate(furniturePrefabs[randomFurniture], rooms[i].roomLocation.position, Quaternion.identity, furnitureParent);
                 }
-                
+
             }
         }
     }
-IEnumerator InstantiatePots(){
+    IEnumerator InstantiatePots()
+    {
         yield return new WaitForSeconds(0.1f);
         for (int i = 0; i < rooms.Count; i++)
         {
-          int randomPotAmount = Random.Range(5, 10);
-                for (int j = 0; j < randomPotAmount; j++)
-                {
-                    int randomPot = Random.Range(0, potPrefabs.Length);
-                    int randomX = Random.Range(-15, 15);
-                    int randomY = Random.Range(-8, 6);
-                    Instantiate(potPrefabs[randomPot], rooms[i].roomLocation.position + new Vector3(randomX, randomY, 0), Quaternion.identity);
-                }
+            int randomPotAmount = Random.Range(5, 10);
+            for (int j = 0; j < randomPotAmount; j++)
+            {
+                int randomPot = Random.Range(0, potPrefabs.Length);
+                int randomX = Random.Range(-15, 15);
+                int randomY = Random.Range(-8, 6);
+                Instantiate(potPrefabs[randomPot], rooms[i].roomLocation.position + new Vector3(randomX, randomY, 0), Quaternion.identity, potsParent);
+            }
         }
-}
-IEnumerator InstantiateChests(){
+    }
+    IEnumerator InstantiateChests()
+    {
         yield return new WaitForSeconds(0.1f);
         for (int i = 0; i < rooms.Count; i++)
         {
             if (rooms[i].roomType == Room.RoomType.TreasureRoom)
             {
-          int randomChestAmount = Random.Range(2, 5);
+                int randomChestAmount = Random.Range(2, 5);
                 for (int j = 0; j < randomChestAmount; j++)
                 {
                     int randomChest = Random.Range(0, chestPrefabs.Length);
                     int randomX = Random.Range(-15, 15);
                     int randomY = Random.Range(-8, 6);
-                    Instantiate(chestPrefabs[randomChest], rooms[i].roomLocation.position + new Vector3(randomX, randomY, 0), Quaternion.identity);
+                    Instantiate(chestPrefabs[randomChest], rooms[i].roomLocation.position + new Vector3(randomX, randomY, 0), Quaternion.identity, chestsParent);
                 }
             }
         }
-}
+    }
 }

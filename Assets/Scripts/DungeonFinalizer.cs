@@ -11,9 +11,10 @@ public class DungeonFinalizer : MonoBehaviour
     private DungeonGenerator dungeonGenerator;
     private LevelManager levelManager;
 
-    void Start(){
+    void Start()
+    {
         dungeonGenerator = GetComponent<DungeonGenerator>();
-        levelManager = GetComponent<LevelManager>();
+        levelManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<LevelManager>();
     }
 
     public void InstantiateRooms()
@@ -21,14 +22,24 @@ public class DungeonFinalizer : MonoBehaviour
         rooms = dungeonGenerator.rooms;
         foreach (GameObject room in rooms)
         {
-            Instantiate(roomPrefab, room.transform.position, Quaternion.identity, transform.GetChild(1));
+            var newRoom = Instantiate(roomPrefab, room.transform.position, Quaternion.identity, transform.GetChild(1));
+            levelManager.roomPrefabs.Add(newRoom);
         }
+
+
+
+        levelManager.CreateList();
+
+
+
+
+
         StartCoroutine(DisableGenerationRooms());
     }
 
     IEnumerator DisableGenerationRooms()
     {
-        yield return new WaitForEndOfFrame();;
+        yield return new WaitForEndOfFrame();
         transform.GetChild(0).gameObject.SetActive(false);
     }
 }
