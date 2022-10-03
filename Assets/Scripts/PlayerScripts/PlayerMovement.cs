@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum PlayerState{
     walk,
@@ -12,7 +13,7 @@ public enum PlayerState{
 
 public class PlayerMovement : MonoBehaviour {
 
-
+    public SpriteRenderer sprite;
     public PlayerState currentState;
     public float speed;
     private Rigidbody2D myRigidbody;
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour {
     private float activeMoveSpeed;
     public bool isRolling;
     public int coins;
+    public Image cooldownImage;
 
 	// Use this for initialization
 	void Start () {
@@ -74,10 +76,23 @@ public class PlayerMovement : MonoBehaviour {
         activeMoveSpeed = rollSpeed;
         yield return new WaitForSeconds(rollLength);
         activeMoveSpeed = speed;
+        cooldownImage.enabled = true;
+        StartCoroutine(RollCooldownCo());
+        
+       
         yield return new WaitForSeconds(rollCooldown);
+        cooldownImage.enabled = false;
         isRolling=false;
     }
-  
+    private IEnumerator RollCooldownCo(){
+        float alpha = 1f;
+     while(alpha > 0)
+        {
+            alpha -= Time.deltaTime / rollCooldown;
+            cooldownImage.color = new Color(1,1,1,alpha);
+            yield return null;
+        }
+    }
     void UpdateAnimationAndMove()
     {
         if (change != Vector3.zero)
@@ -107,6 +122,16 @@ public class PlayerMovement : MonoBehaviour {
             StartCoroutine(RollCo());
         }
         }
+    public void RollCooldownPowerup(){
+        if(rollCooldown == 0)
+        {
+            return;
+        } else {
+        rollCooldown =  rollCooldown-0.5f;
+        print(rollCooldown);
+        }
+       
+    }
     public void SpeedPowerup(){
         speed = speed * 1.1f;
         rollSpeed = rollSpeed * 1.1f;
@@ -133,6 +158,9 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (myRigidbody != null)
         {
+            sprite.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            sprite.color = Color.white;
             yield return new WaitForSeconds(knockTime);
             myRigidbody.velocity = Vector2.zero;
             currentState = PlayerState.idle;
