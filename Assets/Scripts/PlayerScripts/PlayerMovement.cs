@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour {
     private Animator animator;
     public FloatValue currentHealth;
     public SignalSender playerHealthSignal;
+    public SignalSender playerAttackSignal;
+    public SignalSender playerDamageSignal;
     private float rollSpeed;
     public float rollLength = .6f;
     public float rollCooldown = 5f;
@@ -62,6 +64,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private IEnumerator AttackCo()
     {
+        playerAttackSignal.Raise();
         animator.SetBool("attacking", true);
         currentState = PlayerState.attack;
         yield return null;
@@ -158,6 +161,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (myRigidbody != null)
         {
+            playerDamageSignal.Raise();
             sprite.color = Color.red;
             yield return new WaitForSeconds(0.1f);
             sprite.color = Color.white;

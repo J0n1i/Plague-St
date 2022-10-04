@@ -405,6 +405,8 @@ MonoBehaviour:
   speed: 5
   currentHealth: {fileID: 11400000, guid: 560e642d3d224fd459fd2b52f06b574e, type: 2}
   playerHealthSignal: {fileID: 11400000, guid: daf9bd7210439774385e4ca67c64c8a8, type: 2}
+  playerAttackSignal: {fileID: 11400000, guid: 5e60a6dbd15523044a78315042f096c7, type: 2}
+  playerDamageSignal: {fileID: 11400000, guid: eafcd0b765db78b4eade38b1717555d4, type: 2}
   rollLength: 0.25
   rollCooldown: 3
   isRolling: 0
