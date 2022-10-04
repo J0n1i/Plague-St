@@ -12,6 +12,7 @@ public enum EnemyState{
 public class Enemy : MonoBehaviour {
     public SignalSender roomSignal;
 
+    public SpriteRenderer sprite;
     public EnemyState currentState;
     public FloatValue maxHealth;
     public float health;
@@ -57,6 +58,9 @@ public class Enemy : MonoBehaviour {
     {
         if (myRigidbody != null)
         {
+             sprite.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            sprite.color = Color.white;
             yield return new WaitForSeconds(knockTime);
             myRigidbody.velocity = Vector2.zero;
             currentState = EnemyState.idle;
