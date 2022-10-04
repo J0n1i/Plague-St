@@ -116,13 +116,19 @@ public class LevelManager : MonoBehaviour
         {
             if (rooms[i].roomType == Room.RoomType.TreasureRoom)
             {
-                int randomChestAmount = Random.Range(2, 5);
-                for (int j = 0; j < randomChestAmount; j++)
-                {
-                    int randomChest = Random.Range(0, chestPrefabs.Length);
-                    int randomX = Random.Range(-15, 15);
-                    int randomY = Random.Range(-8, 6);
-                    Instantiate(chestPrefabs[randomChest], rooms[i].roomLocation.position + new Vector3(randomX, randomY, 0), Quaternion.identity, chestsParent);
+                int randomChestAmount = Random.Range(1, 4);
+                if(randomChestAmount == 1){
+                    //instantiate chest in middle of room
+                    Instantiate(chestPrefabs[0], rooms[i].roomLocation.position, Quaternion.identity, chestsParent);
+                }else if(randomChestAmount == 2){
+                    //instantiate two chests next to each other in the middle of the room
+                    Instantiate(chestPrefabs[0], rooms[i].roomLocation.position + new Vector3(-1, 0, 0), Quaternion.identity, chestsParent);
+                    Instantiate(chestPrefabs[0], rooms[i].roomLocation.position + new Vector3(1, 0, 0), Quaternion.identity, chestsParent);
+                }else{
+                    //instantiate three chests next to each other in the middle of the room
+                    Instantiate(chestPrefabs[0], rooms[i].roomLocation.position + new Vector3(-2, 0, 0), Quaternion.identity, chestsParent);
+                    Instantiate(chestPrefabs[0], rooms[i].roomLocation.position + new Vector3(2, 0, 0), Quaternion.identity, chestsParent);
+                    Instantiate(chestPrefabs[0], rooms[i].roomLocation.position + new Vector3(0, 0, 0), Quaternion.identity, chestsParent);
                 }
             }
         }
