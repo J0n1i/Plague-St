@@ -25,7 +25,29 @@ public class CameraManager : MonoBehaviour
         float y = Mathf.Round(player.transform.position.y / 23) * 23;
 
         transform.position = Vector3.Lerp(transform.position, new Vector3(x, y, transform.position.z), Time.deltaTime *5 );
+        
         }
-
+        
     }
+    public void ShakeAttack()
+    {
+        StartCoroutine(Shake(transform.position, 0.05f, 0.05f));
+    }
+    public void ShakeDamage()
+    {
+        StartCoroutine(Shake(transform.position, 0.1f, 0.1f));
+    }
+  IEnumerator Shake(Vector3 position, float duration, float magnitude){
+            float elapsed = 0.0f;
+            while(elapsed < duration){
+                float x = Random.Range(-1f, 1f) * magnitude;
+                float y = Random.Range(-1f, 1f) * magnitude;
+                transform.position = new Vector3(position.x + x, position.y + y, position.z);
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+        }
+    
+
 }

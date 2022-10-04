@@ -8,4 +8,4 @@
 -Generation Speed is the wait time for next room, lower = faster
 
 
-Console shows Rooms per generated per second, estimated time, room amount, seed and total time taken.
+Console shows Rooms generated per second, estimated time, room amount, seed and total time taken.
