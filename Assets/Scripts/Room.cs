@@ -2,14 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Room : MonoBehaviour
+[System.Serializable]
+public class Room
 {
-    public List<GameObject> spawnNodes;
-    void Start()
+    public int roomIndex;
+    public enum RoomType {
+        SpawnRoom,
+        BossRoom,
+        EnemyRoom,
+        TreasureRoom
+    };
+    public RoomType roomType;
+
+    public int enemyAmount;
+    public int treasureAmount;
+    public Transform roomLocation;
+    public GameObject roomPrefab;
+
+
+
+    public Room(int roomIndex, RoomType roomType, int enemyAmount, int treasureAmount, Transform roomLocation, GameObject roomPrefab)
     {
-        spawnNodes.Clear();
-        for(int i = 0; i < transform.GetChild(2).childCount; i++){
-            spawnNodes.Add(transform.GetChild(2).GetChild(i).gameObject);
-        }
+        this.roomIndex = roomIndex;
+        this.roomType = roomType;
+        this.enemyAmount = enemyAmount;
+        this.treasureAmount = treasureAmount;
+        this.roomLocation = roomLocation;
+        this.roomPrefab = roomPrefab;
     }
 }

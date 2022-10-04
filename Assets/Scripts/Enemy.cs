@@ -12,6 +12,7 @@ public enum EnemyState{
 public class Enemy : MonoBehaviour {
     public SignalSender roomSignal;
 
+    public SpriteRenderer sprite;
     public EnemyState currentState;
     public FloatValue maxHealth;
     public float health;
@@ -33,10 +34,10 @@ public class Enemy : MonoBehaviour {
                 roomSignal.Raise();
             }
         int dice = Random.Range(1, 101);
-        if(dice < 51){
+        if(dice < 71){
             Instantiate(CoinDrop, transform.position, Quaternion.identity);
             
-        }else if (dice>50 && dice<56) {
+        }else if (dice>70 && dice<80) {
             Instantiate(HeartDrop, transform.position, Quaternion.identity);
             
         } else {
@@ -57,6 +58,9 @@ public class Enemy : MonoBehaviour {
     {
         if (myRigidbody != null)
         {
+             sprite.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            sprite.color = Color.white;
             yield return new WaitForSeconds(knockTime);
             myRigidbody.velocity = Vector2.zero;
             currentState = EnemyState.idle;
