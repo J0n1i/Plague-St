@@ -230,8 +230,6 @@ public class DungeonGenerator : MonoBehaviour
                 generationTimer = 0;
 
                 GetComponent<DungeonFinalizer>().InstantiateRooms();
-                levelManager.roomPrefabs.AddRange(rooms);
-                levelManager.CreateList();
             }
         }
 

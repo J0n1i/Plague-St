@@ -15,7 +15,7 @@ public class DoorManager : MonoBehaviour
         if (hit.Length == 4)
         {
             doorOpen = true;
-            transform.parent.parent.GetChild(2).GetChild(transform.GetSiblingIndex()).gameObject.SetActive(false);
+            transform.parent.parent.Find("Walls").GetChild(transform.GetSiblingIndex()).gameObject.SetActive(false);
         }
 
         

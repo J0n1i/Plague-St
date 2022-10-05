@@ -17,15 +17,17 @@ public class Room
     public int enemyAmount;
     public int treasureAmount;
     public Transform roomLocation;
+    public GameObject roomPrefab;
 
 
 
-    public Room(int roomIndex, RoomType roomType, int enemyAmount, int treasureAmount, Transform roomLocation)
+    public Room(int roomIndex, RoomType roomType, int enemyAmount, int treasureAmount, Transform roomLocation, GameObject roomPrefab)
     {
         this.roomIndex = roomIndex;
         this.roomType = roomType;
         this.enemyAmount = enemyAmount;
         this.treasureAmount = treasureAmount;
         this.roomLocation = roomLocation;
+        this.roomPrefab = roomPrefab;
     }
 }
