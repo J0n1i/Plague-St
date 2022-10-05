@@ -596,7 +596,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196b0480bd6ba1e40b3acbdf9186b475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomPrefab: {fileID: 332491799395186784, guid: cb75f5cea2e398941837e88bac9ce3ab, type: 3}
+  roomPrefab:
+  - {fileID: 332491799395186784, guid: 94af72730a2aaea4d9597ec9c5394fc4, type: 3}
+  - {fileID: 332491799395186784, guid: 5dad89e59299f4f4d93d79e1a26535d2, type: 3}
+  - {fileID: 332491799395186784, guid: 45e88d8d7a3cf5b4a9809c38eae04eba, type: 3}
+  - {fileID: 332491799395186784, guid: 9ddb5f4c18b50114aa1b94d5475108a0, type: 3}
 --- !u!114 &1137440596 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6950644345096547388, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
