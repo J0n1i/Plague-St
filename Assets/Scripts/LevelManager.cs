@@ -53,6 +53,15 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(InstantiateChests());
         StartCoroutine(InstantiateEnemies());
         StartCoroutine(InstantiateFurniture());
+        StartCoroutine(InstantiatePots());
+        StartCoroutine(InstantiateAstar());
+        AstarPath.active.Scan();
+    }
+    //instantiate astar
+    IEnumerator InstantiateAstar()
+    {
+        yield return new WaitForSeconds(2f);
+       AstarPath.active.Scan();
     }
 
     IEnumerator InstantiateEnemies()
@@ -99,7 +108,7 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         for (int i = 0; i < rooms.Count; i++)
         {
-            int randomPotAmount = Random.Range(5, 10);
+            int randomPotAmount = Random.Range(1, 3);
             for (int j = 0; j < randomPotAmount; j++)
             {
                 int randomPot = Random.Range(0, potPrefabs.Length);
