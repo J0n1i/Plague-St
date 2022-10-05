@@ -13,6 +13,7 @@ public enum PlayerState{
 
 public class PlayerMovement : MonoBehaviour {
 
+    public bool PlayerIsDead = false;
     public SpriteRenderer sprite;
     public PlayerState currentState;
     public float speed;
@@ -30,6 +31,7 @@ public class PlayerMovement : MonoBehaviour {
     public bool isRolling;
     public int coins;
     public Image cooldownImage;
+    private DeathScreen deatscreen;
 
 	// Use this for initialization
 	void Start () {
@@ -40,6 +42,7 @@ public class PlayerMovement : MonoBehaviour {
         myRigidbody = GetComponent<Rigidbody2D>();
         animator.SetFloat("moveX", 0);
         animator.SetFloat("moveY", -1);
+        deatscreen = GameObject.Find("DeathScreenCanvas").GetComponent<DeathScreen>();
 
 	}
 	
@@ -154,6 +157,9 @@ public class PlayerMovement : MonoBehaviour {
         StartCoroutine(KnockCo(knockTime));
         }else{
             this.gameObject.SetActive(false);
+            PlayerIsDead = true;
+            deatscreen.ShowDeathScreen();
+
         }
     }
 
