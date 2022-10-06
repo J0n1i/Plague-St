@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DungeonFinalizer : MonoBehaviour
 {
-    [SerializeField] private GameObject roomPrefab;
+    [SerializeField] private GameObject[] roomPrefab;
 
     List<GameObject> rooms;
 
@@ -22,7 +22,7 @@ public class DungeonFinalizer : MonoBehaviour
         rooms = dungeonGenerator.rooms;
         foreach (GameObject room in rooms)
         {
-            var newRoom = Instantiate(roomPrefab, room.transform.position, Quaternion.identity, transform.GetChild(1));
+            var newRoom = Instantiate(roomPrefab[Random.Range(0, roomPrefab.Length)], room.transform.position, Quaternion.identity, transform.GetChild(1));
             levelManager.roomPrefabs.Add(newRoom);
         }
 

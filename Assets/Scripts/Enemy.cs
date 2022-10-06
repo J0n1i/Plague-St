@@ -58,6 +58,7 @@ public class Enemy : MonoBehaviour {
     {
         if (myRigidbody != null)
         {
+            GetComponent<Pathfinding.AIPath>().enabled = false;
              sprite.color = Color.red;
             yield return new WaitForSeconds(0.1f);
             sprite.color = Color.white;
@@ -65,6 +66,7 @@ public class Enemy : MonoBehaviour {
             myRigidbody.velocity = Vector2.zero;
             currentState = EnemyState.idle;
             myRigidbody.velocity = Vector2.zero;
+            GetComponent<Pathfinding.AIPath>().enabled = true;
         }
     }
 }

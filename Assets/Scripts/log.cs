@@ -12,13 +12,15 @@ public class log : Enemy {
     public Animator anim;
 
 
-
 	// Use this for initialization
 	void Start () {
         currentState = EnemyState.idle;
         myRigidbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         target = GameObject.FindWithTag("Player").transform;
+        GetComponent<Pathfinding.AIPath>().enabled = false;
+        //enable pathfinding
+
 	}
 	
 	// Update is called once per frame
@@ -40,13 +42,16 @@ public class log : Enemy {
                                                          target.position,
                                                          moveSpeed * Time.deltaTime);
                 changeAnim(temp - transform.position);
-                myRigidbody.MovePosition(temp);
+                //myRigidbody.MovePosition(temp);
+                GetComponent<Pathfinding.AIPath>().enabled = true;
                 ChangeState(EnemyState.walk);
+                
                 anim.SetBool("wakeUp", true);
             }
         }else if (Vector3.Distance(target.position,
                             transform.position) > chaseRadius)
         {
+            GetComponent<Pathfinding.AIPath>().enabled = false;
             anim.SetBool("wakeUp", false);
         }
     }

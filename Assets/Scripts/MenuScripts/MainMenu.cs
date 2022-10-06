@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
 
     public Animator anime;
-
+    
 
     public void PlayGame()
     {
@@ -21,5 +21,8 @@ public class MainMenu : MonoBehaviour
     {
         yield return new WaitForSeconds(.5f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        
+        
     }
+    
 }

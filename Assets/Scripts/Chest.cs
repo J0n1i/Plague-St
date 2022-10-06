@@ -10,6 +10,7 @@ public class Chest : MonoBehaviour
    private bool isOpen;
    public GameObject HeartDrop;
    public GameObject SpeedDrop;
+   public GameObject RollDrop;
    void Start()
     {
         animator = GetComponent<Animator>();
@@ -35,12 +36,13 @@ public class Chest : MonoBehaviour
 
         animator.SetBool("isOpened", true);
          int dice = Random.Range(1, 101);
-        if(dice <= 50){
+        if(dice <= 33){
             Instantiate(SpeedDrop, transform.position, Quaternion.identity);
             
-        }else if (dice>50) {
+        }else if (dice <= 66) {
             Instantiate(HeartDrop, transform.position, Quaternion.identity);
-            
+        } else if (dice >66){
+            Instantiate(RollDrop, transform.position, Quaternion.identity);
         }
         isOpen=true;
             playerInventory.coins -= 10;
