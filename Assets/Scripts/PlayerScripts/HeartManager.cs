@@ -53,4 +53,10 @@ public class HeartManager : MonoBehaviour
         }
 
     }
+    public void resetHealth()
+    {
+        playerCurrentHealth.RuntimeValue = 6;
+        heartContainers.RuntimeValue = 3;
+        UpdateHearts();
+    }
 }

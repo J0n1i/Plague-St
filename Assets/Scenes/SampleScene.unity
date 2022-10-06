@@ -242,6 +242,93 @@ MonoBehaviour:
   - {fileID: 2964141704353862201, guid: a6751cd10e76a9b4995de1154db8ff29, type: 3}
   chestPrefabs:
   - {fileID: 3446665502613183302, guid: a34fa35588d5f844dacdeb36b00bfe0f, type: 3}
+--- !u!1 &258261457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 258261459}
+  - component: {fileID: 258261458}
+  m_Layer: 0
+  m_Name: a*
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &258261458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258261457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78396926cbbfc4ac3b48fc5fc34a87d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  data:
+    dataString: UEsDBBQAAAgIAAAQIexjvZa/eAIAADUFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMFymzAQ/RWPzrUHHGJMby1xnB6SeOJ2cuEiw2I0FhIjidhOxv/elRCGur5YvN19evt24YswoRvIjVRrxYpnWQD5PiH2TL5NhuATnOheii37hD7nnRWmsknU5bxRwyTioS3TsgajWP5D7LlNDhBsBSulqlfFHlKpjUa4pFwDhpQ0tlog9DUhJ/ybJrbkjKd5bE+feEqCyQWPOQgDakgNZgn+llEchb4kmEUOWt4tfelylkTB3SJZTYOlI2lFzmndQGE7Grii4HptELpEgd36HEufS86Z9lKJOTfOipQ2usVGMaFgFFt3+oKZvb4Ctq+MZRyXv5alBuOdUfT8wBR62PGSn7Iztqb60Gn7oLx1Euad/I70+b/4tBNdKlk/9feGridTsfzwRs851Wbk/Bh+GKSHzqIj5Qe64/BegXiRayVbUWDQqNaWthrmD8PjtbW0gvww4J3UG7BtRvPrp+ZnZXu4uO5PKWf1rhtoB2y5dI677QCFs/mFgt3uaE+BqFXxR8Nvuh8vmQ88MqUNhnyXwsrbyVbZVLJyntluWpNKJcDBXnQDgnJz3iCNuR3hTWx07U3kkdrXyV/uY/1bclPi4CE/CG5CG3m8DktX8vgMunptDWcCBtE28II+pVKIbsPGnvRl21aVNB+V7VtW/LtapLgPF/Mo3oXRYhnE9+UU7ndJsothEdIyjikQt3tMYJ+Ubzqh3h6cmhjIBe5Z/5WZrBVt3LYXih7X7LOWI8uZKOU2VwDitWO4CgeFl+B7WawKhgZtwRgm3LzJV0a4zA9QZFeizHW6OhlFs4ElIw37kMYiGUndZyUjFr7u8kbBB4Ojvbwnu5DLX1BLAwQUAAAICAAAECHs1SV61m0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0UoqpoZmRiXmSoYmZhYG5aZpuqmmSpWWSeaqZYWKauXliqlIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAECHsY72Wv3gCAAA1BQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAECHs1SV61m0AAAB4AAAACQAkAAAAAAAAAAAAAADFAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAH0DAAAAAA==
+    upgradeData: 
+    file_cachedStartup: {fileID: 0}
+    data_cachedStartup: 
+    cacheStartup: 0
+  showNavGraphs: 1
+  showUnwalkableNodes: 1
+  debugMode: 0
+  debugFloor: 0
+  debugRoof: 1
+  manualDebugFloorRoof: 0
+  showSearchTree: 0
+  unwalkableNodeDebugSize: 0.3
+  logPathResults: 1
+  maxNearestNodeDistance: 100
+  scanOnStartup: 1
+  fullGetNearestSearch: 0
+  prioritizeGraphs: 0
+  prioritizeGraphsLimit: 1
+  colorSettings:
+    _SolidColor: {r: 0.11764706, g: 0.4, b: 0.7882353, a: 0.9}
+    _UnwalkableNode: {r: 1, g: 0, b: 0, a: 0.5}
+    _BoundsHandles: {r: 0.29, g: 0.454, b: 0.741, a: 0.9}
+    _ConnectionLowLerp: {r: 0, g: 1, b: 0, a: 0.5}
+    _ConnectionHighLerp: {r: 1, g: 0, b: 0, a: 0.5}
+    _MeshEdgeColor: {r: 0, g: 0, b: 0, a: 0.5}
+    _AreaColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+  tagNames: []
+  heuristic: 2
+  heuristicScale: 1
+  threadCount: 1
+  maxFrameTime: 1
+  batchGraphUpdates: 0
+  graphUpdateBatchingInterval: 0.2
+  euclideanEmbedding:
+    mode: 0
+    seed: 0
+    pivotPointRoot: {fileID: 0}
+    spreadOutCount: 1
+  showGraphs: 1
+--- !u!4 &258261459
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258261457}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.5, z: -0.07}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &276490471 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6950644346175939415, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
@@ -319,7 +406,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &475108819
 GameObject:
@@ -1111,6 +1198,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1362860084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362860074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4716569c7e735ee4ba0148d55f5a8739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signal: {fileID: 11400000, guid: 24ae93a7fdb66c14ba690447c7c4fb07, type: 2}
+  signalEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 276490471}
+        m_TargetAssemblyTypeName: HeartManager, Assembly-CSharp
+        m_MethodName: resetHealth
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1580048650
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,7 +1529,7 @@ RectTransform:
   m_Children:
   - {fileID: 1934262589}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1760,6 +1875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseMenuUi: {fileID: 1351428858}
+  healthResetSignal: {fileID: 11400000, guid: 24ae93a7fdb66c14ba690447c7c4fb07, type: 2}
 --- !u!114 &1911978255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1836,7 +1952,7 @@ RectTransform:
   - {fileID: 2077614228}
   - {fileID: 1351428861}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1981,7 +2097,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 496.54166, y: 208.36082}
+  m_AnchoredPosition: {x: 394, y: 150}
   m_SizeDelta: {x: 69.8488, y: 69.2865}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2077614229
