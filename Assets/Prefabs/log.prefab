@@ -183,7 +183,7 @@ MonoBehaviour:
   CoinDrop: {fileID: 5282864384341969437, guid: 15ba91fe25b09f3479ee7e782c3553c3, type: 3}
   HeartDrop: {fileID: 1920694392575528832, guid: 1327b3039c883a24e853986571ed791f, type: 3}
   target: {fileID: 8045719978935814808, guid: 4378ec4075ca9324fb7a3820f63c0c76, type: 3}
-  chaseRadius: 4
+  chaseRadius: 8
   attackRadius: 0.5
   homePosition: {fileID: 0}
   anim: {fileID: 8433158962445273155}
@@ -269,8 +269,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 5
-  radius: 0.5
-  height: 2
+  radius: 0.79
+  height: 0.01
   canMove: 1
   maxSpeed: 3
   gravity: {x: NaN, y: NaN, z: NaN}

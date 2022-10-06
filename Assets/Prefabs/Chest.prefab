@@ -284,3 +284,4 @@ MonoBehaviour:
   chestSignal: {fileID: 11400000, guid: c87290e4472ce9048902459ecec798e0, type: 2}
   HeartDrop: {fileID: 298038311704642331, guid: 0582a17485d254e45b04a53d0e371b65, type: 3}
   SpeedDrop: {fileID: 6741710865936439424, guid: 5f004914aac0c5545980617a2bac3b5c, type: 3}
+  RollDrop: {fileID: 1910594686965356764, guid: 906b959aa5740b147aed129628b6d266, type: 3}

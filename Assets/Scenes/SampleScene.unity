@@ -273,7 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAIIew5hjC4eQIAADQFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1z2jAQ/SuMziVju4Cht9YhpAcSJqSTiy/CWmMNsuSRZD6S4b93JdvYpVyQ3+6+ffu09hfh0lSQWaVXmrO1YkB+jIg7k2+jPvgMZ7pXcss/ocv54MwWLon6nDdquUI8dGVGlWA1z37KvXDJAYK15LnS5ZLtIVHGGoRzKgxgSCvrqiVCXyNyxr/xwpVc8BTF7vSJp0UwuuIxA2lBD1LD+UPgfvGsLZk2z8Fk3lbOHxaTYDadLMdB7DlqmQlaVsDcQD1VFHUU4ffIJ0octs1xg2VKCG5apcReKu9EQitT45yYwDjFyb284MG1L4DvC+u4h+WveW7AtsZoennkGi1seMkv1fhaUnNotB2pqL2EaO5VNaTr/+Lj0Idzrcrnrm8YuB624NnhjV4yauzA+CH82EsPvUUnKg50J+CjAPmiVlrVkmHQ6tqV1gaix/7xNlpSQHbo8UbqHVhXvefdPXe37Ga4+unPieDlzjs5aYCtUN5xvxyg8W5+o2C/OqalQNSp+GPgne6HO9YGnrg2FkPtlNLJ26lau1Sy9J65aWqbKC3Bw63oCiQV9rJBGnt/hXexQdu7yBN1b1PbvI11L8ldiYf7/CC4C23U6XZZplCnNZjitbaCS+hFu8AL+pQoKZsNG3rSlW1rndNsULavOft3tQibhrNoEu/CyWwexNN8DNPdYrGLYRbSPI4pEL97XOKcVGwaoa09eGuyJ5e4Z91HZrTStPLbzjQ9rfhnqQaWc5mrbaYB5GvDcBMOGpvge8mWjKNBW7CWS3/f5CslQmUHYOmNKPWTLs9W07RnSUnFj8o6JCWJ/6qkxMG3Xd5oOHI4ueYd2ZVc/wJQSwMEFAAACAgAAAgh7NUletZtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tFKKqaGZkYl5kqGJmYWBuWmabqppkqVlknmqmWFimrl5YqpSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAAgh7DmGMLh5AgAANAUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAAgh7NUletZtAAAAeAAAAAkAJAAAAAAAAAAAAAAAxgIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAAB+AwAAAAA=
+    dataString: UEsDBBQAAAgIAAAQIexjvZa/eAIAADUFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMFymzAQ/RWPzrUHHGJMby1xnB6SeOJ2cuEiw2I0FhIjidhOxv/elRCGur5YvN19evt24YswoRvIjVRrxYpnWQD5PiH2TL5NhuATnOheii37hD7nnRWmsknU5bxRwyTioS3TsgajWP5D7LlNDhBsBSulqlfFHlKpjUa4pFwDhpQ0tlog9DUhJ/ybJrbkjKd5bE+feEqCyQWPOQgDakgNZgn+llEchb4kmEUOWt4tfelylkTB3SJZTYOlI2lFzmndQGE7Grii4HptELpEgd36HEufS86Z9lKJOTfOipQ2usVGMaFgFFt3+oKZvb4Ctq+MZRyXv5alBuOdUfT8wBR62PGSn7Iztqb60Gn7oLx1Euad/I70+b/4tBNdKlk/9feGridTsfzwRs851Wbk/Bh+GKSHzqIj5Qe64/BegXiRayVbUWDQqNaWthrmD8PjtbW0gvww4J3UG7BtRvPrp+ZnZXu4uO5PKWf1rhtoB2y5dI677QCFs/mFgt3uaE+BqFXxR8Nvuh8vmQ88MqUNhnyXwsrbyVbZVLJyntluWpNKJcDBXnQDgnJz3iCNuR3hTWx07U3kkdrXyV/uY/1bclPi4CE/CG5CG3m8DktX8vgMunptDWcCBtE28II+pVKIbsPGnvRl21aVNB+V7VtW/LtapLgPF/Mo3oXRYhnE9+UU7ndJsothEdIyjikQt3tMYJ+Ubzqh3h6cmhjIBe5Z/5WZrBVt3LYXih7X7LOWI8uZKOU2VwDitWO4CgeFl+B7WawKhgZtwRgm3LzJV0a4zA9QZFeizHW6OhlFs4ElIw37kMYiGUndZyUjFr7u8kbBB4Ojvbwnu5DLX1BLAwQUAAAICAAAECHs1SV61m0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0UoqpoZmRiXmSoYmZhYG5aZpuqmmSpWWSeaqZYWKauXliqlIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAECHsY72Wv3gCAAA1BQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAECHs1SV61m0AAAB4AAAACQAkAAAAAAAAAAAAAADFAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAH0DAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -406,7 +406,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &475108819
 GameObject:
@@ -1198,6 +1198,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1362860084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362860074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4716569c7e735ee4ba0148d55f5a8739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signal: {fileID: 11400000, guid: 24ae93a7fdb66c14ba690447c7c4fb07, type: 2}
+  signalEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 276490471}
+        m_TargetAssemblyTypeName: HeartManager, Assembly-CSharp
+        m_MethodName: resetHealth
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1580048650
 GameObject:
   m_ObjectHideFlags: 0
@@ -1501,7 +1529,7 @@ RectTransform:
   m_Children:
   - {fileID: 1934262589}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1847,6 +1875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseMenuUi: {fileID: 1351428858}
+  healthResetSignal: {fileID: 11400000, guid: 24ae93a7fdb66c14ba690447c7c4fb07, type: 2}
 --- !u!114 &1911978255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1923,7 +1952,7 @@ RectTransform:
   - {fileID: 2077614228}
   - {fileID: 1351428861}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2068,7 +2097,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 496.54166, y: 208.36082}
+  m_AnchoredPosition: {x: 394, y: 150}
   m_SizeDelta: {x: 69.8488, y: 69.2865}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2077614229
