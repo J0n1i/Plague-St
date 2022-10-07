@@ -112,8 +112,10 @@ public class LevelManager : MonoBehaviour
             for (int j = 0; j < randomPotAmount; j++)
             {
                 int randomPot = Random.Range(0, potPrefabs.Length);
-                int randomX = Random.Range(-15, 15);
-                int randomY = Random.Range(-8, 6);
+                float randomX = Random.Range(-15, 15);
+                float randomY = Random.Range(-8, 6);
+                randomX += 0.5f;
+                randomY += 0.5f;
                 Instantiate(potPrefabs[randomPot], rooms[i].roomLocation.position + new Vector3(randomX, randomY, 0), Quaternion.identity, potsParent);
             }
         }
