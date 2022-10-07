@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum RoomType
+{
+    Unassigned,
+    SpawnRoom,
+    BossRoom,
+    EnemyRoom,
+    TreasureRoom
+};
 [System.Serializable]
+
 public class Room
 {
     public int roomIndex;
-    public enum RoomType {
-        SpawnRoom,
-        BossRoom,
-        EnemyRoom,
-        TreasureRoom
-    };
+
     public RoomType roomType;
 
     public int enemyAmount;
@@ -29,5 +33,10 @@ public class Room
         this.treasureAmount = treasureAmount;
         this.roomLocation = roomLocation;
         this.roomPrefab = roomPrefab;
+    }
+
+    public Room(int roomIndex)
+    {
+        this.roomIndex = roomIndex;
     }
 }

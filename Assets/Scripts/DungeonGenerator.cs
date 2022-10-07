@@ -19,7 +19,6 @@ public class DungeonGenerator : MonoBehaviour
     [SerializeField][Range(0, 0.5f)] float generationSpeed = 0;
 
     private GameStateManager gameStateManager;
-    private LevelManager levelManager;
 
     [SerializeField] private int seed;
     private int calculaitonSeed = 0;
@@ -48,7 +47,6 @@ public class DungeonGenerator : MonoBehaviour
         calculaitonSeed = seed;
         Random.InitState(calculaitonSeed);
 
-        levelManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<LevelManager>();
         gameStateManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameStateManager>();
         GenerateDungeon();
     }
