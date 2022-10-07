@@ -71,16 +71,24 @@ public class LevelManager : MonoBehaviour
         {
             if (rooms[i].roomType == Room.RoomType.EnemyRoom)
             {
-                //instantiate random amount(5,10) of enemies in random positions in enemyRooms
-                int randomEnemyAmount = Random.Range(5, 10);
-                for (int j = 0; j < randomEnemyAmount; j++)
+                //Get enemy spawnpoints and put into list
+                List<Transform> enemySpawnPoints = new List<Transform>();
+                foreach (Transform child in rooms[i].roomPrefab.transform.Find("Enemies").transform)
                 {
-                    int randomEnemy = Random.Range(0, enemyPrefabs.Length);
-                    int randomX = Random.Range(-15, 15);
-                    int randomY = Random.Range(-8, 6);
-                    Instantiate(enemyPrefabs[randomEnemy], rooms[i].roomLocation.position + new Vector3(randomX, randomY, 0), Quaternion.identity, rooms[i].roomPrefab.transform.Find("Enemies"));
+                    enemySpawnPoints.Add(child);
                 }
 
+                //instantiate 5 enemies for each spawnpoint
+
+                for (int j = 0; j < enemySpawnPoints.Count; j++)
+                {
+                    for (int k = 0; k < 5; k++)
+                    {
+                        //add random offset to enemy spawnpoint (-2, 2)
+                        Vector3 randomOffset = new Vector3(Random.Range(-2, 2), Random.Range(-2, 2));
+                        var newEnemy = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], enemySpawnPoints[j].position + randomOffset, Quaternion.identity, enemySpawnPoints[j]);
+                    }
+                }
             }
         }
     }
