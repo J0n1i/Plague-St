@@ -28,7 +28,7 @@ public class log : Enemy {
         CheckDistance();
 	}
 
-    void CheckDistance()
+   public virtual void CheckDistance()
     {
         if(Vector3.Distance(target.position, 
                             transform.position) <= chaseRadius
@@ -56,12 +56,12 @@ public class log : Enemy {
         }
     }
 
-    private void SetAnimFloat(Vector2 setVector){
+    public void SetAnimFloat(Vector2 setVector){
         anim.SetFloat("moveX", setVector.x);
         anim.SetFloat("moveY", setVector.y);
     }
 
-    private void changeAnim(Vector2 direction){
+    public void changeAnim(Vector2 direction){
         if(Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
             if(direction.x > 0){
@@ -82,7 +82,7 @@ public class log : Enemy {
         }
     }
 
-    private void ChangeState(EnemyState newState){
+    public void ChangeState(EnemyState newState){
         if(currentState != newState)
         {
             currentState = newState;
