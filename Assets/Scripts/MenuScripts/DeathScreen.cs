@@ -33,6 +33,7 @@ public class DeathScreen : MonoBehaviour
         healthResetSignal.Raise();
         Time.timeScale = 1f;
         SceneManager.LoadScene(1);
+        deathScreenUi.SetActive(false);
     }
 
     void Update()
