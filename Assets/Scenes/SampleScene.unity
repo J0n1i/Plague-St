@@ -227,21 +227,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ffea86d1fe9b9e40997899cd97b3943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomPrefabs: []
-  rooms: []
-  enemiesParent: {fileID: 0}
-  furnitureParent: {fileID: 824879620}
-  potsParent: {fileID: 78495594}
-  chestsParent: {fileID: 1711155990}
-  enemyPrefabs:
-  - {fileID: 8433158962445273152, guid: 794a9aa542eda5946a2d2fa834144da7, type: 3}
-  furniturePrefabs:
-  - {fileID: 332491799395186784, guid: e2d15c928bc7d5e48bccd15a7655a1ec, type: 3}
-  - {fileID: 332491799395186784, guid: 5ce9b86d8bab5be4ab479aa701b782a5, type: 3}
-  potPrefabs:
-  - {fileID: 2964141704353862201, guid: a6751cd10e76a9b4995de1154db8ff29, type: 3}
-  chestPrefabs:
-  - {fileID: 3446665502613183302, guid: a34fa35588d5f844dacdeb36b00bfe0f, type: 3}
 --- !u!1 &258261457
 GameObject:
   m_ObjectHideFlags: 0
@@ -1000,6 +985,12 @@ MonoBehaviour:
   - {fileID: 332491799395186784, guid: 5dad89e59299f4f4d93d79e1a26535d2, type: 3}
   - {fileID: 332491799395186784, guid: 45e88d8d7a3cf5b4a9809c38eae04eba, type: 3}
   - {fileID: 332491799395186784, guid: 9ddb5f4c18b50114aa1b94d5475108a0, type: 3}
+  bossRoomPrefab: {fileID: 332491799395186784, guid: 4ab4cd9e3f0327b45ba1cff32d234130, type: 3}
+  treasureRoomPrefab: {fileID: 332491799395186784, guid: 90abdbdf4256fdd489208ac73a4d7d04, type: 3}
+  enemyPrefab:
+  - {fileID: 8433158962445273152, guid: 794a9aa542eda5946a2d2fa834144da7, type: 3}
+  treasurePrefab: {fileID: 3446665502613183302, guid: a34fa35588d5f844dacdeb36b00bfe0f, type: 3}
+  rooms: []
 --- !u!114 &1137440596 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6950644345096547388, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
@@ -1996,7 +1987,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1934262589
 RectTransform:
   m_ObjectHideFlags: 0

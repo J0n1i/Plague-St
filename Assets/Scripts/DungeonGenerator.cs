@@ -38,7 +38,7 @@ public class DungeonGenerator : MonoBehaviour
 
         if (seed == 0)
         {
-            seed = Random.seed;
+            seed = Random.Range(int.MinValue, int.MaxValue);
         }
 
         Debug.Log(EncodeSeed(seed));
@@ -273,7 +273,7 @@ public class DungeonGenerator : MonoBehaviour
         }
 */
 
-        seed = Random.seed;
+seed = Random.Range(int.MinValue, int.MaxValue);
         calculaitonSeed = seed;
 
         StopAllCoroutines();
