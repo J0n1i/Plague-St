@@ -731,7 +731,7 @@ GameObject:
   - component: {fileID: 3150635392166397032}
   - component: {fileID: 2509091778116751062}
   - component: {fileID: 5632188709207419171}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CooldownImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -808,7 +808,7 @@ GameObject:
   - component: {fileID: 6180291549993575046}
   - component: {fileID: 532374221420146669}
   - component: {fileID: 5806998622142804476}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
