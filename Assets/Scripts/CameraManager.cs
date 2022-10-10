@@ -15,17 +15,28 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(player == null){
+        
+
+        
+
+    }
+
+    void FixedUpdate(){
+        if (player == null)
+        {
             player = GameObject.FindWithTag("Player");
         }
 
-        if(gameStateManager.currentGameState == GameState.Playing){
-
-        transform.position = Vector3.Lerp(transform.position, player.transform.position, Time.deltaTime *5 );
-        
+        if (gameStateManager.currentGameState == GameState.Playing && player != null)
+        {
+                        transform.position = Vector3.Lerp(transform.position, player.transform.position, 0.125f);
         }
-        
     }
+
+
+
+
+
     public void ShakeAttack()
     {
         StartCoroutine(Shake(transform.position, 0.05f, 0.05f));
@@ -34,17 +45,19 @@ public class CameraManager : MonoBehaviour
     {
         StartCoroutine(Shake(transform.position, 0.1f, 0.1f));
     }
-  IEnumerator Shake(Vector3 position, float duration, float magnitude){
-            float elapsed = 0.0f;
-            while(elapsed < duration){
-                float x = Random.Range(-1f, 1f) * magnitude;
-                float y = Random.Range(-1f, 1f) * magnitude;
-                transform.position = new Vector3(position.x + x, position.y + y, position.z);
-                elapsed += Time.deltaTime;
-                yield return null;
-            }
-
+    IEnumerator Shake(Vector3 position, float duration, float magnitude)
+    {
+        float elapsed = 0.0f;
+        while (elapsed < duration)
+        {
+            float x = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
+            transform.position = new Vector3(position.x + x, position.y + y, position.z);
+            elapsed += Time.deltaTime;
+            yield return null;
         }
-    
+
+    }
+
 
 }
