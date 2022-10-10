@@ -25,7 +25,7 @@ public class MeleeEnemy : log
                                transform.position) > attackRadius)
         {
             if (currentState == EnemyState.idle || currentState == EnemyState.walk
-                && currentState != EnemyState.stagger)
+                && currentState != EnemyState.stagger && currentState != EnemyState.attack)
             {
                 Vector3 temp = Vector3.MoveTowards(transform.position,
                                                          target.position,
@@ -57,7 +57,6 @@ public class MeleeEnemy : log
 
     public IEnumerator AttackCo()
     {
-        GetComponent<Pathfinding.AIPath>().enabled = false;
         currentState = EnemyState.attack;
         anim.SetBool("attack", true);
         yield return new WaitForSeconds(1f);
