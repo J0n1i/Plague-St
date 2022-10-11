@@ -43,8 +43,9 @@ public class MeleeEnemy : log
             if (currentState == EnemyState.walk
                 && currentState != EnemyState.stagger)
             {
-                GetComponent<Pathfinding.AIPath>().enabled = false;
+                
                 StartCoroutine(AttackCo());
+                
             }
         }
     else if (Vector3.Distance(target.position, transform.position) > chaseRadius)
@@ -57,11 +58,13 @@ public class MeleeEnemy : log
 
     public IEnumerator AttackCo()
     {
+        GetComponent<Pathfinding.AIPath>().enabled = false;
         currentState = EnemyState.attack;
         anim.SetBool("attack", true);
         yield return new WaitForSeconds(1f);
         currentState = EnemyState.walk;
         anim.SetBool("attack", false);
+        GetComponent<Pathfinding.AIPath>().enabled = true;
     }
 
 }

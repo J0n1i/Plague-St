@@ -18,7 +18,7 @@ public class PowerupTextManager : MonoBehaviour
 
     public void UpdateSpeedPowerupCount()
     {
-        speedPowerupDisplay.text = "" + playerInventory.speedPowerup;
+        speedPowerupDisplay.text = "+" + playerInventory.speedPowerup * 10 + "%";
     }
     public void UpdateRollCooldown()
     {
