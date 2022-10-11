@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupSignal: {fileID: 11400000, guid: ca636c3c54740184f872c6f527afdc1c, type: 2}
+  playerInventory: {fileID: 11400000, guid: a29e048e0907c4f40b545b159a0849da, type: 2}
 --- !u!61 &1910594686965356736
 BoxCollider2D:
   m_ObjectHideFlags: 0

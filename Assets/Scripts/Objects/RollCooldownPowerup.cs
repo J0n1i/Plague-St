@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class RollCooldownPowerup : Powerup
 {
- 
+ public Inventory playerInventory;
 public void OnTriggerEnter2D(Collider2D other)
     { 
 
         if(other.gameObject.CompareTag("Player") && !other.isTrigger)
         {
-            
+            playerInventory.rollCooldownPowerup += 1;
             powerupSignal.Raise();
             Destroy(this.gameObject);
         }
