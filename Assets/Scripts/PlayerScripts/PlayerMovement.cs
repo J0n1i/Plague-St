@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour {
     private float rollSpeed;
     public float rollLength = .6f;
     public float rollCooldown = 5f;
+    private float originalSpeed;
+    private float originalRollSpeed;
     private float activeMoveSpeed;
     public bool isRolling;
     public int coins;
@@ -37,6 +39,9 @@ public class PlayerMovement : MonoBehaviour {
 	void Start () {
         rollSpeed = speed * 2.5f;
         activeMoveSpeed = speed;
+        originalSpeed = speed;
+        originalRollSpeed = rollSpeed;
+
         currentState = PlayerState.walk;
         animator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -139,8 +144,13 @@ public class PlayerMovement : MonoBehaviour {
        
     }
     public void SpeedPowerup(){
-        speed = speed * 1.1f;
-        rollSpeed = rollSpeed * 1.1f;
+        //
+        float speedUpgrade;
+        float rollUpgrade;
+        speedUpgrade = (originalSpeed * 1.1f)-originalSpeed;
+        rollUpgrade = (originalRollSpeed * 1.1f)-originalRollSpeed;
+        speed += speedUpgrade;
+        rollSpeed += rollUpgrade;
         activeMoveSpeed = speed;
         print(speed);
         print(rollSpeed);
