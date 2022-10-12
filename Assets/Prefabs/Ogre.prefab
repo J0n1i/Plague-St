@@ -535,7 +535,7 @@ MonoBehaviour:
   HeartDrop: {fileID: 1920694392575528832, guid: 1327b3039c883a24e853986571ed791f, type: 3}
   target: {fileID: 0}
   chaseRadius: 8
-  attackRadius: 1.2
+  attackRadius: 1.3
   homePosition: {fileID: 0}
   anim: {fileID: 8279953100408016397}
 --- !u!114 &8279953100408016401
