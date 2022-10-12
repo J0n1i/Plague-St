@@ -58,13 +58,14 @@ public class MeleeEnemy : log
 
     public IEnumerator AttackCo()
     {
-        GetComponent<Pathfinding.AIPath>().enabled = false;
+        //change enemy max speed
+        GetComponent<Pathfinding.AIPath>().maxSpeed = 1.5f;
         currentState = EnemyState.attack;
         anim.SetBool("attack", true);
         yield return new WaitForSeconds(1f);
         currentState = EnemyState.walk;
         anim.SetBool("attack", false);
-        GetComponent<Pathfinding.AIPath>().enabled = true;
+        GetComponent<Pathfinding.AIPath>().maxSpeed = 2.5f;
     }
 
 }
