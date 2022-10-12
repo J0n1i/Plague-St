@@ -67,15 +67,18 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -0.020640716, y: 0.47554284}
-      - {x: -0.47670725, y: 0.29114398}
-      - {x: -0.55737257, y: -0.116168186}
-      - {x: -0.50544274, y: -0.24998839}
+      - {x: -0.27984613, y: 0.39765057}
+      - {x: -0.4505792, y: 0.25605226}
+      - {x: -0.51022565, y: 0.06291053}
+      - {x: -0.5126304, y: -0.11635986}
+      - {x: -0.40034515, y: -0.28308642}
+      - {x: -0.21104059, y: -0.41516235}
       - {x: -0.007397294, y: -0.46257165}
-      - {x: 0.26463616, y: -0.41487855}
-      - {x: 0.48674363, y: -0.23666734}
-      - {x: 0.5648303, y: -0.0023718774}
-      - {x: 0.4823861, y: 0.22428146}
-      - {x: 0.3131734, y: 0.39353782}
+      - {x: 0.2488957, y: -0.40548316}
+      - {x: 0.46580297, y: -0.21558978}
+      - {x: 0.51482433, y: -0.002157662}
+      - {x: 0.46392456, y: 0.2173646}
+      - {x: 0.2842098, y: 0.3913299}
 --- !u!114 &3240924631914224412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,9 +117,9 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 0.07128348, b: 0, a: 1}
-  m_Intensity: 2.85
+  m_FalloffIntensity: 0
+  m_Color: {r: 0.5471698, g: 0, b: 0, a: 0.7607843}
+  m_Intensity: 4.97
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -167,7 +170,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.4642973
-  m_PointLightOuterRadius: 5.4024053
+  m_PointLightOuterRadius: 7.7190695
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -346,6 +349,82 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &6677694329763073050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4785004459641035913}
+  - component: {fileID: 4198624962832700326}
+  - component: {fileID: 8223858954903382780}
+  m_Layer: 0
+  m_Name: SpecialCooldownImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4785004459641035913
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6677694329763073050}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6434063364455532012}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -196.9, y: -163}
+  m_SizeDelta: {x: 36.4559, y: 30.581}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4198624962832700326
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6677694329763073050}
+  m_CullTransparentMesh: 1
+--- !u!114 &8223858954903382780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6677694329763073050}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &8045719977624666661
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,9 +838,11 @@ MonoBehaviour:
   playerDamageSignal: {fileID: 11400000, guid: eafcd0b765db78b4eade38b1717555d4, type: 2}
   rollLength: 0.25
   rollCooldown: 3
+  specialCooldown: 30
   isRolling: 0
   coins: 0
   cooldownImage: {fileID: 5632188709207419171}
+  specialCooldownImage: {fileID: 8223858954903382780}
 --- !u!95 &8045719978935814820
 Animator:
   serializedVersion: 4
@@ -1060,6 +1141,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3150635392166397032}
+  - {fileID: 4785004459641035913}
   m_Father: {fileID: 3940945044747633679}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

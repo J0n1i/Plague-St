@@ -28,12 +28,15 @@ public class PlayerMovement : MonoBehaviour {
     private float rollSpeed;
     public float rollLength = .6f;
     public float rollCooldown = 5f;
+    public float specialCooldown = 30f;
     private float originalSpeed;
     private float originalRollSpeed;
     private float activeMoveSpeed;
     public bool isRolling;
+    public bool isSpecial;
     public int coins;
     public Image cooldownImage;
+    public Image specialCooldownImage;
     private DeathScreen deatscreen;
 
 	// Use this for initialization
@@ -64,7 +67,7 @@ public class PlayerMovement : MonoBehaviour {
             StartCoroutine(AttackCo());
         }
         else if(Input.GetButtonDown("special") && currentState != PlayerState.attack 
-           && currentState != PlayerState.stagger)
+           && currentState != PlayerState.stagger && isSpecial == false)
         {
             StartCoroutine(SpecialCo());
         }
@@ -88,6 +91,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private IEnumerator SpecialCo()
     {
+        isSpecial=true;
         playerSpecialSignal.Raise();
         currentState = PlayerState.attack;
         animator.SetBool("special", true);
@@ -95,6 +99,21 @@ public class PlayerMovement : MonoBehaviour {
         animator.SetBool("special", false);   
         yield return new WaitForSeconds(.5f);
         currentState = PlayerState.walk;
+        specialCooldownImage.enabled = true;
+        StartCoroutine(SpecialCooldownCo());
+        yield return new WaitForSeconds(specialCooldown);
+        specialCooldownImage.enabled = false;
+        isSpecial=false;
+    }
+
+    private IEnumerator SpecialCooldownCo(){
+        float alpha = 1f;
+     while(alpha > 0)
+        {
+            alpha -= Time.deltaTime / specialCooldown;
+            specialCooldownImage.color = new Color(1,1,1,alpha);
+            yield return null;
+        }
     }
   
     private IEnumerator RollCo()
