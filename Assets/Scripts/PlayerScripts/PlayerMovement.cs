@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour {
     public FloatValue currentHealth;
     public SignalSender playerHealthSignal;
     public SignalSender playerAttackSignal;
+    public SignalSender playerSpecialSignal;
     public SignalSender playerDamageSignal;
     private float rollSpeed;
     public float rollLength = .6f;
@@ -62,7 +63,11 @@ public class PlayerMovement : MonoBehaviour {
         {
             StartCoroutine(AttackCo());
         }
-      
+        else if(Input.GetButtonDown("special") && currentState != PlayerState.attack 
+           && currentState != PlayerState.stagger)
+        {
+            StartCoroutine(SpecialCo());
+        }
         else if (currentState == PlayerState.walk || currentState == PlayerState.idle)
         {
             
@@ -78,6 +83,17 @@ public class PlayerMovement : MonoBehaviour {
         yield return null;
         animator.SetBool("attacking", false);
         yield return new WaitForSeconds(.3f);
+        currentState = PlayerState.walk;
+    }
+
+    private IEnumerator SpecialCo()
+    {
+        playerSpecialSignal.Raise();
+        currentState = PlayerState.attack;
+        animator.SetBool("special", true);
+        yield return null;
+        animator.SetBool("special", false);   
+        yield return new WaitForSeconds(.5f);
         currentState = PlayerState.walk;
     }
   
