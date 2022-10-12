@@ -20,9 +20,9 @@ TagManager:
   - UI
   - RoomDoorTester
   - Walls
-  - 
-  - 
-  - 
+  - enemy
+  - player
+  - MapVision
   - 
   - 
   - 

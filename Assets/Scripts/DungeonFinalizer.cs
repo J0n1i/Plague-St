@@ -74,8 +74,15 @@ public class DungeonFinalizer : MonoBehaviour
         //SpawnEnemies();
         StartCoroutine(LateSpawnEnemies());
         SpawnChests();
-
         pathfinder.Scan();
+
+        StartCoroutine(DisableCreationRooms());
+    }
+
+    IEnumerator DisableCreationRooms(){
+        yield return new WaitForSeconds(0.1f);
+                transform.GetChild(0).gameObject.SetActive(false);
+
     }
     private void AssignBossRoom()
     {

@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PlayerSpeedPowerup : Powerup
 {
+    public Inventory playerInventory;
 
 public void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Player") && !other.isTrigger)
         {
+            playerInventory.speedPowerup += 1;
             powerupSignal.Raise();
             Destroy(this.gameObject);
         }

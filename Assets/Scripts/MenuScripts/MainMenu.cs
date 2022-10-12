@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 
-    public Animator anime;
+    public Animator anime, fading;
     
 
     public void PlayGame()
     {
         anime.SetBool("Onclick", true);
+        fading.SetBool("Fade", true);
         StartCoroutine(Startgame());
         
            
@@ -19,7 +20,7 @@ public class MainMenu : MonoBehaviour
 
     private IEnumerator Startgame()
     {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.7f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         
         

@@ -23,10 +23,13 @@ public class PlayerMovement : MonoBehaviour {
     public FloatValue currentHealth;
     public SignalSender playerHealthSignal;
     public SignalSender playerAttackSignal;
+    public SignalSender playerSpecialSignal;
     public SignalSender playerDamageSignal;
     private float rollSpeed;
     public float rollLength = .6f;
     public float rollCooldown = 5f;
+    private float originalSpeed;
+    private float originalRollSpeed;
     private float activeMoveSpeed;
     public bool isRolling;
     public int coins;
@@ -37,6 +40,9 @@ public class PlayerMovement : MonoBehaviour {
 	void Start () {
         rollSpeed = speed * 2.5f;
         activeMoveSpeed = speed;
+        originalSpeed = speed;
+        originalRollSpeed = rollSpeed;
+
         currentState = PlayerState.walk;
         animator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -57,7 +63,11 @@ public class PlayerMovement : MonoBehaviour {
         {
             StartCoroutine(AttackCo());
         }
-      
+        else if(Input.GetButtonDown("special") && currentState != PlayerState.attack 
+           && currentState != PlayerState.stagger)
+        {
+            StartCoroutine(SpecialCo());
+        }
         else if (currentState == PlayerState.walk || currentState == PlayerState.idle)
         {
             
@@ -73,6 +83,17 @@ public class PlayerMovement : MonoBehaviour {
         yield return null;
         animator.SetBool("attacking", false);
         yield return new WaitForSeconds(.3f);
+        currentState = PlayerState.walk;
+    }
+
+    private IEnumerator SpecialCo()
+    {
+        playerSpecialSignal.Raise();
+        currentState = PlayerState.attack;
+        animator.SetBool("special", true);
+        yield return null;
+        animator.SetBool("special", false);   
+        yield return new WaitForSeconds(.5f);
         currentState = PlayerState.walk;
     }
   
@@ -139,8 +160,13 @@ public class PlayerMovement : MonoBehaviour {
        
     }
     public void SpeedPowerup(){
-        speed = speed * 1.1f;
-        rollSpeed = rollSpeed * 1.1f;
+        //
+        float speedUpgrade;
+        float rollUpgrade;
+        speedUpgrade = (originalSpeed * 1.1f)-originalSpeed;
+        rollUpgrade = (originalRollSpeed * 1.1f)-originalRollSpeed;
+        speed += speedUpgrade;
+        rollSpeed += rollUpgrade;
         activeMoveSpeed = speed;
         print(speed);
         print(rollSpeed);

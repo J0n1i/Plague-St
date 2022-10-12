@@ -45,6 +45,10 @@ public class CameraManager : MonoBehaviour
     {
         StartCoroutine(Shake(transform.position, 0.1f, 0.1f));
     }
+    public void ShakeSpecial()
+    {
+        StartCoroutine(Shake(transform.position, 0.3f, 0.3f));
+    }
     IEnumerator Shake(Vector3 position, float duration, float magnitude)
     {
         float elapsed = 0.0f;
