@@ -30,17 +30,16 @@ public class PlayerMovement : MonoBehaviour {
     public float rollLength = .6f;
     public float rollCooldown = 5f;
     public float specialCooldown = 30f;
-    private float timer;
-    private bool isTimer;
     private float originalSpeed;
     private float originalRollSpeed;
     private float activeMoveSpeed;
+    private float timer;
+    private bool isTimer;
     public bool isRolling;
     public bool isSpecial;
     public int coins;
-    public TextMeshProUGUI specialCooldownText;
     public Image cooldownImage;
-    public Image specialCooldownImage;
+    private Image specialCooldownImage;
     private DeathScreen deatscreen;
 
 	// Use this for initialization
@@ -56,7 +55,8 @@ public class PlayerMovement : MonoBehaviour {
         animator.SetFloat("moveX", 0);
         animator.SetFloat("moveY", -1);
         deatscreen = GameObject.Find("DeathScreenCanvas").GetComponent<DeathScreen>();
-
+        specialCooldownImage = GameObject.Find("specialCooldown").GetComponent<Image>();
+        specialCooldownImage.enabled = true;
 	}
 	
 	// Update is called once per frame
@@ -74,6 +74,7 @@ public class PlayerMovement : MonoBehaviour {
            && currentState != PlayerState.stagger && isSpecial == false)
         {
             StartCoroutine(SpecialCo());
+            
         }
 
         else if (currentState == PlayerState.walk || currentState == PlayerState.idle)
@@ -81,15 +82,10 @@ public class PlayerMovement : MonoBehaviour {
             
             UpdateAnimationAndMove();
         }
-
         if (isTimer == true){
-            timer += Time.deltaTime;
-             if(Input.GetButtonDown("special") && currentState != PlayerState.attack 
-           && currentState != PlayerState.stagger && isSpecial == true)
-        {
-            StartCoroutine(specialCooldownCo());
+            StartCoroutine(SpecialCooldownCo());
         }
-        }
+        
 	}
     
 
@@ -107,6 +103,7 @@ public class PlayerMovement : MonoBehaviour {
     private IEnumerator SpecialCo()
     {
         isSpecial=true;
+        
         playerSpecialSignal.Raise();
         currentState = PlayerState.attack;
         animator.SetBool("special", true);
@@ -115,15 +112,20 @@ public class PlayerMovement : MonoBehaviour {
         yield return new WaitForSeconds(.5f);
         currentState = PlayerState.walk;
         isTimer=true;
+        timer = specialCooldown;
         yield return new WaitForSeconds(specialCooldown);
-        timer = 0;
-        isTimer=false;
-        specialCooldownText.text = "Special Ready!";
-        specialCooldownText.enabled = true;
         isSpecial=false;
-        yield return new WaitForSeconds(2f);
-        specialCooldownText.enabled = false;
     }
+    private IEnumerator SpecialCooldownCo(){
+        timer -= Time.deltaTime;
+           specialCooldownImage.fillAmount = 1;
+     while(specialCooldownImage.fillAmount > 0)
+        {
+            specialCooldownImage.fillAmount = timer / specialCooldown;
+            yield return null;
+        }
+    }
+    
     private IEnumerator RollCo()
     {
         isRolling=true;
@@ -138,12 +140,7 @@ public class PlayerMovement : MonoBehaviour {
         cooldownImage.enabled = false;
         isRolling=false;
     }
-    private IEnumerator specialCooldownCo(){
-        specialCooldownText.enabled = true;
-            specialCooldownText.text = (int)(specialCooldown-timer) + " sec left";
-            yield return new WaitForSeconds(1f);
-            specialCooldownText.enabled = false;
-    }
+    
     private IEnumerator RollCooldownCo(){
         float alpha = 1f;
      while(alpha > 0)
