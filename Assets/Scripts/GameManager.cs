@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
         canvas.gameObject.SetActive(true);
     }
 
-    void PauseGame(bool pause)
+    public void PauseGame(bool pause)
     {
         Debug.Log(pause);
         if (pause == true)

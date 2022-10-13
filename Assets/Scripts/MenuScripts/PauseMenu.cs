@@ -5,30 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-
-    public static bool gameIsPaused = false;
+    private GameManager gameManager;
     public GameObject PauseMenuUi;
     public SignalSender healthResetSignal;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void Start(){
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
+
 
 
     public void Resume ()
     {
         PauseMenuUi.SetActive(false);
-        Time.timeScale = 1f;
-        gameIsPaused = false;
+        gameManager.PauseGame(false);
     }
 
     public void Pause ()
     {
         PauseMenuUi.SetActive(true);
-        Time.timeScale = 0f;
-        gameIsPaused = true;
+        gameManager.PauseGame(true);
     }
 
     public void GoMenu ()
