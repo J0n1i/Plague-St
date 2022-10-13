@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public enum PlayerState{
     walk,
@@ -29,12 +30,15 @@ public class PlayerMovement : MonoBehaviour {
     public float rollLength = .6f;
     public float rollCooldown = 5f;
     public float specialCooldown = 30f;
+    private float timer;
+    private bool isTimer;
     private float originalSpeed;
     private float originalRollSpeed;
     private float activeMoveSpeed;
     public bool isRolling;
     public bool isSpecial;
     public int coins;
+    public TextMeshProUGUI specialCooldownText;
     public Image cooldownImage;
     public Image specialCooldownImage;
     private DeathScreen deatscreen;
@@ -71,12 +75,23 @@ public class PlayerMovement : MonoBehaviour {
         {
             StartCoroutine(SpecialCo());
         }
+
         else if (currentState == PlayerState.walk || currentState == PlayerState.idle)
         {
             
             UpdateAnimationAndMove();
         }
+
+        if (isTimer == true){
+            timer += Time.deltaTime;
+             if(Input.GetButtonDown("special") && currentState != PlayerState.attack 
+           && currentState != PlayerState.stagger && isSpecial == true)
+        {
+            StartCoroutine(specialCooldownCo());
+        }
+        }
 	}
+    
 
     private IEnumerator AttackCo()
     {
@@ -99,23 +114,16 @@ public class PlayerMovement : MonoBehaviour {
         animator.SetBool("special", false);   
         yield return new WaitForSeconds(.5f);
         currentState = PlayerState.walk;
-        specialCooldownImage.enabled = true;
-        StartCoroutine(SpecialCooldownCo());
+        isTimer=true;
         yield return new WaitForSeconds(specialCooldown);
-        specialCooldownImage.enabled = false;
+        timer = 0;
+        isTimer=false;
+        specialCooldownText.text = "Special Ready!";
+        specialCooldownText.enabled = true;
         isSpecial=false;
+        yield return new WaitForSeconds(2f);
+        specialCooldownText.enabled = false;
     }
-
-    private IEnumerator SpecialCooldownCo(){
-        float alpha = 1f;
-     while(alpha > 0)
-        {
-            alpha -= Time.deltaTime / specialCooldown;
-            specialCooldownImage.color = new Color(1,1,1,alpha);
-            yield return null;
-        }
-    }
-  
     private IEnumerator RollCo()
     {
         isRolling=true;
@@ -129,6 +137,12 @@ public class PlayerMovement : MonoBehaviour {
         yield return new WaitForSeconds(rollCooldown);
         cooldownImage.enabled = false;
         isRolling=false;
+    }
+    private IEnumerator specialCooldownCo(){
+        specialCooldownText.enabled = true;
+            specialCooldownText.text = (int)(specialCooldown-timer) + " sec left";
+            yield return new WaitForSeconds(1f);
+            specialCooldownText.enabled = false;
     }
     private IEnumerator RollCooldownCo(){
         float alpha = 1f;
