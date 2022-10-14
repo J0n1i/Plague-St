@@ -22,6 +22,6 @@ public class PowerupTextManager : MonoBehaviour
     }
     public void UpdateRollCooldown()
     {
-        rollCooldownDisplay.text = "" + playerInventory.rollCooldownPowerup;
+        rollCooldownDisplay.text = "-" + playerInventory.rollCooldownPowerup * 10 + "%";
     }
 }
