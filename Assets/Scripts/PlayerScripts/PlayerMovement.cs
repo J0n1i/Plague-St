@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour {
     public float specialCooldown = 30f;
     private float originalSpeed;
     private float originalRollSpeed;
+    private float originalRollCooldown;
     private float activeMoveSpeed;
     private float timer;
     private bool isTimer;
@@ -48,6 +49,7 @@ public class PlayerMovement : MonoBehaviour {
         activeMoveSpeed = speed;
         originalSpeed = speed;
         originalRollSpeed = rollSpeed;
+        originalRollCooldown = rollCooldown;
 
         currentState = PlayerState.walk;
         animator = GetComponent<Animator>();
@@ -184,7 +186,9 @@ public class PlayerMovement : MonoBehaviour {
         {
             return;
         } else {
-        rollCooldown =  rollCooldown-0.5f;
+        float rollCooldownUpgrade;
+        rollCooldownUpgrade = (rollCooldown * 1.1f)-originalRollCooldown;
+        rollCooldown -= rollCooldownUpgrade;
         print(rollCooldown);
         }
        
