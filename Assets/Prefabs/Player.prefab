@@ -132,6 +132,7 @@ MonoBehaviour:
   thrust: 4
   knockTime: 0.2
   damage: 2
+  playerDamage: {fileID: 11400000, guid: ee232f61c379edf498c719d0b1dd8d2e, type: 2}
 --- !u!222 &2240335539442959840
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -677,6 +678,7 @@ MonoBehaviour:
   thrust: 4
   knockTime: 0.2
   damage: 1
+  playerDamage: {fileID: 11400000, guid: 1fca59cf09369024fa5d3a46dee50a21, type: 2}
 --- !u!1 &8045719978291527560
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,6 +757,7 @@ MonoBehaviour:
   thrust: 4
   knockTime: 0.2
   damage: 1
+  playerDamage: {fileID: 11400000, guid: 1fca59cf09369024fa5d3a46dee50a21, type: 2}
 --- !u!1 &8045719978654058887
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,6 +840,7 @@ MonoBehaviour:
   thrust: 4
   knockTime: 0.2
   damage: 1
+  playerDamage: {fileID: 11400000, guid: 1fca59cf09369024fa5d3a46dee50a21, type: 2}
 --- !u!1 &8045719978935814814
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,9 +1019,7 @@ MonoBehaviour:
   isRolling: 0
   isSpecial: 0
   coins: 0
-  specialCooldownText: {fileID: 3096866087409777616}
   cooldownImage: {fileID: 5632188709207419171}
-  specialCooldownImage: {fileID: 8223858954903382780}
 --- !u!95 &8045719978935814820
 Animator:
   serializedVersion: 4
@@ -1208,6 +1210,7 @@ MonoBehaviour:
   thrust: 4
   knockTime: 0.2
   damage: 1
+  playerDamage: {fileID: 11400000, guid: 1fca59cf09369024fa5d3a46dee50a21, type: 2}
 --- !u!1 &8756033328850163953
 GameObject:
   m_ObjectHideFlags: 0
