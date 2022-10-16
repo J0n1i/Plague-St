@@ -10,6 +10,7 @@ public class Inventory : ScriptableObject {
     public int speedPowerup;
     public int rollCooldownPowerup;
     public int damagePowerup;
+    public int specialCharge;
 
 
 }
