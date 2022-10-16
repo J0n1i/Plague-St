@@ -41,7 +41,9 @@ public class PlayerMovement : MonoBehaviour {
     public int coins;
     public Image cooldownImage;
     private Image specialCooldownImage;
+    private Image specialCooldownImageNotAvailable;
     private DeathScreen deatscreen;
+    public Inventory playerInventory;
 
 	// Use this for initialization
 	void Start () {
@@ -58,7 +60,8 @@ public class PlayerMovement : MonoBehaviour {
         animator.SetFloat("moveY", -1);
         deatscreen = GameObject.Find("DeathScreenCanvas").GetComponent<DeathScreen>();
         specialCooldownImage = GameObject.Find("specialCooldown").GetComponent<Image>();
-        specialCooldownImage.enabled = true;
+        specialCooldownImageNotAvailable = GameObject.Find("specialCooldownNotAvailable").GetComponent<Image>();
+        specialCooldownImageNotAvailable.enabled = true;
 	}
 	
 	// Update is called once per frame
@@ -73,7 +76,7 @@ public class PlayerMovement : MonoBehaviour {
             StartCoroutine(AttackCo());
         }
         else if(Input.GetButtonDown("special") && currentState != PlayerState.attack 
-           && currentState != PlayerState.stagger && isSpecial == false)
+           && currentState != PlayerState.stagger && isSpecial == false && playerInventory.specialCharge != 0)
         {
             StartCoroutine(SpecialCo());
             
@@ -84,7 +87,7 @@ public class PlayerMovement : MonoBehaviour {
             
             UpdateAnimationAndMove();
         }
-        if (isTimer == true){
+        if (isTimer == true ){
             StartCoroutine(SpecialCooldownCo());
         }
         
@@ -182,15 +185,15 @@ public class PlayerMovement : MonoBehaviour {
         }
         }
     public void RollCooldownPowerup(){
-        if(rollCooldown == 0)
-        {
-            return;
-        } else {
+        
         float rollCooldownUpgrade;
-        rollCooldownUpgrade = (rollCooldown * 1.1f)-originalRollCooldown;
+        rollCooldownUpgrade = (originalRollCooldown* 1.1f)-originalRollCooldown;
+        if(rollCooldown - rollCooldownUpgrade <= 0){
+            return;
+        }
         rollCooldown -= rollCooldownUpgrade;
         print(rollCooldown);
-        }
+        
        
     }
     public void SpeedPowerup(){
