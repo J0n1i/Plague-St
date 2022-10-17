@@ -76,13 +76,14 @@ public class DungeonFinalizer : MonoBehaviour
         StartCoroutine(LateSpawnEnemies());
         SpawnChests();
         pathfinder.Scan();
-
+        SpawnBoss();
         StartCoroutine(DisableCreationRooms());
     }
 
-    IEnumerator DisableCreationRooms(){
+    IEnumerator DisableCreationRooms()
+    {
         yield return new WaitForSeconds(0.1f);
-                transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(0).gameObject.SetActive(false);
 
     }
     private void AssignBossRoom()
@@ -190,6 +191,16 @@ public class DungeonFinalizer : MonoBehaviour
 
                         break;
                 }
+            }
+        }
+    }
+
+    void SpawnBoss(){
+        for (int i = 0; i < rooms.Count; i++)
+        {
+            if (rooms[i].roomType == RoomType.BossRoom)
+            {
+                Instantiate(bossPrefab, rooms[i].roomPrefab.transform.position, Quaternion.identity, rooms[i].roomPrefab.transform.Find("Enemies"));
             }
         }
     }
