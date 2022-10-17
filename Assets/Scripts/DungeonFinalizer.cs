@@ -76,7 +76,6 @@ public class DungeonFinalizer : MonoBehaviour
         StartCoroutine(LateSpawnEnemies());
         SpawnChests();
         pathfinder.Scan();
-        SpawnBoss();
         StartCoroutine(DisableCreationRooms());
     }
 
@@ -136,6 +135,7 @@ public class DungeonFinalizer : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         SpawnEnemies();
+        SpawnBoss();
     }
     private void SpawnEnemies()
     {
@@ -195,7 +195,7 @@ public class DungeonFinalizer : MonoBehaviour
         }
     }
 
-    void SpawnBoss(){
+    private void SpawnBoss(){
         for (int i = 0; i < rooms.Count; i++)
         {
             if (rooms[i].roomType == RoomType.BossRoom)
