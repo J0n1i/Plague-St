@@ -8,6 +8,7 @@ public class DungeonFinalizer : MonoBehaviour
     [SerializeField] private GameObject bossRoomPrefab, treasureRoomPrefab;
 
     [SerializeField] private GameObject[] enemyPrefab;
+    [SerializeField] private GameObject bossPrefab;
     [SerializeField] private GameObject treasurePrefab;
 
 
