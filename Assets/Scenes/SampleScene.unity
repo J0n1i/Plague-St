@@ -505,7 +505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAIIexjvZa/eAIAADUFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMFymzAQ/RWPzrUHHGJMby1xnB6SeOJ2cuEiw2I0FhIjidhOxv/elRCGur5YvN19evt24YswoRvIjVRrxYpnWQD5PiH2TL5NhuATnOheii37hD7nnRWmsknU5bxRwyTioS3TsgajWP5D7LlNDhBsBSulqlfFHlKpjUa4pFwDhpQ0tlog9DUhJ/ybJrbkjKd5bE+feEqCyQWPOQgDakgNZgn+llEchb4kmEUOWt4tfelylkTB3SJZTYOlI2lFzmndQGE7Grii4HptELpEgd36HEufS86Z9lKJOTfOipQ2usVGMaFgFFt3+oKZvb4Ctq+MZRyXv5alBuOdUfT8wBR62PGSn7Iztqb60Gn7oLx1Euad/I70+b/4tBNdKlk/9feGridTsfzwRs851Wbk/Bh+GKSHzqIj5Qe64/BegXiRayVbUWDQqNaWthrmD8PjtbW0gvww4J3UG7BtRvPrp+ZnZXu4uO5PKWf1rhtoB2y5dI677QCFs/mFgt3uaE+BqFXxR8Nvuh8vmQ88MqUNhnyXwsrbyVbZVLJyntluWpNKJcDBXnQDgnJz3iCNuR3hTWx07U3kkdrXyV/uY/1bclPi4CE/CG5CG3m8DktX8vgMunptDWcCBtE28II+pVKIbsPGnvRl21aVNB+V7VtW/LtapLgPF/Mo3oXRYhnE9+UU7ndJsothEdIyjikQt3tMYJ+Ubzqh3h6cmhjIBe5Z/5WZrBVt3LYXih7X7LOWI8uZKOU2VwDitWO4CgeFl+B7WawKhgZtwRgm3LzJV0a4zA9QZFeizHW6OhlFs4ElIw37kMYiGUndZyUjFr7u8kbBB4Ojvbwnu5DLX1BLAwQUAAAICAAACCHs1SV61m0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0UoqpoZmRiXmSoYmZhYG5aZpuqmmSpWWSeaqZYWKauXliqlIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAACCHsY72Wv3gCAAA1BQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAACCHs1SV61m0AAAB4AAAACQAkAAAAAAAAAAAAAADFAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAH0DAAAAAA==
+    dataString: UEsDBBQAAAgIAAAQIexjvZa/eAIAADUFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMFymzAQ/RWPzrUHHGJMby1xnB6SeOJ2cuEiw2I0FhIjidhOxv/elRCGur5YvN19evt24YswoRvIjVRrxYpnWQD5PiH2TL5NhuATnOheii37hD7nnRWmsknU5bxRwyTioS3TsgajWP5D7LlNDhBsBSulqlfFHlKpjUa4pFwDhpQ0tlog9DUhJ/ybJrbkjKd5bE+feEqCyQWPOQgDakgNZgn+llEchb4kmEUOWt4tfelylkTB3SJZTYOlI2lFzmndQGE7Grii4HptELpEgd36HEufS86Z9lKJOTfOipQ2usVGMaFgFFt3+oKZvb4Ctq+MZRyXv5alBuOdUfT8wBR62PGSn7Iztqb60Gn7oLx1Euad/I70+b/4tBNdKlk/9feGridTsfzwRs851Wbk/Bh+GKSHzqIj5Qe64/BegXiRayVbUWDQqNaWthrmD8PjtbW0gvww4J3UG7BtRvPrp+ZnZXu4uO5PKWf1rhtoB2y5dI677QCFs/mFgt3uaE+BqFXxR8Nvuh8vmQ88MqUNhnyXwsrbyVbZVLJyntluWpNKJcDBXnQDgnJz3iCNuR3hTWx07U3kkdrXyV/uY/1bclPi4CE/CG5CG3m8DktX8vgMunptDWcCBtE28II+pVKIbsPGnvRl21aVNB+V7VtW/LtapLgPF/Mo3oXRYhnE9+UU7ndJsothEdIyjikQt3tMYJ+Ubzqh3h6cmhjIBe5Z/5WZrBVt3LYXih7X7LOWI8uZKOU2VwDitWO4CgeFl+B7WawKhgZtwRgm3LzJV0a4zA9QZFeizHW6OhlFs4ElIw37kMYiGUndZyUjFr7u8kbBB4Ojvbwnu5DLX1BLAwQUAAAICAAAECHs1SV61m0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0UoqpoZmRiXmSoYmZhYG5aZpuqmmSpWWSeaqZYWKauXliqlIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAECHsY72Wv3gCAAA1BQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAECHs1SV61m0AAAB4AAAACQAkAAAAAAAAAAAAAADFAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAH0DAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -887,10 +887,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.10628674
+    x: 0.04464286
     y: 0
-    width: 0.786748
-    height: 1.0010215
+    width: 0.91127235
+    height: 1
   near clip plane: -2.85
   far clip plane: 1000
   field of view: 60
@@ -2543,6 +2543,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212362080}
   m_CullTransparentMesh: 1
+--- !u!1001 &1237829704
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8733446829554997927, guid: e2b55c77bc36ea64693fb69da0d6c2ee, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733446829554997927, guid: e2b55c77bc36ea64693fb69da0d6c2ee, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.2596874
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733446829554997927, guid: e2b55c77bc36ea64693fb69da0d6c2ee, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 15.435
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733446829554997927, guid: e2b55c77bc36ea64693fb69da0d6c2ee, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.2594045
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733446829554997927, guid: e2b55c77bc36ea64693fb69da0d6c2ee, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733446829554997927, guid: e2b55c77bc36ea64693fb69da0d6c2ee, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733446829554997927, guid: e2b55c77bc36ea64693fb69da0d6c2ee, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733446829554997927, guid: e2b55c77bc36ea64693fb69da0d6c2ee, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733446829554997927, guid: e2b55c77bc36ea64693fb69da0d6c2ee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733446829554997927, guid: e2b55c77bc36ea64693fb69da0d6c2ee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733446829554997927, guid: e2b55c77bc36ea64693fb69da0d6c2ee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733446829554997944, guid: e2b55c77bc36ea64693fb69da0d6c2ee, type: 3}
+      propertyPath: m_Name
+      value: AudioPlayer
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e2b55c77bc36ea64693fb69da0d6c2ee, type: 3}
 --- !u!1 &1343938674
 GameObject:
   m_ObjectHideFlags: 0
@@ -3302,7 +3359,7 @@ AudioSource:
   m_GameObject: {fileID: 1676325480}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7350307408274774908, guid: 77fcd684411c3424cb792adbfc58a183, type: 2}
   m_audioClip: {fileID: 8300000, guid: d7743988dc6ed034e9a6372c0b7c412d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
