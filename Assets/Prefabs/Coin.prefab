@@ -121,7 +121,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerupSignal: {fileID: 11400000, guid: d7002098762aacf4096a9c6eec2b173e, type: 2}
   playerInventory: {fileID: 11400000, guid: a29e048e0907c4f40b545b159a0849da, type: 2}
-  coinSound: {fileID: 0}
 --- !u!61 &5282864384341969434
 BoxCollider2D:
   m_ObjectHideFlags: 0
