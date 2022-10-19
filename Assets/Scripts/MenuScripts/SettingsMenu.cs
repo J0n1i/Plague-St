@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using TMPro;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -13,10 +14,8 @@ public class SettingsMenu : MonoBehaviour
 
     public GameObject MainMenu;
     public GameObject ModifyMenu;
-    public Slider sliderVolume;
-    public float VolumeLevel;
-    public Text VolumeText;
-    public string Volume;
+    public TMP_Text VolumeText;
+    public TMP_Text MusicText;
 
 
     public void ShowSettings ()
@@ -36,14 +35,12 @@ public class SettingsMenu : MonoBehaviour
 
     public void VolumeBar ()
     {
-        VolumeLevel = sliderVolume.value;
-        Debug.Log(VolumeLevel);
-        Volume = VolumeLevel.ToString();
+        VolumeText.text = (int)(sfxSlider.value * 100f) + "%";
     }
 
     public void MusicBar()
     {
-
+        MusicText.text = (int)(musicSlider.value * 100f) + "%";
     }
 
 
