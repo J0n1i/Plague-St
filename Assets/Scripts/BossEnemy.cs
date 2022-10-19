@@ -5,15 +5,15 @@ using UnityEngine.UI;
 
 public class BossEnemy : log
 {
-    public bool isTimer;
-    public bool isSpin;
-    public bool isFire;
-    public bool isAttacked;
-    public bool logiSpawned;
-    public bool enraged;
-    public float timer;
-    public float fireTimer;
-    public float Attacktimer;
+    private bool isTimer;
+    private bool isSpin;
+    private bool isFire;
+    private bool isAttacked;
+    private bool logiSpawned;
+    private bool enraged;
+    private float timer;
+    private float fireTimer;
+    private float Attacktimer;
     public Slider healthBar;
     public float closeRadius;
     [SerializeField] GameObject bullet;
@@ -33,6 +33,7 @@ public class BossEnemy : log
         //enable pathfinding
         fireTimer = 5f;
         Attacktimer = 2f;
+        shootRadius = 6f;
 	}
     // Update is called once per frame
     void Update()
