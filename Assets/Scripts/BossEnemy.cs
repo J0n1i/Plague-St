@@ -96,9 +96,7 @@ public class BossEnemy : log
             if (currentState == EnemyState.walk
                 && currentState != EnemyState.stagger && isFire==false && isAttacked==false)
             {
-                isFire=true;
-                isAttacked=true;
-                Instantiate(bullet, transform.position, Quaternion.identity);
+                StartCoroutine(ShootCo());
                 
                 
             }
@@ -217,6 +215,20 @@ public class BossEnemy : log
             GetComponent<Pathfinding.AIPath>().maxSpeed = 3.5f;
         }
         
+    }
+    public IEnumerator ShootCo()
+    {
+        isFire=true;
+        isAttacked=true;
+        GetComponent<Pathfinding.AIPath>().maxSpeed = 2f;
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(bullet, transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.5f);
+        GetComponent<Pathfinding.AIPath>().maxSpeed = 3f;
+        if(enraged==true){
+            GetComponent<Pathfinding.AIPath>().maxSpeed = 3.5f;
+        }
+
     }
    
     public IEnumerator SpawnLogi()
