@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using TMPro;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -13,24 +14,9 @@ public class SettingsMenu : MonoBehaviour
 
     public GameObject MainMenu;
     public GameObject ModifyMenu;
+    public TMP_Text VolumeText;
+    public TMP_Text MusicText;
 
-    void Start(){
-        saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
-
-        saveManager.LoadGame();
-        musicSlider.value = saveManager.saveData.musicVolume;
-        sfxSlider.value = saveManager.saveData.sfxVolume;
-    }
-
-    public void SetMusicVolume(float volume)
-    {
-        audioMixer.SetFloat("Music", Mathf.Log(volume) * 20);
-    }
-
-    public void SetSFXVolume(float volume)
-    {
-        audioMixer.SetFloat("SFX", Mathf.Log(volume) * 20);
-    }
 
     public void ShowSettings ()
     {
@@ -47,6 +33,15 @@ public class SettingsMenu : MonoBehaviour
         saveManager.SaveGame();
     }
 
+    public void VolumeBar ()
+    {
+        VolumeText.text = (int)(sfxSlider.value * 100f) + "%";
+    }
+
+    public void MusicBar()
+    {
+        MusicText.text = (int)(musicSlider.value * 100f) + "%";
+    }
 
 
 
