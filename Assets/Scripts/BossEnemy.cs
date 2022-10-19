@@ -216,6 +216,7 @@ public class BossEnemy : log
          if(enraged == true){
             GetComponent<Pathfinding.AIPath>().maxSpeed = 3.5f;
         }
+        
     }
    
     public IEnumerator SpawnLogi()
@@ -223,6 +224,7 @@ public class BossEnemy : log
         logiSpawned = true;
         anim.SetBool("enrage", true);
         GetComponent<Pathfinding.AIPath>().maxSpeed = 0f;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         currentState = EnemyState.attack;
         pos = new Vector3(transform.position.x + Random.Range(-2,2), transform.position.y + Random.Range(-2,2), transform.position.z);
         pos1 = new Vector3(transform.position.x + Random.Range(-2,2), transform.position.y + Random.Range(-2,2), transform.position.z);
@@ -234,6 +236,7 @@ public class BossEnemy : log
         currentState = EnemyState.walk;
         anim.SetBool("enrage", false);
         GetComponent<Pathfinding.AIPath>().maxSpeed = 3.5f;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         enraged=true;
     }
 }
