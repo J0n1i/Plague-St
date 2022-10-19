@@ -8,6 +8,7 @@ public class DungeonFinalizer : MonoBehaviour
     [SerializeField] private GameObject bossRoomPrefab, treasureRoomPrefab;
 
     [SerializeField] private GameObject[] enemyPrefab;
+    [SerializeField] private GameObject bossPrefab;
     [SerializeField] private GameObject treasurePrefab;
 
 
@@ -75,13 +76,13 @@ public class DungeonFinalizer : MonoBehaviour
         StartCoroutine(LateSpawnEnemies());
         SpawnChests();
         pathfinder.Scan();
-
         StartCoroutine(DisableCreationRooms());
     }
 
-    IEnumerator DisableCreationRooms(){
+    IEnumerator DisableCreationRooms()
+    {
         yield return new WaitForSeconds(0.1f);
-                transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(0).gameObject.SetActive(false);
 
     }
     private void AssignBossRoom()
@@ -134,6 +135,7 @@ public class DungeonFinalizer : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         SpawnEnemies();
+        SpawnBoss();
     }
     private void SpawnEnemies()
     {
@@ -189,6 +191,16 @@ public class DungeonFinalizer : MonoBehaviour
 
                         break;
                 }
+            }
+        }
+    }
+
+    private void SpawnBoss(){
+        for (int i = 0; i < rooms.Count; i++)
+        {
+            if (rooms[i].roomType == RoomType.BossRoom)
+            {
+                Instantiate(bossPrefab, rooms[i].roomPrefab.transform.position, Quaternion.identity, rooms[i].roomPrefab.transform.Find("Enemies"));
             }
         }
     }
