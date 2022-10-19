@@ -4,17 +4,19 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
+[System.Serializable]
+public class SaveData
+{
+    public float musicVolume, sfxVolume;
+
+}
 class SaveManager : MonoBehaviour
 {
-    [System.Serializable]
-    class SaveData
-    {
-        int masterVolume, musicVolume, sfxVolume;
-        bool fullscreen;
 
-    }
 
-    private SaveData saveData = new SaveData();
+    public static SaveManager instance;
+
+    public SaveData saveData = new SaveData();
 
 
     BinaryFormatter bf = new BinaryFormatter();
@@ -32,6 +34,9 @@ class SaveManager : MonoBehaviour
         file.Close();
 
         Debug.Log("Game Saved" + path);
+
+        Debug.Log("Music Volume: " + saveData.musicVolume);
+        Debug.Log("SFX Volume: " + saveData.sfxVolume);
     }
 
     public void LoadGame()
@@ -44,6 +49,8 @@ class SaveManager : MonoBehaviour
             file.Close();
 
             Debug.Log("Game Loaded" + path);
+            Debug.Log("Music Volume: " + saveData.musicVolume);
+            Debug.Log("SFX Volume: " + saveData.sfxVolume);
         }
         else
         {
