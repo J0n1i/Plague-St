@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour {
     private Image specialCooldownImageNotAvailable;
     private DeathScreen deatscreen;
     public Inventory playerInventory;
+    public AudioClip attackSound;
 
 	// Use this for initialization
 	void Start () {
@@ -103,6 +104,7 @@ public class PlayerMovement : MonoBehaviour {
         animator.SetBool("attacking", false);
         yield return new WaitForSeconds(.3f);
         currentState = PlayerState.walk;
+        AudioPlayer.instance.PlaySound(attackSound, 1f);
     }
 
     private IEnumerator SpecialCo()
