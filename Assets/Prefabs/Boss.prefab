@@ -2083,6 +2083,7 @@ MonoBehaviour:
   closeRadius: 3
   bullet: {fileID: 3737559277776224656, guid: 1738af77deb065d4baced7965a5b2300, type: 3}
   logi: {fileID: 8433158962445273152, guid: d336437a70c2f70469ac19af6444c579, type: 3}
+  shootRadius: 6
 --- !u!1 &9061453373958749853
 GameObject:
   m_ObjectHideFlags: 0

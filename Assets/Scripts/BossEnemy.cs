@@ -20,6 +20,7 @@ public class BossEnemy : log
     [SerializeField] GameObject logi;
     Vector3 pos;
     Vector3 pos1;
+    public float shootRadius;
     
     
    
@@ -77,9 +78,9 @@ public class BossEnemy : log
             Attacktimer -= Time.deltaTime;
             if(Attacktimer <= 0){
                 isAttacked = false;
-                Attacktimer = 2f;
+                Attacktimer = 3f;
                 if(enraged == true){
-                    Attacktimer= 2f;
+                    Attacktimer= 2.5f;
                 }
             }
         }
@@ -94,7 +95,8 @@ public class BossEnemy : log
                                transform.position) > attackRadius)
         {
             if (currentState == EnemyState.walk
-                && currentState != EnemyState.stagger && isFire==false && isAttacked==false)
+                && currentState != EnemyState.stagger && isFire==false && isAttacked==false && Vector3.Distance(target.position,
+                               transform.position) > shootRadius)
             {
                 StartCoroutine(ShootCo());
                 
