@@ -45,6 +45,7 @@ public class PlayerMovement : MonoBehaviour {
     private DeathScreen deatscreen;
     public Inventory playerInventory;
     public AudioClip attackSound;
+    public Joystick joystick;
 
 	// Use this for initialization
 	void Start () {
@@ -59,6 +60,7 @@ public class PlayerMovement : MonoBehaviour {
         myRigidbody = GetComponent<Rigidbody2D>();
         animator.SetFloat("moveX", 0);
         animator.SetFloat("moveY", -1);
+        joystick = GameObject.Find("Canvas").GetComponentInChildren<Joystick>();
         deatscreen = GameObject.Find("DeathScreenCanvas").GetComponent<DeathScreen>();
         specialCooldownImage = GameObject.Find("specialCooldown").GetComponent<Image>();
         specialCooldownImageNotAvailable = GameObject.Find("specialCooldownNotAvailable").GetComponent<Image>();
@@ -68,9 +70,11 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         change = Vector3.zero;
-        change.x = Input.GetAxisRaw("Horizontal");
-        change.y = Input.GetAxisRaw("Vertical");
-        
+        //change.x = Input.GetAxisRaw("Horizontal");
+        //change.y = Input.GetAxisRaw("Vertical");
+        //nää ylemmät pois kommentista nii toimii näppis ja alemmat kommenteiks
+        change.x = joystick.Horizontal;
+        change.y = joystick.Vertical;
        if(Input.GetButtonDown("attack") && currentState != PlayerState.attack 
            && currentState != PlayerState.stagger)
         {
@@ -93,6 +97,18 @@ public class PlayerMovement : MonoBehaviour {
         }
         
 	}
+    public void pressedAttack(){
+             if(currentState != PlayerState.attack 
+           && currentState != PlayerState.stagger){
+            StartCoroutine(AttackCo());
+            }
+        }
+public void pressedDash(){
+             if(currentState != PlayerState.attack 
+           && currentState != PlayerState.stagger && isRolling == false){
+            StartCoroutine(RollCo());
+            }
+        }
     
 
     private IEnumerator AttackCo()
