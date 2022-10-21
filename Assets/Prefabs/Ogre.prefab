@@ -1031,6 +1031,9 @@ MonoBehaviour:
   anim: {fileID: 8279953100408016397}
   timer: 0
   isTimer: 0
+  bullet: {fileID: 0}
+  flashMaterial: {fileID: 2100000, guid: ca267fd8b715b17478af996f91c6ac64, type: 2}
+  flashDuration: 0.1
 --- !u!114 &8279953100408016401
 MonoBehaviour:
   m_ObjectHideFlags: 0

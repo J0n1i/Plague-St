@@ -73,8 +73,7 @@ public class MeleeEnemy : log
     {
         isTimer=true;
         yield return new WaitForSeconds(Random.Range(0.0f, 0.2f));
-        GetComponent<Pathfinding.AIPath>().maxSpeed = 1f;
-        //rigidbody static
+        GetComponent<Pathfinding.AIPath>().maxSpeed = 0f;
         int LayerIgnoreRaycast = LayerMask.NameToLayer("enemy");
         gameObject.layer = LayerIgnoreRaycast;
         currentState = EnemyState.attack;
