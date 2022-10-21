@@ -30,7 +30,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.21666667
+        time: 0.5
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -39,7 +39,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.6666667
+        time: 0.95
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -48,7 +48,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.8333333
+        time: 1.1166667
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -63,17 +63,36 @@ AnimationClip:
     path: Up hitbox
     classID: 1
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Up hitarea
+    classID: 1
+    script: {fileID: 0}
   m_PPtrCurves:
   - curve:
     - time: 0
       value: {fileID: -47851687, guid: d52239a124cf0d04d92874f7786c0ddb, type: 3}
-    - time: 0.21666667
+    - time: 0.5
       value: {fileID: 1292531571, guid: d52239a124cf0d04d92874f7786c0ddb, type: 3}
-    - time: 0.45
+    - time: 0.73333335
       value: {fileID: -995157172, guid: d52239a124cf0d04d92874f7786c0ddb, type: 3}
-    - time: 0.6666667
+    - time: 0.95
       value: {fileID: 577531932, guid: d52239a124cf0d04d92874f7786c0ddb, type: 3}
-    - time: 0.8333333
+    - time: 1.1166667
       value: {fileID: 577531932, guid: d52239a124cf0d04d92874f7786c0ddb, type: 3}
     attribute: m_Sprite
     path: 
@@ -88,6 +107,13 @@ AnimationClip:
     genericBindings:
     - serializedVersion: 2
       path: 3725690483
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 3628235922
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -111,7 +137,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.84999996
+    m_StopTime: 1.1333333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -140,7 +166,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.21666667
+        time: 0.5
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -149,7 +175,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.6666667
+        time: 0.95
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -158,7 +184,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.8333333
+        time: 1.1166667
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -171,6 +197,25 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: m_IsActive
     path: Up hitbox
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Up hitarea
     classID: 1
     script: {fileID: 0}
   m_EulerEditorCurves: []
