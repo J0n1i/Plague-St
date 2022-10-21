@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour {
     public float moveSpeed;
     public GameObject CoinDrop;
     public GameObject HeartDrop;
+    public AudioClip damageSound;
     private void Awake(){
         health = maxHealth.initialValue;
     }
@@ -36,15 +37,19 @@ public class Enemy : MonoBehaviour {
         int dice = Random.Range(1, 101);
         if(dice < 71){
             Instantiate(CoinDrop, transform.position, Quaternion.identity);
-            
-        }else if (dice>70 && dice<80) {
+            AudioPlayer.instance.PlaySound(damageSound, 1f);
+
+            }
+            else if (dice>70 && dice<80) {
             Instantiate(HeartDrop, transform.position, Quaternion.identity);
-            
+            AudioPlayer.instance.PlaySound(damageSound, 1f);
+
         } else {
             
         }
             this.gameObject.SetActive(false);
-           
+            AudioPlayer.instance.PlaySound(damageSound, 1f);
+
         }
     }
 
@@ -52,6 +57,7 @@ public class Enemy : MonoBehaviour {
     {
         StartCoroutine(KnockCo(myRigidbody, knockTime));
         TakeDamage(damage);
+        AudioPlayer.instance.PlaySound(damageSound, 1f);
     }
 
     private IEnumerator KnockCo(Rigidbody2D myRigidbody, float knockTime)

@@ -12,10 +12,10 @@ public class SettingsMenu : MonoBehaviour
 
     private SaveManager saveManager;
 
-    public GameObject MainMenu;
-    public GameObject ModifyMenu;
-    public TMP_Text VolumeText;
-    public TMP_Text MusicText;
+    [SerializeField] private GameObject MainMenu;
+    [SerializeField] private GameObject ModifyMenu;
+    [SerializeField] private TMP_Text VolumeText;
+    [SerializeField] private TMP_Text MusicText;
 
 
     public void ShowSettings ()
