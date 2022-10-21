@@ -14,7 +14,7 @@ public class BossEnemy : log
     private float Attacktimer;
     public Slider healthBar;
     public float closeRadius;
-    [SerializeField] GameObject bullet;
+    
     [SerializeField] GameObject logi;
     Vector3 pos;
     Vector3 pos1;
