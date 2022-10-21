@@ -111,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
         closestEnemy = enemies[0];
         foreach (GameObject enemy in enemies)
         {
-            enemy.GetComponent<Renderer>().material.color = Color.white;
+            //enemy.GetComponent<Renderer>().material.color = Color.white;
             if (Vector3.Distance(enemy.transform.position, transform.position) < Vector3.Distance(closestEnemy.transform.position, transform.position))
             {
                 closestEnemy = enemy;
@@ -119,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        closestEnemy.GetComponent<Renderer>().material.color = Color.red;
+        //closestEnemy.GetComponent<Renderer>().material.color = Color.red;
         Debug.Log(closestEnemy, closestEnemy);
     }
 
@@ -188,7 +188,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("attacking", false);
         yield return new WaitForSeconds(.3f);
         currentState = PlayerState.walk;
-        AudioPlayer.instance.PlaySound(attackSound, 1f);
+
     }
 
     private IEnumerator SpecialCo()

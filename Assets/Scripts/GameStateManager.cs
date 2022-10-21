@@ -13,7 +13,8 @@ public enum GameState
 
 public class GameStateManager : MonoBehaviour
 {
-
+    private bool GameStatusBool = false;
+    public Animator Fade;
     public GameState currentGameState;
     private GameManager gameManager;
     
@@ -27,6 +28,9 @@ public class GameStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (currentGameState != GameState.GeneratingDungeon)
+        {
+            Fade.SetBool("BGFading", true);
+        }
     }
 }
