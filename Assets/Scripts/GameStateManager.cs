@@ -30,7 +30,6 @@ public class GameStateManager : MonoBehaviour
     {
         if (currentGameState != GameState.GeneratingDungeon)
         {
-            Debug.Log(currentGameState);
             Fade.SetBool("BGFading", true);
         }
     }
