@@ -10,22 +10,46 @@ public class log : Enemy {
     public float attackRadius;
     public Transform homePosition;
     public Animator anim;
-
+    public float timer;
+    public bool isTimer;
+    private float escapeRadius;
+    public GameObject bullet;
+    [SerializeField] private Material flashMaterial;
+    [SerializeField] private float flashDuration;
+    private SpriteRenderer spriteRenderer;
+    private Material originalMaterial;
+    private Coroutine flashRoutine;
 
 	// Use this for initialization
 	void Start () {
+        timer = 4f;
+        escapeRadius = 5f;
         currentState = EnemyState.idle;
         myRigidbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         target = GameObject.FindWithTag("Player").transform;
         GetComponent<Pathfinding.AIPath>().enabled = false;
-        //enable pathfinding
+        float randomNum = Random.Range(0.1f, 0.3f);
+        GetComponent<Pathfinding.AIPath>().maxSpeed = 3f+randomNum;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalMaterial = spriteRenderer.material;
+
+        
 
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
         CheckDistance();
+        if(isTimer == true){
+            timer -= Time.deltaTime;
+            if(timer <= 0){
+                isTimer = false;
+                timer = 4f;
+
+            }
+        }
+       
 	}
 
    public virtual void CheckDistance()
@@ -38,6 +62,8 @@ public class log : Enemy {
             if (currentState == EnemyState.idle || currentState == EnemyState.walk
                 && currentState != EnemyState.stagger)
             {
+                int LayerNotIgnoreRaycast = LayerMask.NameToLayer("Default");
+        gameObject.layer = LayerNotIgnoreRaycast;
                 Vector3 temp = Vector3.MoveTowards(transform.position,
                                                          target.position,
                                                          moveSpeed * Time.deltaTime);
@@ -47,6 +73,38 @@ public class log : Enemy {
                 ChangeState(EnemyState.walk);
                 
                 anim.SetBool("wakeUp", true);
+            }
+        }else if (Vector3.Distance(target.position,
+                    transform.position) <= chaseRadius
+                    && Vector3.Distance(target.position,
+                    transform.position) <= attackRadius)
+        {
+            if (currentState == EnemyState.idle && currentState != EnemyState.stagger && isTimer==false && Vector3.Distance(target.position,
+                    transform.position) > escapeRadius|| currentState == EnemyState.walk
+                && currentState != EnemyState.stagger && isTimer==false && Vector3.Distance(target.position,
+                    transform.position) > escapeRadius)
+            {
+                
+                StartCoroutine(AttackCo());
+                
+            }
+            if(Vector3.Distance(target.position, transform.position) <= escapeRadius){
+                GetComponent<Pathfinding.AIPath>().enabled = false;
+                int LayerIgnoreRaycast = LayerMask.NameToLayer("enemy");
+                  gameObject.layer = LayerIgnoreRaycast;
+                Vector3 dirToPlayer = transform.position - target.position;
+                Vector3 newPos = transform.position + dirToPlayer;
+                Vector3 tempp = Vector3.MoveTowards(transform.position,
+                                                         newPos,
+                                                         moveSpeed * Time.deltaTime);
+                myRigidbody.MovePosition(tempp);
+                changeAnim(tempp - transform.position);
+                ChangeState(EnemyState.walk);
+            }else {
+                Vector3 tempp = Vector3.MoveTowards(transform.position,
+                                                         target.position,
+                                                         moveSpeed * Time.deltaTime);
+                changeAnim(tempp - transform.position);
             }
         }else if (Vector3.Distance(target.position,
                             transform.position) > chaseRadius)
@@ -81,11 +139,44 @@ public class log : Enemy {
             }
         }
     }
+    public void Flash()
+    {
+        if (flashRoutine != null)
+        {
+            StopCoroutine(flashRoutine);
+        }
+        flashRoutine = StartCoroutine(FlashRoutine());
+    }
 
     public void ChangeState(EnemyState newState){
         if(currentState != newState)
         {
             currentState = newState;
         }
+    }
+     public IEnumerator AttackCo()
+    {
+        
+        isTimer=true;
+        GetComponent<Pathfinding.AIPath>().maxSpeed = 0f;
+        anim.SetBool("attack", true);
+        Flash();
+        yield return new WaitForSeconds(0.2f);
+        Flash();
+        yield return new WaitForSeconds(0.2f);
+        anim.SetBool("attack", false);
+        Instantiate(bullet, transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.5f);
+        float randomNum = Random.Range(0.1f, 0.3f);
+        GetComponent<Pathfinding.AIPath>().maxSpeed = 3f+randomNum;
+        
+    
+    }
+    private IEnumerator FlashRoutine()
+    {
+        spriteRenderer.material = flashMaterial;
+        yield return new WaitForSeconds(flashDuration);
+        spriteRenderer.material = originalMaterial;
+        flashRoutine = null;
     }
 }
