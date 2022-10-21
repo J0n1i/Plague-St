@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 8433158962445273164}
   - component: {fileID: 8433158962445273166}
   - component: {fileID: 8433158962445273161}
-  - component: {fileID: 8433158962445273160}
   - component: {fileID: 2400791632778252816}
   - component: {fileID: 299989654420258321}
   - component: {fileID: -6359330454135487939}
@@ -35,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 8433158962445273152}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.405564, y: -0.5023562, z: 0.12732069}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -126,8 +125,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDrag: 2
+  m_AngularDrag: 2
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -147,7 +146,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.006685257, y: -0.60317}
+  m_Offset: {x: 0.006685257, y: -0.15482725}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -158,7 +157,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6500101, y: 0.2462318}
+  m_Size: {x: 0.6500101, y: 1.1429172}
   m_EdgeRadius: 0
 --- !u!114 &8433158962445273166
 MonoBehaviour:
@@ -176,7 +175,7 @@ MonoBehaviour:
   sprite: {fileID: 8433158962445273154}
   currentState: 0
   maxHealth: {fileID: 11400000, guid: ff4831900bba255428844020b5c2149a, type: 2}
-  health: 2
+  health: 3
   enemyName: Larry
   baseAttack: 1
   moveSpeed: 1.5
@@ -184,9 +183,14 @@ MonoBehaviour:
   HeartDrop: {fileID: 1920694392575528832, guid: 1327b3039c883a24e853986571ed791f, type: 3}
   target: {fileID: 8045719978935814808, guid: 4378ec4075ca9324fb7a3820f63c0c76, type: 3}
   chaseRadius: 8
-  attackRadius: 0.5
+  attackRadius: 6
   homePosition: {fileID: 0}
   anim: {fileID: 8433158962445273155}
+  timer: 0
+  isTimer: 0
+  bullet: {fileID: 3737559277776224656, guid: 1738af77deb065d4baced7965a5b2300, type: 3}
+  flashMaterial: {fileID: 2100000, guid: ca267fd8b715b17478af996f91c6ac64, type: 2}
+  flashDuration: 0.1
 --- !u!61 &8433158962445273161
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -213,21 +217,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8028617, y: 1.1828346}
   m_EdgeRadius: 0
---- !u!114 &8433158962445273160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8433158962445273152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02f54203589093c46a1fdece323d023d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thrust: 4
-  knockTime: 0.2
-  damage: 1
 --- !u!114 &2400791632778252816
 MonoBehaviour:
   m_ObjectHideFlags: 0

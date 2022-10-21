@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1882901043704269362}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   - component: {fileID: 2240335539442959840}
   - component: {fileID: 6536524876260884879}
   - component: {fileID: 5229822185154367841}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: special hitbox
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 3588949891264302024}
   - component: {fileID: 6532355411069520259}
   - component: {fileID: 3096866087409777616}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SpecialCooldownText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -417,7 +417,7 @@ GameObject:
   m_Component:
   - component: {fileID: 78914921218676389}
   - component: {fileID: 8579676900512276220}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -534,7 +534,7 @@ GameObject:
   - component: {fileID: 4785004459641035913}
   - component: {fileID: 4198624962832700326}
   - component: {fileID: 8223858954903382780}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SpecialCooldownImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -610,7 +610,7 @@ GameObject:
   - component: {fileID: 8045719977624666660}
   - component: {fileID: 8045719977624666663}
   - component: {fileID: 8045719977624666657}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: right hitbox
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -690,7 +690,7 @@ GameObject:
   - component: {fileID: 8045719978291527563}
   - component: {fileID: 8045719978291527562}
   - component: {fileID: 8045719978291527572}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: down hitbox
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -769,7 +769,7 @@ GameObject:
   - component: {fileID: 8045719978654058886}
   - component: {fileID: 8045719978654058881}
   - component: {fileID: 8045719978654058883}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: up hitbox
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -861,7 +861,7 @@ GameObject:
   - component: {fileID: 7381846617323802859}
   - component: {fileID: -1602132679759176069}
   - component: {fileID: 6826186266313701040}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -877,7 +877,7 @@ RectTransform:
   m_GameObject: {fileID: 8045719978935814814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8045719978291527563}
@@ -960,8 +960,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDrag: 2
+  m_AngularDrag: 2
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -1202,7 +1202,7 @@ GameObject:
   - component: {fileID: 8045719979498262130}
   - component: {fileID: 8045719979498262141}
   - component: {fileID: 8045719979498262143}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: left hitbox
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1283,7 +1283,7 @@ GameObject:
   - component: {fileID: 3150635392166397032}
   - component: {fileID: 2509091778116751062}
   - component: {fileID: 5632188709207419171}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CooldownImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1360,7 +1360,7 @@ GameObject:
   - component: {fileID: 6180291549993575046}
   - component: {fileID: 532374221420146669}
   - component: {fileID: 5806998622142804476}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

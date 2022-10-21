@@ -4,18 +4,31 @@ using UnityEngine;
 
 public class MeleeEnemy : log
 {
+    
+
     // Start is called before the first frame update
    void Start () {
+    timer = 4f;
         currentState = EnemyState.idle;
         target = GameObject.FindWithTag("Player").transform;
         GetComponent<Pathfinding.AIPath>().enabled = false;
+        float randomNum = Random.Range(0.3f, 0.5f);
+        GetComponent<Pathfinding.AIPath>().maxSpeed = 2f+randomNum;
         //enable pathfinding
-
+        
 	}
     // Update is called once per frame
     void Update()
     {
-        
+        if(isTimer == true){
+            timer -= Time.deltaTime;
+            if(timer <= 0){
+                isTimer = false;
+                timer = Random.Range(2f, 4f);
+            }
+        }
+     
+
     }
     public override void CheckDistance()
     {
@@ -41,7 +54,7 @@ public class MeleeEnemy : log
                     transform.position) <= attackRadius)
         {
             if (currentState == EnemyState.walk
-                && currentState != EnemyState.stagger)
+                && currentState != EnemyState.stagger && isTimer==false) 
             {
                 
                 StartCoroutine(AttackCo());
@@ -58,14 +71,22 @@ public class MeleeEnemy : log
 
     public IEnumerator AttackCo()
     {
-        //change enemy max speed
-        GetComponent<Pathfinding.AIPath>().maxSpeed = 1.5f;
+        isTimer=true;
+        yield return new WaitForSeconds(Random.Range(0.0f, 0.2f));
+        GetComponent<Pathfinding.AIPath>().maxSpeed = 1f;
+        //rigidbody static
+        int LayerIgnoreRaycast = LayerMask.NameToLayer("enemy");
+        gameObject.layer = LayerIgnoreRaycast;
         currentState = EnemyState.attack;
         anim.SetBool("attack", true);
         yield return new WaitForSeconds(1f);
         currentState = EnemyState.walk;
         anim.SetBool("attack", false);
-        GetComponent<Pathfinding.AIPath>().maxSpeed = 2.5f;
+        int LayerNotIgnoreRaycast = LayerMask.NameToLayer("Default");
+        gameObject.layer = LayerNotIgnoreRaycast;
+        float randomNum = Random.Range(0.3f, 0.5f);
+        GetComponent<Pathfinding.AIPath>().maxSpeed = 2f+randomNum;
+        
     }
 
 }
