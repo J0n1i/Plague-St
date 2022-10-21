@@ -113,6 +113,7 @@ public void pressedDash(){
 
     private IEnumerator AttackCo()
     {
+        AudioPlayer.instance.PlaySound(attackSound, 1f);
         playerAttackSignal.Raise();
         animator.SetBool("attacking", true);
         currentState = PlayerState.attack;
@@ -120,7 +121,7 @@ public void pressedDash(){
         animator.SetBool("attacking", false);
         yield return new WaitForSeconds(.3f);
         currentState = PlayerState.walk;
-        AudioPlayer.instance.PlaySound(attackSound, 1f);
+
     }
 
     private IEnumerator SpecialCo()

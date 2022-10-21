@@ -6,7 +6,6 @@ public class Coin : Powerup
 {
     public Inventory playerInventory;
     public AudioClip coinPickUp;
-    //public AudioSource coinSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,11 +22,10 @@ public class Coin : Powerup
     {
         if (other.CompareTag("Player") && !other.isTrigger)
         {
-            //coinSound.Play();
+            AudioPlayer.instance.PlaySound(coinPickUp, 1f);
             playerInventory.coins += 1;
             powerupSignal.Raise();
             Destroy(this.gameObject);
-            AudioPlayer.instance.PlaySound(coinPickUp, 1f);
         }
     }
 }

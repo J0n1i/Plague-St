@@ -11,6 +11,7 @@ public class Chest : MonoBehaviour
    public GameObject HeartDrop;
    public GameObject SpeedDrop;
    public GameObject RollDrop;
+    public AudioClip ChestOpen;
    void Start()
     {
         animator = GetComponent<Animator>();
@@ -45,6 +46,7 @@ public class Chest : MonoBehaviour
             Instantiate(RollDrop, transform.position, Quaternion.identity);
         }
         isOpen=true;
+            AudioPlayer.instance.PlaySound(ChestOpen, 1f);
             playerInventory.coins -= 10;
             chestSignal.Raise();
             yield return new WaitForSeconds(.3f);
