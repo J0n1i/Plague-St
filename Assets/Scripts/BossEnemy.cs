@@ -5,13 +5,11 @@ using UnityEngine.UI;
 
 public class BossEnemy : log
 {
-    private bool isTimer;
     private bool isSpin;
     private bool isFire;
     private bool isAttacked;
     private bool logiSpawned;
     private bool enraged;
-    private float timer;
     private float fireTimer;
     private float Attacktimer;
     public Slider healthBar;

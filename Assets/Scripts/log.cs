@@ -10,15 +10,20 @@ public class log : Enemy {
     public float attackRadius;
     public Transform homePosition;
     public Animator anim;
-
+    public float timer;
+    public bool isTimer;
+    
 
 	// Use this for initialization
 	void Start () {
+        timer = 4f;
         currentState = EnemyState.idle;
         myRigidbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         target = GameObject.FindWithTag("Player").transform;
         GetComponent<Pathfinding.AIPath>().enabled = false;
+        float randomNum = Random.Range(0.1f, 0.3f);
+        GetComponent<Pathfinding.AIPath>().maxSpeed = 3f+randomNum;
         //enable pathfinding
 
 	}
@@ -26,6 +31,15 @@ public class log : Enemy {
 	// Update is called once per frame
 	void FixedUpdate () {
         CheckDistance();
+        if(isTimer == true){
+            timer -= Time.deltaTime;
+            if(timer <= 0){
+                isTimer = false;
+                timer = 4f;
+
+            }
+        }
+       
 	}
 
    public virtual void CheckDistance()
@@ -47,6 +61,18 @@ public class log : Enemy {
                 ChangeState(EnemyState.walk);
                 
                 anim.SetBool("wakeUp", true);
+            }
+        }else if (Vector3.Distance(target.position,
+                    transform.position) <= chaseRadius
+                    && Vector3.Distance(target.position,
+                    transform.position) <= attackRadius)
+        {
+            if (currentState == EnemyState.idle && currentState != EnemyState.stagger && isTimer==false|| currentState == EnemyState.walk
+                && currentState != EnemyState.stagger && isTimer==false)
+            {
+                
+                StartCoroutine(AttackCo());
+                
             }
         }else if (Vector3.Distance(target.position,
                             transform.position) > chaseRadius)
@@ -87,5 +113,26 @@ public class log : Enemy {
         {
             currentState = newState;
         }
+    }
+     public IEnumerator AttackCo()
+    {
+        
+        isTimer=true;
+        GetComponent<Pathfinding.AIPath>().maxSpeed = 0f;
+        int LayerIgnoreRaycast = LayerMask.NameToLayer("enemy");
+        gameObject.layer = LayerIgnoreRaycast;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        currentState = EnemyState.attack;
+        anim.SetBool("attack", true);
+        yield return new WaitForSeconds(1f);
+        currentState = EnemyState.walk;
+        anim.SetBool("attack", false);
+        int LayerNotIgnoreRaycast = LayerMask.NameToLayer("Default");
+        gameObject.layer = LayerNotIgnoreRaycast;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        float randomNum = Random.Range(0.1f, 0.3f);
+        GetComponent<Pathfinding.AIPath>().maxSpeed = 3f+randomNum;
+       
+    
     }
 }
