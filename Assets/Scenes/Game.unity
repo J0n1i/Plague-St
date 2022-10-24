@@ -929,10 +929,17 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
+<<<<<<< HEAD:Assets/Scenes/Game.unity
     x: 0
     y: 0.21750256
     width: 0.9989806
     height: 0.56511027
+=======
+    x: 0.03125
+    y: 0
+    width: 0.93821424
+    height: 1
+>>>>>>> 3c9c34148013622628f28898b57e716b5a8cc500:Assets/Scenes/SampleScene.unity
   near clip plane: -2.85
   far clip plane: 1000
   field of view: 60
