@@ -1033,13 +1033,10 @@ MonoBehaviour:
   timer: 0
   isTimer: 0
   bullet: {fileID: 0}
-<<<<<<< HEAD
   flashMaterial: {fileID: 2100000, guid: ca267fd8b715b17478af996f91c6ac64, type: 2}
-  flashDuration: 0.1
-=======
-  flashMaterial: {fileID: 0}
-  flashDuration: 0
->>>>>>> 66054861a411459377b4ab8713ccbee7622db484
+  flashDuration: 0.2
+  spriteRenderer: {fileID: 8279953100408016395}
+  originalMaterial: {fileID: 2100000, guid: 69a0f8c402126b246bb176bc22646c36, type: 2}
 --- !u!114 &8279953100408016401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1082,6 +1079,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 0}
+  currTarget: 
+  Steer: 0
 --- !u!114 &8279953100408016399
 MonoBehaviour:
   m_ObjectHideFlags: 0

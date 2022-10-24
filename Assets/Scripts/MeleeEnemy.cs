@@ -6,6 +6,7 @@ public class MeleeEnemy : log
 {
     
 
+
     // Start is called before the first frame update
    void Start () {
     timer = 4f;
@@ -14,6 +15,9 @@ public class MeleeEnemy : log
         GetComponent<Pathfinding.AIPath>().enabled = false;
         float randomNum = Random.Range(0.3f, 0.5f);
         GetComponent<Pathfinding.AIPath>().maxSpeed = 2f+randomNum;
+         spriteRenderer = GetComponent<SpriteRenderer>();
+        originalMaterial = spriteRenderer.material;
+
         //enable pathfinding
         
 	}
@@ -72,8 +76,11 @@ public class MeleeEnemy : log
     public IEnumerator AttackCo()
     {
         isTimer=true;
-        yield return new WaitForSeconds(Random.Range(0.0f, 0.2f));
-        GetComponent<Pathfinding.AIPath>().maxSpeed = 0f;
+        float randomDuration = Random.Range(0.1f, 0.3f);
+        flashDuration = randomDuration;
+        Flash();
+        yield return new WaitForSeconds(randomDuration);
+        GetComponent<Pathfinding.AIPath>().maxSpeed = 1f;
         int LayerIgnoreRaycast = LayerMask.NameToLayer("enemy");
         gameObject.layer = LayerIgnoreRaycast;
         currentState = EnemyState.attack;

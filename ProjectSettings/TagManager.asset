@@ -11,6 +11,10 @@ TagManager:
   - RoomSpawnCollider
   - breakable
   - enemy
+  - ghost
+  - ghostt
+  - ghosttt
+  - ghostttt
   layers:
   - Default
   - TransparentFX

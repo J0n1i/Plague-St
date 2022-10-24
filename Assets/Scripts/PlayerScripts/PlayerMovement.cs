@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public enum PlayerState{
+public enum PlayerState
+{
     walk,
     attack,
     interact,
@@ -12,7 +13,8 @@ public enum PlayerState{
     idle
 }
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour
+{
 
     public bool PlayerIsDead = false;
     public SpriteRenderer sprite;
@@ -46,9 +48,12 @@ public class PlayerMovement : MonoBehaviour {
     public Inventory playerInventory;
     public AudioClip attackSound;
     public Joystick joystick;
+    private List<GameObject> enemies;
+    private GameObject closestEnemy;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         rollSpeed = speed * 2.5f;
         activeMoveSpeed = speed;
         originalSpeed = speed;
@@ -65,55 +70,117 @@ public class PlayerMovement : MonoBehaviour {
         specialCooldownImage = GameObject.Find("specialCooldown").GetComponent<Image>();
         specialCooldownImageNotAvailable = GameObject.Find("specialCooldownNotAvailable").GetComponent<Image>();
         specialCooldownImageNotAvailable.enabled = true;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+        enemies = GameObject.Find("DungeonGenerator").GetComponent<DungeonFinalizer>().enemies;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         change = Vector3.zero;
         //change.x = Input.GetAxisRaw("Horizontal");
         //change.y = Input.GetAxisRaw("Vertical");
         //nää ylemmät pois kommentista nii toimii näppis ja alemmat kommenteiks
         change.x = joystick.Horizontal;
         change.y = joystick.Vertical;
-       if(Input.GetButtonDown("attack") && currentState != PlayerState.attack 
-           && currentState != PlayerState.stagger)
+        if (Input.GetButtonDown("attack") && currentState != PlayerState.attack
+            && currentState != PlayerState.stagger)
         {
             StartCoroutine(AttackCo());
         }
-        else if(Input.GetButtonDown("special") && currentState != PlayerState.attack 
+        else if (Input.GetButtonDown("special") && currentState != PlayerState.attack
            && currentState != PlayerState.stagger && isSpecial == false && playerInventory.specialCharge != 0)
         {
             StartCoroutine(SpecialCo());
-            
+
         }
 
         else if (currentState == PlayerState.walk || currentState == PlayerState.idle)
         {
-            
+
             UpdateAnimationAndMove();
         }
-        if (isTimer == true ){
+        if (isTimer == true)
+        {
             StartCoroutine(SpecialCooldownCo());
         }
-        
-	}
-    public void pressedAttack(){
-             if(currentState != PlayerState.attack 
-           && currentState != PlayerState.stagger){
+
+
+
+        //get current closest enemy
+        closestEnemy = enemies[0];
+        foreach (GameObject enemy in enemies)
+        {
+            //enemy.GetComponent<Renderer>().material.color = Color.white;
+            if (Vector3.Distance(enemy.transform.position, transform.position) < Vector3.Distance(closestEnemy.transform.position, transform.position))
+            {
+                closestEnemy = enemy;
+
+            }
+        }
+
+        //closestEnemy.GetComponent<Renderer>().material.color = Color.red;
+        Debug.Log(closestEnemy, closestEnemy);
+    }
+
+
+
+
+
+    public void pressedAttack()
+    {
+        if (currentState != PlayerState.attack
+      && currentState != PlayerState.stagger)
+        {
             StartCoroutine(AttackCo());
-            }
         }
-public void pressedDash(){
-             if(currentState != PlayerState.attack 
-           && currentState != PlayerState.stagger && isRolling == false){
+    }
+    public void pressedDash()
+    {
+        if (currentState != PlayerState.attack
+      && currentState != PlayerState.stagger && isRolling == false)
+        {
             StartCoroutine(RollCo());
-            }
         }
-    
+    }
+
 
     private IEnumerator AttackCo()
     {
-        AudioPlayer.instance.PlaySound(attackSound, 1f);
+
+        float xDistance = closestEnemy.transform.position.x - transform.position.x;
+        float yDistance = closestEnemy.transform.position.y - transform.position.y;
+        //face player animation towards closestEnemy
+
+        if (Mathf.Abs(xDistance) > Mathf.Abs(yDistance))
+        {
+            if (xDistance > 0)
+            {
+                animator.SetFloat("moveX", 1);
+                animator.SetFloat("moveY", 0);
+            }
+            else
+            {
+                animator.SetFloat("moveX", -1);
+                animator.SetFloat("moveY", 0);
+            }
+        }
+        else
+        {
+            if (yDistance > 0)
+            {
+                animator.SetFloat("moveX", 0);
+                animator.SetFloat("moveY", 1);
+            }
+            else
+            {
+                animator.SetFloat("moveX", 0);
+                animator.SetFloat("moveY", -1);
+            }
+        }
+
+
+
         playerAttackSignal.Raise();
         animator.SetBool("attacking", true);
         currentState = PlayerState.attack;
@@ -126,51 +193,53 @@ public void pressedDash(){
 
     private IEnumerator SpecialCo()
     {
-        isSpecial=true;
-        
+        isSpecial = true;
+
         playerSpecialSignal.Raise();
         currentState = PlayerState.attack;
         animator.SetBool("special", true);
         yield return null;
-        animator.SetBool("special", false);   
+        animator.SetBool("special", false);
         yield return new WaitForSeconds(.5f);
         currentState = PlayerState.walk;
-        isTimer=true;
+        isTimer = true;
         timer = specialCooldown;
         yield return new WaitForSeconds(specialCooldown);
-        isSpecial=false;
+        isSpecial = false;
     }
-    private IEnumerator SpecialCooldownCo(){
+    private IEnumerator SpecialCooldownCo()
+    {
         timer -= Time.deltaTime;
-           specialCooldownImage.fillAmount = 1;
-     while(specialCooldownImage.fillAmount > 0)
+        specialCooldownImage.fillAmount = 1;
+        while (specialCooldownImage.fillAmount > 0)
         {
             specialCooldownImage.fillAmount = timer / specialCooldown;
             yield return null;
         }
     }
-    
+
     private IEnumerator RollCo()
     {
-        isRolling=true;
+        isRolling = true;
         activeMoveSpeed = rollSpeed;
         yield return new WaitForSeconds(rollLength);
         activeMoveSpeed = speed;
         cooldownImage.enabled = true;
         StartCoroutine(RollCooldownCo());
-        
-       
+
+
         yield return new WaitForSeconds(rollCooldown);
         cooldownImage.enabled = false;
-        isRolling=false;
+        isRolling = false;
     }
-    
-    private IEnumerator RollCooldownCo(){
+
+    private IEnumerator RollCooldownCo()
+    {
         float alpha = 1f;
-     while(alpha > 0)
+        while (alpha > 0)
         {
             alpha -= Time.deltaTime / rollCooldown;
-            cooldownImage.color = new Color(1,1,1,alpha);
+            cooldownImage.color = new Color(1, 1, 1, alpha);
             yield return null;
         }
     }
@@ -192,52 +261,57 @@ public void pressedDash(){
     void MoveCharacter()
     {
         change.Normalize();
-        
+
         myRigidbody.MovePosition(
             transform.position + change * activeMoveSpeed * Time.fixedDeltaTime
         );
 
-        if(Input.GetButtonDown("roll") && currentState != PlayerState.attack 
+        if (Input.GetButtonDown("roll") && currentState != PlayerState.attack
            && currentState != PlayerState.stagger && isRolling == false)
-        { 
+        {
             StartCoroutine(RollCo());
         }
-        }
-    public void RollCooldownPowerup(){
-        
+    }
+    public void RollCooldownPowerup()
+    {
+
         float rollCooldownUpgrade;
-        rollCooldownUpgrade = (originalRollCooldown* 1.1f)-originalRollCooldown;
-        if(rollCooldown - rollCooldownUpgrade <= 0){
+        rollCooldownUpgrade = (originalRollCooldown * 1.1f) - originalRollCooldown;
+        if (rollCooldown - rollCooldownUpgrade <= 0)
+        {
             return;
         }
         rollCooldown -= rollCooldownUpgrade;
         print(rollCooldown);
-        
-       
+
+
     }
-    public void SpeedPowerup(){
+    public void SpeedPowerup()
+    {
         //
         float speedUpgrade;
         float rollUpgrade;
-        speedUpgrade = (originalSpeed * 1.1f)-originalSpeed;
-        rollUpgrade = (originalRollSpeed * 1.1f)-originalRollSpeed;
+        speedUpgrade = (originalSpeed * 1.1f) - originalSpeed;
+        rollUpgrade = (originalRollSpeed * 1.1f) - originalRollSpeed;
         speed += speedUpgrade;
         rollSpeed += rollUpgrade;
         activeMoveSpeed = speed;
         print(speed);
         print(rollSpeed);
-       
+
     }
 
     public void Knock(float knockTime, float damage)
     {
-        currentHealth.RuntimeValue-=damage;
+        currentHealth.RuntimeValue -= damage;
         playerHealthSignal.Raise();
-        if(currentHealth.RuntimeValue > 0)
+        if (currentHealth.RuntimeValue > 0)
         {
-        
-        StartCoroutine(KnockCo(knockTime));
-        }else{
+
+            StartCoroutine(KnockCo(knockTime));
+        }
+        else
+        {
             this.gameObject.SetActive(false);
             PlayerIsDead = true;
             deatscreen.ShowDeathScreen();
@@ -259,5 +333,5 @@ public void pressedDash(){
             myRigidbody.velocity = Vector2.zero;
         }
     }
-    
+
 }

@@ -21,6 +21,8 @@ public class DungeonFinalizer : MonoBehaviour
 
     private AstarPath pathfinder;
 
+    public List<GameObject> enemies;
+
     void Start()
     {
         dungeonGenerator = GetComponent<DungeonGenerator>();
@@ -154,6 +156,7 @@ public class DungeonFinalizer : MonoBehaviour
                     Vector3 randomOffset = new Vector3(Random.Range(-2, 2), Random.Range(-2, 2), 0);
                     Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
                     GameObject newEnemy = Instantiate(enemyPrefab[Random.Range(0, enemyPrefab.Length)], randomSpawnPoint.position + randomOffset, Quaternion.identity, rooms[i].roomPrefab.transform.Find("Enemies"));
+                    enemies.Add(newEnemy);
                 }
             }
         }
