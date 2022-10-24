@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf89d41632ecac4787ac5bf2844e326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Fade: {fileID: 0}
+  Fade: {fileID: 1403817966}
   currentGameState: 0
 --- !u!4 &82680332
 Transform:
@@ -929,9 +929,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.03125
+    x: 0
     y: 0
-    width: 0.93821424
+    width: 1
     height: 1
   near clip plane: -2.85
   far clip plane: 1000

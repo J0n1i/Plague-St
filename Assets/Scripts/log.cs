@@ -14,11 +14,11 @@ public class log : Enemy {
     public bool isTimer;
     private float escapeRadius;
     public GameObject bullet;
-    [SerializeField] private Material flashMaterial;
-    [SerializeField] private float flashDuration;
-    private SpriteRenderer spriteRenderer;
-    private Material originalMaterial;
-    private Coroutine flashRoutine;
+    [SerializeField] public Material flashMaterial;
+    [SerializeField] public float flashDuration;
+    public SpriteRenderer spriteRenderer;
+    public Material originalMaterial;
+    public Coroutine flashRoutine;
 
 	// Use this for initialization
 	void Start () {
@@ -172,7 +172,7 @@ public class log : Enemy {
         
     
     }
-    private IEnumerator FlashRoutine()
+    public IEnumerator FlashRoutine()
     {
         spriteRenderer.material = flashMaterial;
         yield return new WaitForSeconds(flashDuration);
