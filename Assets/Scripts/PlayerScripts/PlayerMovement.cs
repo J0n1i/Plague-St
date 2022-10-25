@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     private float originalSpeed;
     private float originalRollSpeed;
     private float originalRollCooldown;
+    public GameObject dashEffect;
     private float activeMoveSpeed;
     private float timer;
     private bool isTimer;
@@ -221,8 +222,10 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator RollCo()
     {
         isRolling = true;
+        dashEffect.SetActive(true);
         activeMoveSpeed = rollSpeed;
         yield return new WaitForSeconds(rollLength);
+        dashEffect.SetActive(false);
         activeMoveSpeed = speed;
         cooldownImage.enabled = true;
         StartCoroutine(RollCooldownCo());
