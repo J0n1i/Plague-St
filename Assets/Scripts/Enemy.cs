@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour {
     public float moveSpeed;
     public GameObject CoinDrop;
     public GameObject HeartDrop;
+    public GameObject deathEffect;
     public AudioClip damageSound;
     private void Awake(){
         health = maxHealth.initialValue;
@@ -47,9 +48,16 @@ public class Enemy : MonoBehaviour {
         } else {
             
         }
+            DeathEffect();
             this.gameObject.SetActive(false);
             AudioPlayer.instance.PlaySound(damageSound, 1f);
 
+        }
+    }
+    public void DeathEffect(){
+        if(deathEffect != null){
+            GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
+            Destroy(effect, 0.33f);
         }
     }
 
