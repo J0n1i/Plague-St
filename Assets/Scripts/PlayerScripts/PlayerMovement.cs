@@ -49,12 +49,13 @@ public class PlayerMovement : MonoBehaviour
     public Inventory playerInventory;
     public AudioClip attackSound;
     public Joystick joystick;
-    private List<GameObject> enemies;
-    private GameObject closestEnemy;
+    private GameObject[] multipleEnemies;
+    public Transform closestEnemy;
 
     // Use this for initialization
     void Start()
     {
+        closestEnemy = null;
         rollSpeed = speed * 2.5f;
         activeMoveSpeed = speed;
         originalSpeed = speed;
@@ -72,16 +73,23 @@ public class PlayerMovement : MonoBehaviour
         specialCooldownImageNotAvailable = GameObject.Find("specialCooldownNotAvailable").GetComponent<Image>();
         specialCooldownImageNotAvailable.enabled = true;
 
-        enemies = GameObject.Find("DungeonGenerator").GetComponent<DungeonFinalizer>().enemies;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        closestEnemy = getClosestEnemy(closestEnemy);
+        if (closestEnemy != null)
+        {
+            closestEnemy.GetComponent<SpriteRenderer>().color = Color.red;
+        }
+        
+        
         change = Vector3.zero;
         //change.x = Input.GetAxisRaw("Horizontal");
         //change.y = Input.GetAxisRaw("Vertical");
-        //nää ylemmät pois kommentista nii toimii näppis ja alemmat kommenteiks
+        //n채채 ylemm채t pois kommentista nii toimii n채ppis ja alemmat kommenteiks
         change.x = joystick.Horizontal;
         change.y = joystick.Vertical;
         if (Input.GetButtonDown("attack") && currentState != PlayerState.attack
@@ -108,24 +116,32 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        //get current closest enemy
-        closestEnemy = enemies[0];
-        foreach (GameObject enemy in enemies)
-        {
-            //enemy.GetComponent<Renderer>().material.color = Color.white;
-            if (Vector3.Distance(enemy.transform.position, transform.position) < Vector3.Distance(closestEnemy.transform.position, transform.position))
-            {
-                closestEnemy = enemy;
-
-            }
-        }
-
-        //closestEnemy.GetComponent<Renderer>().material.color = Color.red;
-        Debug.Log(closestEnemy, closestEnemy);
+        
     }
 
 
+    public Transform getClosestEnemy(Transform oldclosestEnemy)
+    {
 
+        multipleEnemies = GameObject.FindGameObjectsWithTag("enemy");
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        foreach (GameObject enemy in multipleEnemies)
+        {
+            Vector3 diff = enemy.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closestEnemy = enemy.transform;
+                distance = curDistance;
+            }
+        }
+        if (oldclosestEnemy != closestEnemy && oldclosestEnemy!=null)
+        {
+            oldclosestEnemy.GetComponent<SpriteRenderer>().color = Color.white;
+        }
+        return closestEnemy;
+    }
 
 
     public void pressedAttack()
