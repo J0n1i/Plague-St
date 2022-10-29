@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         closestEnemy = getClosestEnemy(closestEnemy);
         if (closestEnemy != null)
         {
-            closestEnemy.GetComponent<SpriteRenderer>().color = Color.red;
+           // closestEnemy.GetComponent<SpriteRenderer>().color = Color.red;
         }
         
         
@@ -164,11 +164,11 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator AttackCo()
     {
-
+      
         float xDistance = closestEnemy.transform.position.x - transform.position.x;
         float yDistance = closestEnemy.transform.position.y - transform.position.y;
-        //face player animation towards closestEnemy
-
+        if (closestEnemy != null && Vector3.Distance(closestEnemy.position, transform.position) < 3f)
+        {
         if (Mathf.Abs(xDistance) > Mathf.Abs(yDistance))
         {
             if (xDistance > 0)
@@ -195,7 +195,7 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetFloat("moveY", -1);
             }
         }
-
+        }
 
 
         playerAttackSignal.Raise();
