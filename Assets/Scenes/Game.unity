@@ -929,9 +929,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.07901908
     y: 0
-    width: 1
+    width: 0.84155315
     height: 1
   near clip plane: -2.85
   far clip plane: 1000
@@ -4755,6 +4755,10 @@ PrefabInstance:
       propertyPath: m_RenderMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6950644345181636765, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6950644346032902604, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
       propertyPath: signalEvent.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -4799,6 +4803,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1874289205}
   - component: {fileID: 1874289204}
+  - component: {fileID: 1874289207}
   m_Layer: 0
   m_Name: Global Volume
   m_TagString: Untagged
@@ -4838,6 +4843,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1874289207
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874289203}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0fcbaa3f4b86dc141a45418fa4c9c1b1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1911978253
 GameObject:
   m_ObjectHideFlags: 0

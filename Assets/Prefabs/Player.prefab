@@ -552,7 +552,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300012, guid: 412b2e874f5257740a1f608187d299df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1244,6 +1244,7 @@ MonoBehaviour:
   playerInventory: {fileID: 11400000, guid: a29e048e0907c4f40b545b159a0849da, type: 2}
   attackSound: {fileID: 8300000, guid: e8aea9ac2da169e4e98cb28873258d42, type: 3}
   joystick: {fileID: 0}
+  closestEnemy: {fileID: 0}
 --- !u!95 &8045719978935814820
 Animator:
   serializedVersion: 4

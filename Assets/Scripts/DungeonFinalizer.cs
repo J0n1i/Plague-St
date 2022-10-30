@@ -77,7 +77,7 @@ public class DungeonFinalizer : MonoBehaviour
         //SpawnEnemies();
         StartCoroutine(LateSpawnEnemies());
         SpawnChests();
-        pathfinder.Scan();
+        
         StartCoroutine(DisableCreationRooms());
     }
 
@@ -138,6 +138,7 @@ public class DungeonFinalizer : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         SpawnEnemies();
         SpawnBoss();
+        pathfinder.Scan();
     }
     private void SpawnEnemies()
     {
