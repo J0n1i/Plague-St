@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour {
     public GameObject HeartDrop;
     public GameObject deathEffect;
     public AudioClip damageSound;
+
     private void Awake(){
         health = maxHealth.initialValue;
     }
@@ -48,6 +49,7 @@ public class Enemy : MonoBehaviour {
         } else {
             
         }
+            GameObject.FindGameObjectWithTag("DungeonGenerator").GetComponent<DungeonFinalizer>().enemies.Remove(gameObject);
             DeathEffect();
             this.gameObject.SetActive(false);
             AudioPlayer.instance.PlaySound(damageSound, 1f);

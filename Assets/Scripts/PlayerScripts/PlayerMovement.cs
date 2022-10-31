@@ -49,8 +49,8 @@ public class PlayerMovement : MonoBehaviour
     public Inventory playerInventory;
     public AudioClip attackSound;
     public Joystick joystick;
-    private GameObject[] multipleEnemies;
     public Transform closestEnemy;
+    private List<GameObject> enemies;
 
     // Use this for initialization
     void Start()
@@ -73,19 +73,15 @@ public class PlayerMovement : MonoBehaviour
         specialCooldownImageNotAvailable = GameObject.Find("specialCooldownNotAvailable").GetComponent<Image>();
         specialCooldownImageNotAvailable.enabled = true;
 
-        
+        enemies = GameObject.FindGameObjectWithTag("DungeonGenerator").GetComponent<DungeonFinalizer>().enemies;
     }
 
     // Update is called once per frame
     void Update()
     {
-        closestEnemy = getClosestEnemy(closestEnemy);
-        if (closestEnemy != null)
-        {
-           // closestEnemy.GetComponent<SpriteRenderer>().color = Color.red;
-        }
-        
-        
+        closestEnemy = getClosestEnemy(enemies);
+
+
         change = Vector3.zero;
         //change.x = Input.GetAxisRaw("Horizontal");
         //change.y = Input.GetAxisRaw("Vertical");
@@ -116,17 +112,16 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        
+
     }
 
 
-    public Transform getClosestEnemy(Transform oldclosestEnemy)
+    public Transform getClosestEnemy(List<GameObject> enemies)
     {
 
-        multipleEnemies = GameObject.FindGameObjectsWithTag("enemy");
         float distance = Mathf.Infinity;
         Vector3 position = transform.position;
-        foreach (GameObject enemy in multipleEnemies)
+        foreach (GameObject enemy in enemies)
         {
             Vector3 diff = enemy.transform.position - position;
             float curDistance = diff.sqrMagnitude;
@@ -135,10 +130,6 @@ public class PlayerMovement : MonoBehaviour
                 closestEnemy = enemy.transform;
                 distance = curDistance;
             }
-        }
-        if (oldclosestEnemy != closestEnemy && oldclosestEnemy!=null)
-        {
-            oldclosestEnemy.GetComponent<SpriteRenderer>().color = Color.white;
         }
         return closestEnemy;
     }
@@ -164,37 +155,37 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator AttackCo()
     {
-      
+
         float xDistance = closestEnemy.transform.position.x - transform.position.x;
         float yDistance = closestEnemy.transform.position.y - transform.position.y;
         if (closestEnemy != null && Vector3.Distance(closestEnemy.position, transform.position) < 3f)
         {
-        if (Mathf.Abs(xDistance) > Mathf.Abs(yDistance))
-        {
-            if (xDistance > 0)
+            if (Mathf.Abs(xDistance) > Mathf.Abs(yDistance))
             {
-                animator.SetFloat("moveX", 1);
-                animator.SetFloat("moveY", 0);
+                if (xDistance > 0)
+                {
+                    animator.SetFloat("moveX", 1);
+                    animator.SetFloat("moveY", 0);
+                }
+                else
+                {
+                    animator.SetFloat("moveX", -1);
+                    animator.SetFloat("moveY", 0);
+                }
             }
             else
             {
-                animator.SetFloat("moveX", -1);
-                animator.SetFloat("moveY", 0);
+                if (yDistance > 0)
+                {
+                    animator.SetFloat("moveX", 0);
+                    animator.SetFloat("moveY", 1);
+                }
+                else
+                {
+                    animator.SetFloat("moveX", 0);
+                    animator.SetFloat("moveY", -1);
+                }
             }
-        }
-        else
-        {
-            if (yDistance > 0)
-            {
-                animator.SetFloat("moveX", 0);
-                animator.SetFloat("moveY", 1);
-            }
-            else
-            {
-                animator.SetFloat("moveX", 0);
-                animator.SetFloat("moveY", -1);
-            }
-        }
         }
 
 
