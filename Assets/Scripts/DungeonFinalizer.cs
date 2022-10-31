@@ -106,7 +106,7 @@ public class DungeonFinalizer : MonoBehaviour
     private void AssignEnemyRooms()
     {
         //get half of unassigned rooms and assign as enemy rooms
-        for (int i = 0; i < (rooms.Count - 2) / 2; i++)
+        for (int i = 0; i < (rooms.Count - 2) * 0.7f; i++)
         {
             int randomRoom = Random.Range(0, rooms.Count);
             if (rooms[randomRoom].roomType == RoomType.Unassigned)
