@@ -334,6 +334,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            FindObjectOfType<LevelMusic>().DeathMusic();
             this.gameObject.SetActive(false);
             PlayerIsDead = true;
             deatscreen.ShowDeathScreen();
