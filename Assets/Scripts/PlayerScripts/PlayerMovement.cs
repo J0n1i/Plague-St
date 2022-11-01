@@ -75,9 +75,27 @@ public class PlayerMovement : MonoBehaviour
 
         
     }
+    void Update()
+    {
+        if (Input.GetButtonDown("attack") && currentState != PlayerState.attack
+            && currentState != PlayerState.stagger)
+        {
+            StartCoroutine(AttackCo());
+        }
+        else if (Input.GetButtonDown("special") && currentState != PlayerState.attack
+           && currentState != PlayerState.stagger && isSpecial == false && playerInventory.specialCharge != 0)
+        {
+            StartCoroutine(SpecialCo());
+
+        } else if (Input.GetButtonDown("roll") && currentState != PlayerState.attack
+           && currentState != PlayerState.stagger && isRolling == false)
+        {
+            StartCoroutine(RollCo());
+        }
+    }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         closestEnemy = getClosestEnemy(closestEnemy);
         if (closestEnemy != null)
@@ -92,19 +110,8 @@ public class PlayerMovement : MonoBehaviour
         //n채채 ylemm채t pois kommentista nii toimii n채ppis ja alemmat kommenteiks
         change.x = joystick.Horizontal;
         change.y = joystick.Vertical;
-        if (Input.GetButtonDown("attack") && currentState != PlayerState.attack
-            && currentState != PlayerState.stagger)
-        {
-            StartCoroutine(AttackCo());
-        }
-        else if (Input.GetButtonDown("special") && currentState != PlayerState.attack
-           && currentState != PlayerState.stagger && isSpecial == false && playerInventory.specialCharge != 0)
-        {
-            StartCoroutine(SpecialCo());
-
-        }
-
-        else if (currentState == PlayerState.walk || currentState == PlayerState.idle)
+        
+        if (currentState == PlayerState.walk || currentState == PlayerState.idle)
         {
 
             UpdateAnimationAndMove();
@@ -285,11 +292,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position + change * activeMoveSpeed * Time.fixedDeltaTime
         );
 
-        if (Input.GetButtonDown("roll") && currentState != PlayerState.attack
-           && currentState != PlayerState.stagger && isRolling == false)
-        {
-            StartCoroutine(RollCo());
-        }
+        
     }
     public void RollCooldownPowerup()
     {
