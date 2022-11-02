@@ -80,7 +80,7 @@ public class MeleeEnemy : log
         flashDuration = randomDuration;
         Flash();
         yield return new WaitForSeconds(randomDuration);
-        GetComponent<Pathfinding.AIPath>().maxSpeed = 0f;
+        GetComponent<Pathfinding.AIPath>().maxSpeed = 0.5f;
         int LayerIgnoreRaycast = LayerMask.NameToLayer("enemy");
         gameObject.layer = LayerIgnoreRaycast;
         currentState = EnemyState.attack;
