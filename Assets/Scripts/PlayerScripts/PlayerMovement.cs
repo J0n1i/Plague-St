@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
     public Joystick joystick;
     public Transform closestEnemy;
     private List<GameObject> enemies;
+    public AudioSource footstepSound;
 
     // Use this for initialization
     void Start()
@@ -268,10 +269,12 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("moveX", change.x);
             animator.SetFloat("moveY", change.y);
             animator.SetBool("moving", true);
+            footstepSound.enabled = true;
         }
         else
         {
             animator.SetBool("moving", false);
+            footstepSound.enabled = false;
         }
     }
 
