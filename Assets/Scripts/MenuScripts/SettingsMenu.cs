@@ -17,14 +17,18 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private TMP_Text VolumeText;
     [SerializeField] private TMP_Text MusicText;
 
+    void Awake()
+    {
+        saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
+    }
 
-    public void ShowSettings ()
+    public void ShowSettings()
     {
         MainMenu.SetActive(false);
         ModifyMenu.SetActive(true);
     }
 
-    public void HideSettings ()
+    public void HideSettings()
     {
         MainMenu.SetActive(true);
         ModifyMenu.SetActive(false);
@@ -33,7 +37,7 @@ public class SettingsMenu : MonoBehaviour
         saveManager.SaveGame();
     }
 
-    public void VolumeBar ()
+    public void VolumeBar()
     {
         VolumeText.text = (int)(sfxSlider.value * 100f) + "%";
     }
