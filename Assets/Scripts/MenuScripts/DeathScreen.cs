@@ -30,6 +30,7 @@ public class DeathScreen : MonoBehaviour
 
     public void Restart()
     {
+        FindObjectOfType<LevelMusic>().SceneMusic();
         healthResetSignal.Raise();
         Time.timeScale = 1f;
         SceneManager.LoadScene(1);

@@ -75,19 +75,8 @@ public class PlayerMovement : MonoBehaviour
 
         enemies = GameObject.FindGameObjectWithTag("DungeonGenerator").GetComponent<DungeonFinalizer>().enemies;
     }
-
-    // Update is called once per frame
     void Update()
     {
-        closestEnemy = getClosestEnemy(enemies);
-
-
-        change = Vector3.zero;
-        //change.x = Input.GetAxisRaw("Horizontal");
-        //change.y = Input.GetAxisRaw("Vertical");
-        //n채채 ylemm채t pois kommentista nii toimii n채ppis ja alemmat kommenteiks
-        change.x = joystick.Horizontal;
-        change.y = joystick.Vertical;
         if (Input.GetButtonDown("attack") && currentState != PlayerState.attack
             && currentState != PlayerState.stagger)
         {
@@ -98,9 +87,27 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(SpecialCo());
 
+        } else if (Input.GetButtonDown("roll") && currentState != PlayerState.attack
+           && currentState != PlayerState.stagger && isRolling == false)
+        {
+            StartCoroutine(RollCo());
         }
+    }
 
-        else if (currentState == PlayerState.walk || currentState == PlayerState.idle)
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        closestEnemy = getClosestEnemy(enemies);
+
+
+        change = Vector3.zero;
+        //change.x = Input.GetAxisRaw("Horizontal");
+        //change.y = Input.GetAxisRaw("Vertical");
+        //n채채 ylemm채t pois kommentista nii toimii n채ppis ja alemmat kommenteiks
+        change.x = joystick.Horizontal;
+        change.y = joystick.Vertical;
+        
+        if (currentState == PlayerState.walk || currentState == PlayerState.idle)
         {
 
             UpdateAnimationAndMove();
@@ -276,11 +283,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position + change * activeMoveSpeed * Time.fixedDeltaTime
         );
 
-        if (Input.GetButtonDown("roll") && currentState != PlayerState.attack
-           && currentState != PlayerState.stagger && isRolling == false)
-        {
-            StartCoroutine(RollCo());
-        }
+        
     }
     public void RollCooldownPowerup()
     {
@@ -322,6 +325,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            FindObjectOfType<LevelMusic>().DeathMusic();
             this.gameObject.SetActive(false);
             PlayerIsDead = true;
             deatscreen.ShowDeathScreen();
