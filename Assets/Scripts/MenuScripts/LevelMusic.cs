@@ -6,9 +6,11 @@ public class LevelMusic : MonoBehaviour
 {
     public AudioSource levelMusic;
     public AudioSource deathMusic;
+    public AudioSource bossMusic;
 
     public bool levelSong;
     public bool deathSong;
+    public bool bossSong;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,11 +36,30 @@ public class LevelMusic : MonoBehaviour
             levelSong = false;
         {
             levelMusic.Stop();
+        } 
+        if (bossMusic.isPlaying)
+            bossSong = false;
+        {
+            bossMusic.Stop();
         }
         if(!deathMusic.isPlaying && deathSong == false)
         {
             deathMusic.Play(); 
             deathSong = true;
+        }
+    }
+
+    public void BossMusic()
+    {
+        if (levelMusic.isPlaying)
+            levelSong=false;
+        {
+            levelMusic.Stop();
+        }
+        if(!bossMusic.isPlaying && bossSong == false)
+        {
+            bossMusic.Play();
+            bossSong = true;
         }
     }
 }
