@@ -93,6 +93,9 @@ public class BossEnemy : log
              && Vector3.Distance(target.position,
                                transform.position) > attackRadius)
         {
+            //Bossimusiikki alkaa
+
+            //FindObjectOfType<LevelMusic>().BossMusic();
             if (currentState == EnemyState.walk
                 && currentState != EnemyState.stagger && isFire==false && isAttacked==false && Vector3.Distance(target.position,
                                transform.position) > shootRadius)
