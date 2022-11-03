@@ -12,6 +12,7 @@ public void OnTriggerEnter2D(Collider2D other)
         {
             playerInventory.speedPowerup += 1;
             powerupSignal.Raise();
+            powerupEffectSignal.Raise();
             Destroy(this.gameObject);
         }
     }
