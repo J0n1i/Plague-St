@@ -28,7 +28,7 @@ public class MeleeEnemy : log
             timer -= Time.deltaTime;
             if(timer <= 0){
                 isTimer = false;
-                timer = Random.Range(2f, 4f);
+                timer = Random.Range(3f, 5f);
             }
         }
      
@@ -57,6 +57,16 @@ public class MeleeEnemy : log
                     && Vector3.Distance(target.position,
                     transform.position) <= attackRadius)
         {
+             if (currentState == EnemyState.walk
+                && currentState != EnemyState.stagger && isTimer==true) 
+            {
+                
+                Vector3 temp = Vector3.MoveTowards(transform.position,
+                                                         target.position,
+                                                         moveSpeed * Time.deltaTime);
+                changeAnim(temp - transform.position);    
+            }
+            
             if (currentState == EnemyState.walk
                 && currentState != EnemyState.stagger && isTimer==false) 
             {
