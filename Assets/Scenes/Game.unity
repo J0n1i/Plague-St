@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ba12b2812cd94547aebd63db9bdbd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  canvas: {fileID: 367067218}
   playerPrefab: {fileID: 8045719978935814814, guid: 4378ec4075ca9324fb7a3820f63c0c76, type: 3}
 --- !u!114 &82680331
 MonoBehaviour:
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf89d41632ecac4787ac5bf2844e326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Fade: {fileID: 0}
+  Fade: {fileID: 2035628262}
   currentGameState: 0
 --- !u!4 &82680332
 Transform:
@@ -430,6 +430,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &367067218 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6950644345181636760, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+  m_PrefabInstance: {fileID: 549206529}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &475108819
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,10 +562,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.113065325
+    x: 0.105633795
     y: 0
-    width: 0.77438325
-    height: 1
+    width: 0.78830636
+    height: 1.0005118
   near clip plane: -2.85
   far clip plane: 1000
   field of view: 60
@@ -2638,6 +2643,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1934262588}
   m_CullTransparentMesh: 1
+--- !u!95 &2035628262 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1403817966, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+  m_PrefabInstance: {fileID: 549206529}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2077614227
 GameObject:
   m_ObjectHideFlags: 0
