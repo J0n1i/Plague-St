@@ -21,6 +21,7 @@ public void OnTriggerEnter2D(Collider2D other)
             playerHealth.RuntimeValue += 2;
             print(heartContainers.RuntimeValue);
             powerupSignal.Raise();
+            powerupEffectSignal.Raise();
             Destroy(this.gameObject);
         }
 
