@@ -14,7 +14,8 @@ public class BossEnemy : log
     private float Attacktimer;
     public Slider healthBar;
     public float closeRadius;
-    
+    public bool bossActive = false;
+
     [SerializeField] GameObject logi;
     Vector3 pos;
     Vector3 pos1;
@@ -88,10 +89,7 @@ public class BossEnemy : log
    
     public override void CheckDistance()
     {
-        if (Vector3.Distance(target.position,
-                            transform.position) <= chaseRadius
-             && Vector3.Distance(target.position,
-                               transform.position) > attackRadius)
+        if (bossActive == true)
         {
             //Bossimusiikki alkaa
 
@@ -169,17 +167,6 @@ public class BossEnemy : log
 
             }
         }
-        else if (Vector3.Distance(target.position,
-                            transform.position) > chaseRadius)
-        {
-            GetComponent<Pathfinding.AIPath>().enabled = false;
-        }
-    else if (Vector3.Distance(target.position, transform.position) > chaseRadius)
-        {
-            GetComponent<Pathfinding.AIPath>().enabled = false;
-            ChangeState(EnemyState.idle);
-        }
-
     }
 
     public IEnumerator AttackCo()

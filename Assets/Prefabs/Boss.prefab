@@ -1985,6 +1985,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 0}
+  currTarget: 
+  Steer: 0
 --- !u!114 &8279953100408016399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2065,23 +2067,22 @@ MonoBehaviour:
   moveSpeed: 3
   CoinDrop: {fileID: 1920694392575528832, guid: 1327b3039c883a24e853986571ed791f, type: 3}
   HeartDrop: {fileID: 5282864384341969437, guid: 15ba91fe25b09f3479ee7e782c3553c3, type: 3}
+  deathEffect: {fileID: 0}
+  damageSound: {fileID: 0}
   target: {fileID: 0}
   chaseRadius: 12
   attackRadius: 5
   homePosition: {fileID: 0}
   anim: {fileID: 8279953100408016397}
-  isTimer: 0
-  isSpin: 0
-  isFire: 0
-  isAttacked: 0
-  logiSpawned: 0
-  enraged: 0
   timer: 0
-  fireTimer: 0
-  Attacktimer: 0
+  isTimer: 0
+  bullet: {fileID: 3737559277776224656, guid: 1738af77deb065d4baced7965a5b2300, type: 3}
+  flashMaterial: {fileID: 0}
+  flashDuration: 0
+  spriteRenderer: {fileID: 0}
+  originalMaterial: {fileID: 0}
   healthBar: {fileID: 7998709309039872010}
   closeRadius: 3
-  bullet: {fileID: 3737559277776224656, guid: 1738af77deb065d4baced7965a5b2300, type: 3}
   logi: {fileID: 8433158962445273152, guid: d336437a70c2f70469ac19af6444c579, type: 3}
   shootRadius: 6
 --- !u!1 &9061453373958749853
