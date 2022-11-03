@@ -52,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform closestEnemy;
     private List<GameObject> enemies;
     public AudioSource footstepSound;
+    public GameObject powerupEffect;
 
     // Use this for initialization
     void Start()
@@ -314,6 +315,16 @@ public class PlayerMovement : MonoBehaviour
         activeMoveSpeed = speed;
         print(speed);
         print(rollSpeed);
+
+    }
+    public void PowerupEffect(){
+        StartCoroutine(PowerupEffectCo());
+    }
+    public IEnumerator PowerupEffectCo(){
+        powerupEffect.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        powerupEffect.SetActive(false);
+
 
     }
 

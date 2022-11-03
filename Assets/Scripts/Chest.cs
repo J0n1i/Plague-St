@@ -11,6 +11,8 @@ public class Chest : MonoBehaviour
    public GameObject HeartDrop;
    public GameObject SpeedDrop;
    public GameObject RollDrop;
+   public GameObject DamageDrop;
+   public GameObject SpecialDrop;
     public AudioClip ChestOpen;
    void Start()
     {
@@ -37,19 +39,23 @@ public class Chest : MonoBehaviour
 
         animator.SetBool("isOpened", true);
          int dice = Random.Range(1, 101);
-        if(dice <= 33){
+        if(dice <= 20){
             Instantiate(SpeedDrop, transform.position, Quaternion.identity);
             
-        }else if (dice <= 66) {
+        }else if (dice <= 40) {
             Instantiate(HeartDrop, transform.position, Quaternion.identity);
-        } else if (dice >66){
+        } else if (dice <=60){
             Instantiate(RollDrop, transform.position, Quaternion.identity);
+        } else if (dice <=80){
+            Instantiate(DamageDrop, transform.position, Quaternion.identity);
+        } else if (dice <=101){
+            Instantiate(SpecialDrop, transform.position, Quaternion.identity);
         }
         isOpen=true;
             AudioPlayer.instance.PlaySound(ChestOpen, 1f);
             playerInventory.coins -= 10;
             chestSignal.Raise();
-            yield return new WaitForSeconds(.3f);
+            yield return new WaitForSeconds(1f);
             this.GetComponent<BoxCollider2D>().enabled = false;
             
         
