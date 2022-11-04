@@ -174,10 +174,14 @@ public class log : Enemy {
         Flash();
         yield return new WaitForSeconds(0.2f);
         anim.SetBool("attack", false);
-        Instantiate(bullet, transform.position, Quaternion.identity);
+        Vector3 dir = target.position - transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        Instantiate(bullet, transform.position, rotation);
         yield return new WaitForSeconds(0.5f);
         float randomNum = Random.Range(0.1f, 0.3f);
         GetComponent<Pathfinding.AIPath>().maxSpeed = 3f+randomNum;
+        
     
     }
     public IEnumerator FlashRoutine()

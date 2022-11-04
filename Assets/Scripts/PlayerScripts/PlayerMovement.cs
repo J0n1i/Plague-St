@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     private List<GameObject> enemies;
     public AudioSource footstepSound;
     public GameObject powerupEffect;
+    public Collider2D triggerCollider;
 
     // Use this for initialization
     void Start()
@@ -353,10 +354,12 @@ public class PlayerMovement : MonoBehaviour
         if (myRigidbody != null)
         {
             playerDamageSignal.Raise();
+            triggerCollider.enabled = false;
             sprite.color = Color.red;
             yield return new WaitForSeconds(0.1f);
             sprite.color = Color.white;
             yield return new WaitForSeconds(knockTime);
+            triggerCollider.enabled = true;
             myRigidbody.velocity = Vector2.zero;
             currentState = PlayerState.idle;
             myRigidbody.velocity = Vector2.zero;
