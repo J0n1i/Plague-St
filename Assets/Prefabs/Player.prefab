@@ -1355,6 +1355,7 @@ MonoBehaviour:
   closestEnemy: {fileID: 0}
   footstepSound: {fileID: 8470358418221113043}
   powerupEffect: {fileID: 614272082828762279}
+  triggerCollider: {fileID: 8045719978935814823}
 --- !u!95 &8045719978935814820
 Animator:
   serializedVersion: 4
