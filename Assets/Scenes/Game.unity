@@ -784,6 +784,7 @@ GameObject:
   - component: {fileID: 519420037}
   - component: {fileID: 519420038}
   - component: {fileID: 519420039}
+  - component: {fileID: 519420040}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -818,10 +819,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.08255319
-    y: 0
-    width: 0.835383
-    height: 1
+    x: 0
+    y: 0.06923077
+    width: 1
+    height: 0.86240524
   near clip plane: -2.85
   far clip plane: 1000
   field of view: 60
@@ -1001,6 +1002,34 @@ MonoBehaviour:
       - m_Target: {fileID: 519420033}
         m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
         m_MethodName: ShakeSpecial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &519420040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4716569c7e735ee4ba0148d55f5a8739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signal: {fileID: 11400000, guid: 2287684f6a93d764db7b71a0194f3e7f, type: 2}
+  signalEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
+        m_MethodName: ShakeAttackHit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

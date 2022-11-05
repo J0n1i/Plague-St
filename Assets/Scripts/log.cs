@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class log : Enemy {
 
-    private Rigidbody2D myRigidbody;
+    public Rigidbody2D myRigidbody;
     public Transform target;
     public float chaseRadius;
     public float attackRadius;
     public Transform homePosition;
-    public Animator anim;
+    
     public float timer;
     public bool isTimer;
     private float escapeRadius;
@@ -26,7 +26,7 @@ public class log : Enemy {
         escapeRadius = 5f;
         currentState = EnemyState.idle;
         myRigidbody = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        
         target = GameObject.FindWithTag("Player").transform;
         GetComponent<Pathfinding.AIPath>().enabled = false;
         float randomNum = Random.Range(0.1f, 0.3f);
@@ -40,6 +40,7 @@ public class log : Enemy {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+        if(isDead == false){
         CheckDistance();
         if(isTimer == true){
             timer -= Time.deltaTime;
@@ -48,7 +49,12 @@ public class log : Enemy {
                 timer = 4f;
 
             }
+        } 
+        }else {
+            //disable pathfinding
+            GetComponent<Pathfinding.AIPath>().enabled = false;
         }
+        
        
 	}
 

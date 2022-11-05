@@ -6,10 +6,10 @@ public class MeleeEnemy : log
 {
     
 
-
+    public float closeRadius;
     // Start is called before the first frame update
    void Start () {
-    timer = 4f;
+    timer = 5f;
         currentState = EnemyState.idle;
         target = GameObject.FindWithTag("Player").transform;
         GetComponent<Pathfinding.AIPath>().enabled = false;
@@ -28,7 +28,7 @@ public class MeleeEnemy : log
             timer -= Time.deltaTime;
             if(timer <= 0){
                 isTimer = false;
-                timer = Random.Range(3f, 5f);
+                timer = Random.Range(4f, 6f);
             }
         }
      
@@ -44,6 +44,7 @@ public class MeleeEnemy : log
             if (currentState == EnemyState.idle || currentState == EnemyState.walk
                 && currentState != EnemyState.stagger && currentState != EnemyState.attack)
             {
+                anim.SetBool("idle", false);
                 Vector3 temp = Vector3.MoveTowards(transform.position,
                                                          target.position,
                                                          moveSpeed * Time.deltaTime);
@@ -75,10 +76,26 @@ public class MeleeEnemy : log
                 
             }
         }
+        else if (Vector3.Distance(target.position,
+                    transform.position) <= chaseRadius
+                    && Vector3.Distance(target.position,
+                    transform.position) <= attackRadius &&
+                    Vector3.Distance(target.position,
+                    transform.position) <= closeRadius)
+        {
+            Vector3 temp = Vector3.MoveTowards(transform.position,
+                                                         target.position,
+                                                         moveSpeed * Time.deltaTime);
+                changeAnim(temp - transform.position);
+                GetComponent<Pathfinding.AIPath>().maxSpeed = 0.5f;
+                ChangeState(EnemyState.walk);
+           }
+
     else if (Vector3.Distance(target.position, transform.position) > chaseRadius)
         {
             GetComponent<Pathfinding.AIPath>().enabled = false;
             ChangeState(EnemyState.idle);
+            anim.SetBool("idle", true);
         }
 
     }
@@ -95,7 +112,9 @@ public class MeleeEnemy : log
         gameObject.layer = LayerIgnoreRaycast;
         currentState = EnemyState.attack;
         anim.SetBool("attack", true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
+        GetComponent<Pathfinding.AIPath>().maxSpeed = 8f;
+        yield return new WaitForSeconds(0.3f);
         currentState = EnemyState.walk;
         anim.SetBool("attack", false);
         int LayerNotIgnoreRaycast = LayerMask.NameToLayer("Default");

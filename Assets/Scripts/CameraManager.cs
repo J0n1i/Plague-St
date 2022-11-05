@@ -41,6 +41,10 @@ public class CameraManager : MonoBehaviour
     {
         StartCoroutine(Shake(transform.position, 0.05f, 0.05f));
     }
+    public void ShakeAttackHit()
+    {
+        StartCoroutine(Shake(transform.position, 0.1f, 0.1f));
+    }
     public void ShakeDamage()
     {
         StartCoroutine(Shake(transform.position, 0.1f, 0.1f));
