@@ -61,9 +61,11 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 0.07471466, y: -0.55031824}
       - {x: -0.6484368, y: -0.44517264}
-      - {x: -0.8900506, y: -1.2488425}
+      - {x: -0.82576275, y: -1.095316}
+      - {x: -0.6982575, y: -1.3056195}
       - {x: -0.041782454, y: -1.4881396}
-      - {x: 0.923529, y: -1.2790341}
+      - {x: 0.7547735, y: -1.2790341}
+      - {x: 0.86058134, y: -1.0657253}
       - {x: 0.7265619, y: -0.5015608}
 --- !u!114 &6709979973567963665
 MonoBehaviour:
@@ -366,9 +368,11 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 0.07471466, y: -0.55031824}
       - {x: -0.6484368, y: -0.44517264}
-      - {x: -0.8900506, y: -1.2488425}
+      - {x: -0.79913443, y: -1.0911583}
+      - {x: -0.6845788, y: -1.3075566}
       - {x: -0.041782454, y: -1.4881396}
-      - {x: 0.923529, y: -1.2790341}
+      - {x: 0.73136204, y: -1.3048561}
+      - {x: 0.8704946, y: -1.0564209}
       - {x: 0.7265619, y: -0.5015608}
 --- !u!114 &3224550548233274613
 MonoBehaviour:
@@ -499,9 +503,12 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 0.07471466, y: -0.55031824}
       - {x: -0.6484368, y: -0.44517264}
-      - {x: -0.8900506, y: -1.2488425}
+      - {x: -0.8292395, y: -1.0713223}
+      - {x: -0.7774624, y: -1.2163893}
+      - {x: -0.695885, y: -1.3270252}
       - {x: -0.041782454, y: -1.4881396}
-      - {x: 0.923529, y: -1.2790341}
+      - {x: 0.7184747, y: -1.3003038}
+      - {x: 0.8531618, y: -1.084314}
       - {x: 0.7265619, y: -0.5015608}
 --- !u!114 &1115381152035525057
 MonoBehaviour:
@@ -976,9 +983,12 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 0.07471466, y: -0.55031824}
       - {x: -0.6484368, y: -0.44517264}
-      - {x: -0.8900506, y: -1.2488425}
+      - {x: -0.8349021, y: -1.052422}
+      - {x: -0.7753597, y: -1.1943958}
+      - {x: -0.6822068, y: -1.3253603}
       - {x: -0.041782454, y: -1.4881396}
-      - {x: 0.923529, y: -1.2790341}
+      - {x: 0.7346264, y: -1.3023685}
+      - {x: 0.8331125, y: -1.0797584}
       - {x: 0.7265619, y: -0.5015608}
 --- !u!114 &8858520133418430661
 MonoBehaviour:
@@ -1060,7 +1070,7 @@ GameObject:
   - component: {fileID: 8279953100408016395}
   - component: {fileID: 8279953100408016392}
   - component: {fileID: 8279953100408016393}
-  - component: {fileID: 8279953100408016390}
+  - component: {fileID: 6344795822911922694}
   - component: {fileID: 8279953100408016397}
   - component: {fileID: 8279953100408016396}
   - component: {fileID: 8279953100408016401}
@@ -1195,8 +1205,8 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.573875, y: 1.323826}
   m_EdgeRadius: 0
---- !u!61 &8279953100408016390
-BoxCollider2D:
+--- !u!70 &6344795822911922694
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1208,19 +1218,9 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0071785897, y: -0.13706112}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3, y: 3}
-    newSize: {x: 1, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.7439139, y: 1.7745471}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.012921293, y: -0.11746235}
+  m_Size: {x: 0.700076, y: 1.9101541}
+  m_Direction: 0
 --- !u!95 &8279953100408016397
 Animator:
   serializedVersion: 4
@@ -1264,12 +1264,16 @@ MonoBehaviour:
   CoinDrop: {fileID: 5282864384341969437, guid: 15ba91fe25b09f3479ee7e782c3553c3, type: 3}
   HeartDrop: {fileID: 1920694392575528832, guid: 1327b3039c883a24e853986571ed791f, type: 3}
   deathEffect: {fileID: 7223149412690510492, guid: 2f1d66385a0fe7b4f96617e6b0d7bdb1, type: 3}
+  hitEffect: {fileID: 5900786407453424581, guid: 1976633dc7bb01a4a8ee0af66e125115, type: 3}
   damageSound: {fileID: 8300000, guid: 3853c680b91d2494382b24873cfac5cd, type: 3}
+  anim: {fileID: 8279953100408016397}
+  isDead: 0
+  playerAttackSignal: {fileID: 11400000, guid: 2287684f6a93d764db7b71a0194f3e7f, type: 2}
+  myRigidbody: {fileID: 0}
   target: {fileID: 0}
   chaseRadius: 8
   attackRadius: 2.3
   homePosition: {fileID: 0}
-  anim: {fileID: 8279953100408016397}
   timer: 0
   isTimer: 0
   bullet: {fileID: 0}
@@ -1277,6 +1281,7 @@ MonoBehaviour:
   flashDuration: 0.2
   spriteRenderer: {fileID: 8279953100408016395}
   originalMaterial: {fileID: 2100000, guid: 69a0f8c402126b246bb176bc22646c36, type: 2}
+  closeRadius: 0.5
 --- !u!114 &8279953100408016401
 MonoBehaviour:
   m_ObjectHideFlags: 0

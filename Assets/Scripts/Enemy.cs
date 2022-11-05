@@ -22,14 +22,26 @@ public class Enemy : MonoBehaviour {
     public GameObject CoinDrop;
     public GameObject HeartDrop;
     public GameObject deathEffect;
+    public GameObject hitEffect;
     public AudioClip damageSound;
+    public Animator anim;
+    public bool isDead;
+    public SignalSender playerAttackSignal;
+    void Start(){
+        anim = GetComponent<Animator>();
+    }
 
     private void Awake(){
         health = maxHealth.initialValue;
+        
     }
     private void TakeDamage(float damage)
     {
         health -= damage;
+        playerAttackSignal.Raise();
+        
+        GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+        Destroy(effect, 0.15f);
         if(health <= 0)
         {
              if (roomSignal != null)
@@ -51,7 +63,8 @@ public class Enemy : MonoBehaviour {
         }
             GameObject.FindGameObjectWithTag("DungeonGenerator").GetComponent<DungeonFinalizer>().enemies.Remove(gameObject);
             DeathEffect();
-            this.gameObject.SetActive(false);
+            
+
             AudioPlayer.instance.PlaySound(damageSound, 1f);
 
         }
@@ -59,6 +72,7 @@ public class Enemy : MonoBehaviour {
     public void DeathEffect(){
         if(deathEffect != null){
             GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
+            StartCoroutine(DeadCo());
             Destroy(effect, 0.33f);
         }
     }
@@ -84,5 +98,12 @@ public class Enemy : MonoBehaviour {
             myRigidbody.velocity = Vector2.zero;
             GetComponent<Pathfinding.AIPath>().enabled = true;
         }
+    }
+    private IEnumerator DeadCo()
+    {
+        anim.SetBool("dead", true);
+        isDead=true;
+        GetComponent<Pathfinding.AIPath>().enabled = false;
+        yield return new WaitForSeconds(0.5f);
     }
 }
