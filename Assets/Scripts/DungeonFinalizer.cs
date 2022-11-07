@@ -8,6 +8,7 @@ public class DungeonFinalizer : MonoBehaviour
     [SerializeField] private GameObject bossRoomPrefab, treasureRoomPrefab;
 
     [SerializeField] private GameObject[] enemyPrefab;
+    [SerializeField] private GameObject[] enemyElitePrefab;
     [SerializeField] private GameObject bossPrefab;
     [SerializeField] private GameObject treasurePrefab;
 
@@ -59,7 +60,7 @@ public class DungeonFinalizer : MonoBehaviour
             else if (rooms[i].roomType == RoomType.EnemyRoom)
             {
                 rooms[i].roomPrefab = roomPrefab[Random.Range(0, roomPrefab.Length)];
-                rooms[i].enemyAmount = Random.Range(15, 25);
+                rooms[i].enemyAmount = Random.Range(8, 15);
             }
             else if (rooms[i].roomType == RoomType.TreasureRoom)
             {
@@ -154,10 +155,22 @@ public class DungeonFinalizer : MonoBehaviour
 
                 for (int j = 0; j < rooms[i].enemyAmount; j++)
                 {
-                    Vector3 randomOffset = new Vector3(Random.Range(-2, 2), Random.Range(-2, 2), 0);
+                    Vector3 randomOffset = new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f), 0);
                     Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
+                    //spawn atleast one enemy to every spawnpoint
+                    if (j < spawnPoints.Count)
+                    {
+                        randomSpawnPoint = spawnPoints[j];
+                    }
                     GameObject newEnemy = Instantiate(enemyPrefab[Random.Range(0, enemyPrefab.Length)], randomSpawnPoint.position + randomOffset, Quaternion.identity, rooms[i].roomPrefab.transform.Find("Enemies"));
                     enemies.Add(newEnemy);
+                    //spawn elite enemy
+                    int dice = Random.Range(1, 101);
+                    if (j == 0 && dice <=25)
+                    {
+                        newEnemy = Instantiate(enemyElitePrefab[Random.Range(0, enemyElitePrefab.Length)], randomSpawnPoint.position + randomOffset, Quaternion.identity, rooms[i].roomPrefab.transform.Find("Enemies"));
+                        enemies.Add(newEnemy);
+                    }
                 }
             }
         }
