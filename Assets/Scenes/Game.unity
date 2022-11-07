@@ -820,9 +820,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.06923077
-    width: 1
-    height: 0.86240524
+    y: 0.12834224
+    width: 0.57528085
+    height: 0.7712586
   near clip plane: -2.85
   far clip plane: 1000
   field of view: 60
@@ -1695,6 +1695,8 @@ MonoBehaviour:
   enemyPrefab:
   - {fileID: 8433158962445273152, guid: 794a9aa542eda5946a2d2fa834144da7, type: 3}
   - {fileID: 8279953100408016391, guid: 88e92016138ca1449a58d159795aa64b, type: 3}
+  enemyElitePrefab:
+  - {fileID: 8279953100408016391, guid: 29f3eee67be01754899b64a5912fc919, type: 3}
   bossPrefab: {fileID: 8279953100408016391, guid: b95f5be0bef699d4cb05e16fd94ca371, type: 3}
   treasurePrefab: {fileID: 3446665502613183302, guid: a34fa35588d5f844dacdeb36b00bfe0f, type: 3}
   rooms: []
