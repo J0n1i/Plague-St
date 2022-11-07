@@ -59,7 +59,7 @@ public class DungeonFinalizer : MonoBehaviour
             else if (rooms[i].roomType == RoomType.EnemyRoom)
             {
                 rooms[i].roomPrefab = roomPrefab[Random.Range(0, roomPrefab.Length)];
-                rooms[i].enemyAmount = Random.Range(15, 25);
+                rooms[i].enemyAmount = Random.Range(8, 15);
             }
             else if (rooms[i].roomType == RoomType.TreasureRoom)
             {
