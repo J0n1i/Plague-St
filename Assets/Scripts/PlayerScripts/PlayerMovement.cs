@@ -54,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource footstepSound;
     public GameObject powerupEffect;
     public Collider2D triggerCollider;
+    public bool inputEnabled = true;
 
     // Use this for initialization
     void Start()
@@ -80,20 +81,24 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetButtonDown("attack") && currentState != PlayerState.attack
-            && currentState != PlayerState.stagger)
+        if (inputEnabled == true)
         {
-            StartCoroutine(AttackCo());
-        }
-        else if (Input.GetButtonDown("special") && currentState != PlayerState.attack
-           && currentState != PlayerState.stagger && isSpecial == false && playerInventory.specialCharge != 0)
-        {
-            StartCoroutine(SpecialCo());
+            if (Input.GetButtonDown("attack") && currentState != PlayerState.attack
+                && currentState != PlayerState.stagger)
+            {
+                StartCoroutine(AttackCo());
+            }
+            else if (Input.GetButtonDown("special") && currentState != PlayerState.attack
+               && currentState != PlayerState.stagger && isSpecial == false && playerInventory.specialCharge != 0)
+            {
+                StartCoroutine(SpecialCo());
 
-        } else if (Input.GetButtonDown("roll") && currentState != PlayerState.attack
-           && currentState != PlayerState.stagger && isRolling == false)
-        {
-            StartCoroutine(RollCo());
+            }
+            else if (Input.GetButtonDown("roll") && currentState != PlayerState.attack
+               && currentState != PlayerState.stagger && isRolling == false)
+            {
+                StartCoroutine(RollCo());
+            }
         }
     }
 
@@ -109,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
         //n채채 ylemm채t pois kommentista nii toimii n채ppis ja alemmat kommenteiks
         change.x = joystick.Horizontal;
         change.y = joystick.Vertical;
-        
+
         if (currentState == PlayerState.walk || currentState == PlayerState.idle)
         {
 
@@ -265,7 +270,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void UpdateAnimationAndMove()
     {
-        if (change != Vector3.zero)
+        if (change != Vector3.zero && inputEnabled == true)
         {
             MoveCharacter();
             animator.SetFloat("moveX", change.x);
@@ -288,7 +293,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position + change * activeMoveSpeed * Time.fixedDeltaTime
         );
 
-        
+
     }
     public void RollCooldownPowerup()
     {
@@ -318,10 +323,12 @@ public class PlayerMovement : MonoBehaviour
         print(rollSpeed);
 
     }
-    public void PowerupEffect(){
+    public void PowerupEffect()
+    {
         StartCoroutine(PowerupEffectCo());
     }
-    public IEnumerator PowerupEffectCo(){
+    public IEnumerator PowerupEffectCo()
+    {
         powerupEffect.SetActive(true);
         yield return new WaitForSeconds(0.3f);
         powerupEffect.SetActive(false);
@@ -340,7 +347,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            
+
             this.gameObject.SetActive(false);
             PlayerIsDead = true;
             deatscreen.ShowDeathScreen();
