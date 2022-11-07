@@ -89,7 +89,7 @@ public class BossEnemy : log
    
     public override void CheckDistance()
     {
-        if (bossActive == true)
+        if (Vector3.Distance(target.position,transform.position) <= chaseRadius && Vector3.Distance(target.position,transform.position) > attackRadius)
         {
             //Bossimusiikki alkaa
 

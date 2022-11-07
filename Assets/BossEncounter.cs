@@ -51,6 +51,6 @@ public class BossEncounter : MonoBehaviour
 
 
         //Enable boss AI
-        boss.GetComponent<BossEnemy>().bossActive = true;
+        boss.GetComponent<BossEnemy>().chaseRadius = 100f;
     }
 }
