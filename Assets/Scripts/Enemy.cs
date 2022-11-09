@@ -10,7 +10,7 @@ public enum EnemyState{
 }
 
 public class Enemy : MonoBehaviour {
-    public SignalSender roomSignal;
+    public SignalSender killedSignal;
 
     public SpriteRenderer sprite;
     public EnemyState currentState;
@@ -44,10 +44,6 @@ public class Enemy : MonoBehaviour {
         Destroy(effect, 0.15f);
         if(health <= 0)
         {
-             if (roomSignal != null)
-            {
-                roomSignal.Raise();
-            }
         int dice = Random.Range(1, 101);
         if(dice < 71){
             Instantiate(CoinDrop, transform.position, Quaternion.identity);
@@ -72,6 +68,7 @@ public class Enemy : MonoBehaviour {
     public void DeathEffect(){
         if(deathEffect != null){
             GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
+            killedSignal.Raise();
             StartCoroutine(DeadCo());
             Destroy(effect, 0.33f);
         }
