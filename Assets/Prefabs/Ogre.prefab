@@ -1253,7 +1253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 784f8cc12525dc041a90eeb924c8b1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomSignal: {fileID: 0}
+  killedSignal: {fileID: 11400000, guid: 001802ce5c50dc246b833a37651181c1, type: 2}
   sprite: {fileID: 8279953100408016395}
   currentState: 0
   maxHealth: {fileID: 11400000, guid: ff4831900bba255428844020b5c2149a, type: 2}
