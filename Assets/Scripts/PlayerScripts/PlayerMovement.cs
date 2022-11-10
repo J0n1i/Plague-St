@@ -305,7 +305,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
         float rollCooldownUpgrade;
-        rollCooldownUpgrade = (originalRollCooldown * 1.1f) - originalRollCooldown;
+        rollCooldownUpgrade = (originalRollCooldown * 1.2f) - originalRollCooldown;
         if (rollCooldown - rollCooldownUpgrade <= 0)
         {
             return;
@@ -320,8 +320,8 @@ public class PlayerMovement : MonoBehaviour
         //
         float speedUpgrade;
         float rollUpgrade;
-        speedUpgrade = (originalSpeed * 1.1f) - originalSpeed;
-        rollUpgrade = (originalRollSpeed * 1.1f) - originalRollSpeed;
+        speedUpgrade = (originalSpeed * 1.2f) - originalSpeed;
+        rollUpgrade = (originalRollSpeed * 1.2f) - originalRollSpeed;
         speed += speedUpgrade;
         rollSpeed += rollUpgrade;
         activeMoveSpeed = speed;

@@ -188,14 +188,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   killedSignal: {fileID: 11400000, guid: 001802ce5c50dc246b833a37651181c1, type: 2}
+  Elite: 0
   sprite: {fileID: 8433158962445273154}
   currentState: 0
-  maxHealth: {fileID: 11400000, guid: ff4831900bba255428844020b5c2149a, type: 2}
+  maxHealth: {fileID: 11400000, guid: 817a43925b4439146a1d5a29ce6ff765, type: 2}
   health: 3
   enemyName: Larry
   baseAttack: 1
   moveSpeed: 1.5
-  CoinDrop: {fileID: 5282864384341969437, guid: 15ba91fe25b09f3479ee7e782c3553c3, type: 3}
+  CoinDrop: {fileID: 5162334954366387716, guid: 820502067b4040b45bff6941f0850231, type: 3}
   HeartDrop: {fileID: 1920694392575528832, guid: 1327b3039c883a24e853986571ed791f, type: 3}
   deathEffect: {fileID: 7223149412690510492, guid: 2f1d66385a0fe7b4f96617e6b0d7bdb1, type: 3}
   hitEffect: {fileID: 5900786407453424581, guid: 1976633dc7bb01a4a8ee0af66e125115, type: 3}

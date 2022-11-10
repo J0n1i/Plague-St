@@ -11,6 +11,7 @@ public class DungeonFinalizer : MonoBehaviour
     [SerializeField] private GameObject[] enemyElitePrefab;
     [SerializeField] private GameObject bossPrefab;
     [SerializeField] private GameObject treasurePrefab;
+    [SerializeField] private GameObject tutorialPrefab;
 
 
 
@@ -78,6 +79,7 @@ public class DungeonFinalizer : MonoBehaviour
         //SpawnEnemies();
         StartCoroutine(LateSpawnEnemies());
         SpawnChests();
+        SpawnTutorial();
         
         StartCoroutine(DisableCreationRooms());
     }
@@ -182,36 +184,28 @@ public class DungeonFinalizer : MonoBehaviour
         {
             if (rooms[i].roomType == RoomType.TreasureRoom)
             {
-                switch (rooms[i].treasureAmount)
-                {
-                    case 1:
-                        Instantiate(treasurePrefab, rooms[i].roomPrefab.transform.position, Quaternion.identity, rooms[i].roomPrefab.transform);
-                        break;
-                    case 2:
-                        //spawn 2 chests next to each other
-                        Instantiate(treasurePrefab, rooms[i].roomPrefab.transform.position + new Vector3(1, 0, 0), Quaternion.identity, rooms[i].roomPrefab.transform);
-                        Instantiate(treasurePrefab, rooms[i].roomPrefab.transform.position + new Vector3(-1, 0, 0), Quaternion.identity, rooms[i].roomPrefab.transform);
-
-                        break;
-                    case 3:
-
-                        //spawn 3 chests in a triangle
-
                         Instantiate(treasurePrefab, rooms[i].roomPrefab.transform.position + new Vector3(0, 1, 0), Quaternion.identity, rooms[i].roomPrefab.transform);
                         Instantiate(treasurePrefab, rooms[i].roomPrefab.transform.position + new Vector3(1, -1, 0), Quaternion.identity, rooms[i].roomPrefab.transform);
                         Instantiate(treasurePrefab, rooms[i].roomPrefab.transform.position + new Vector3(-1, -1, 0), Quaternion.identity, rooms[i].roomPrefab.transform);
 
-                        break;
-                    default:
-                        Debug.LogError("Error: Invalid treasure amount", rooms[i].roomPrefab);
-                        Instantiate(treasurePrefab, rooms[i].roomPrefab.transform.position, Quaternion.identity, rooms[i].roomPrefab.transform);
-
-                        break;
                 }
             }
         }
-    }
+    private void SpawnTutorial()
+    {
+        for (int i = 0; i < rooms.Count; i++)
+        {
+            if (rooms[i].roomType == RoomType.SpawnRoom)
+            {
+                if(rooms[i].roomPrefab.transform.Find("Tutorial") != null)
+                {
+                    rooms[i].roomPrefab.transform.Find("Tutorial").gameObject.SetActive(true);
+                }
 
+            }
+        }
+    
+    }
     private void SpawnBoss(){
         for (int i = 0; i < rooms.Count; i++)
         {

@@ -12,7 +12,7 @@ public void OnTriggerEnter2D(Collider2D other)
 
         if(other.gameObject.CompareTag("Player") && !other.isTrigger)
         {
-            if(heartContainers.RuntimeValue == 5){
+            if(heartContainers.RuntimeValue == 10){
                 print("too many hearts");
                 Destroy(this.gameObject);
                 return;
