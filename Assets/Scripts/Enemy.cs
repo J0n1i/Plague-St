@@ -11,7 +11,7 @@ public enum EnemyState{
 
 public class Enemy : MonoBehaviour {
     public SignalSender killedSignal;
-
+    public bool Elite;
     public SpriteRenderer sprite;
     public EnemyState currentState;
     public FloatValue maxHealth;
@@ -45,17 +45,25 @@ public class Enemy : MonoBehaviour {
         if(health <= 0)
         {
         int dice = Random.Range(1, 101);
-        if(dice < 71){
+        if(dice < 71 && Elite==false){
             Instantiate(CoinDrop, transform.position, Quaternion.identity);
             AudioPlayer.instance.PlaySound(damageSound, 1f);
 
             }
-            else if (dice>70 && dice<80) {
+            else if (dice>70 && dice<80 && Elite==false) {
             Instantiate(HeartDrop, transform.position, Quaternion.identity);
             AudioPlayer.instance.PlaySound(damageSound, 1f);
 
-        } else {
+        } else if(Elite==true){
+            Instantiate(CoinDrop, transform.position, Quaternion.identity);
+            Instantiate(CoinDrop, transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity);
+            Instantiate(CoinDrop, transform.position + new Vector3(-0.5f, 0, 0), Quaternion.identity);
+            Instantiate(HeartDrop, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+            AudioPlayer.instance.PlaySound(damageSound, 1f);
+
             
+            
+            AudioPlayer.instance.PlaySound(damageSound, 1f);
         }
             GameObject.FindGameObjectWithTag("DungeonGenerator").GetComponent<DungeonFinalizer>().enemies.Remove(gameObject);
             DeathEffect();

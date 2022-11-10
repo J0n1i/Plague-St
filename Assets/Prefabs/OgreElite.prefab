@@ -1126,7 +1126,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: c8bb5eee034f6484f867d19dadcb3614, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1148,7 +1148,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 1127527848, guid: 59dca11c179199d49aace2ff841f9fe6, type: 3}
-  m_Color: {r: 0.8679245, g: 0.48636523, b: 0.48636523, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1253,10 +1253,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 784f8cc12525dc041a90eeb924c8b1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomSignal: {fileID: 0}
+  killedSignal: {fileID: 11400000, guid: 001802ce5c50dc246b833a37651181c1, type: 2}
+  Elite: 1
   sprite: {fileID: 8279953100408016395}
   currentState: 0
-  maxHealth: {fileID: 11400000, guid: ff4831900bba255428844020b5c2149a, type: 2}
+  maxHealth: {fileID: 11400000, guid: df3ecc7e7fdcb0e4aa531428586dff51, type: 2}
   health: 2
   enemyName: orge
   baseAttack: 1
@@ -1272,7 +1273,7 @@ MonoBehaviour:
   myRigidbody: {fileID: 0}
   target: {fileID: 0}
   chaseRadius: 8
-  attackRadius: 2.5
+  attackRadius: 2.6
   homePosition: {fileID: 0}
   timer: 0
   isTimer: 0
@@ -1281,7 +1282,7 @@ MonoBehaviour:
   flashDuration: 0.2
   spriteRenderer: {fileID: 8279953100408016395}
   originalMaterial: {fileID: 2100000, guid: 69a0f8c402126b246bb176bc22646c36, type: 2}
-  closeRadius: 0.5
+  closeRadius: 0.7
 --- !u!114 &8279953100408016401
 MonoBehaviour:
   m_ObjectHideFlags: 0
