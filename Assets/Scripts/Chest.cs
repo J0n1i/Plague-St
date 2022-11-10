@@ -39,17 +39,37 @@ public class Chest : MonoBehaviour
 
         animator.SetBool("isOpened", true);
          int dice = Random.Range(1, 101);
+         int speedDrops = 0;
+            int rollDrops = 0;
+            int damageDrops = 0;
+            int specialDrops = 0;
+            int heartDrops = 0;
         if(dice <= 20){
             Instantiate(SpeedDrop, transform.position, Quaternion.identity);
-            
-        }else if (dice <= 40) {
+            speedDrops++;
+        }else if (dice <= 40 && heartDrops<5) {
             Instantiate(HeartDrop, transform.position, Quaternion.identity);
-        } else if (dice <=60){
+            heartDrops++;
+        } else if (dice <=60 && rollDrops<4) {
             Instantiate(RollDrop, transform.position, Quaternion.identity);
+            rollDrops++;
         } else if (dice <=80){
             Instantiate(DamageDrop, transform.position, Quaternion.identity);
+            damageDrops++;
         } else if (dice <=101){
             Instantiate(SpecialDrop, transform.position, Quaternion.identity);
+            specialDrops++;
+        } else {
+            if(dice <=33){
+                Instantiate(SpeedDrop, transform.position, Quaternion.identity);
+                speedDrops++;
+            } else if (dice <=66){
+                Instantiate(DamageDrop, transform.position, Quaternion.identity);
+                damageDrops++;
+            } else {
+                Instantiate(SpecialDrop, transform.position, Quaternion.identity);
+                specialDrops++;
+            }
         }
         isOpen=true;
             AudioPlayer.instance.PlaySound(ChestOpen, 1f);

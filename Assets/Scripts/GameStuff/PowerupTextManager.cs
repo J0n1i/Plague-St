@@ -26,24 +26,24 @@ public class PowerupTextManager : MonoBehaviour
     public void UpdateSpeedPowerupCount()
     {
         float newStat = 0;
-        newStat +=baseStat + playerInventory.speedPowerup * 0.1f;
+        newStat +=baseStat + playerInventory.speedPowerup * 0.2f;
         speedPowerupDisplay.text = newStat.ToString("F1");
 
     }
     public void UpdateRollCooldown()
     {
         float newStat = 0;
-        newStat += baseStat - playerInventory.rollCooldownPowerup * 0.1f;
-        if(newStat <= 0.1f){
-            newStat = 0.1f;
+        newStat += baseStat - playerInventory.rollCooldownPowerup * 0.2f;
+        if(newStat <= 0.2f){
+            newStat = 0.2f;
         }
         rollCooldownDisplay.text = newStat.ToString("F1");
     }
     public void UpdateDamagePowerup()
     {
-        playerDamage.RuntimeValue += playerDamage.initialValue * 1;
+        playerDamage.RuntimeValue += 0.5f;
         specialDamage.RuntimeValue += specialDamage.initialValue * 1;
-        damagePowerupDisplay.text = playerDamage.RuntimeValue + ".0";
+        damagePowerupDisplay.text = playerDamage.RuntimeValue + "";
         print(playerDamage.RuntimeValue);
         print(specialDamage.RuntimeValue);
     }

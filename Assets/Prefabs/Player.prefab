@@ -1358,6 +1358,7 @@ MonoBehaviour:
   powerupEffect: {fileID: 614272082828762279}
   triggerCollider: {fileID: 8045719978935814823}
   inputEnabled: 1
+  tutorialBook: {fileID: 8675695251296673639, guid: 67af0a6a8fb0687468acfd753772771e, type: 3}
 --- !u!95 &8045719978935814820
 Animator:
   serializedVersion: 4
