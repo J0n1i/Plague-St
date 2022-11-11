@@ -14,6 +14,7 @@ public class BossEnemy : log
     private float Attacktimer;
     public Slider healthBar;
     public float closeRadius;
+    private bool canShootTwice;
     public bool bossActive = false;
 
     [SerializeField] GameObject logi;
@@ -98,6 +99,7 @@ public class BossEnemy : log
                 && currentState != EnemyState.stagger && isFire==false && isAttacked==false && Vector3.Distance(target.position,
                                transform.position) > shootRadius)
             {
+                canShootTwice = true;
                 StartCoroutine(ShootCo());
                 
                 
@@ -124,8 +126,13 @@ public class BossEnemy : log
             if (currentState == EnemyState.walk
                 && currentState != EnemyState.stagger && isTimer==false && isAttacked==false)
             {
-                
-                StartCoroutine(AttackCo());
+                int random = Random.Range(0, 2);
+                if(random == 0){
+                    StartCoroutine(ShootCo());
+                }
+                else if(random == 1){
+                    StartCoroutine(AttackCo());
+                }
                 
             }
             else if (currentState == EnemyState.idle || currentState == EnemyState.walk
@@ -211,15 +218,34 @@ public class BossEnemy : log
     {
         isFire=true;
         isAttacked=true;
-        GetComponent<Pathfinding.AIPath>().maxSpeed = 2f;
+        GetComponent<Pathfinding.AIPath>().maxSpeed = 0f;
+        anim.SetBool("shoot", true); 
         yield return new WaitForSeconds(0.5f);
-        Instantiate(bullet, transform.position, Quaternion.identity);
+        Vector3 dir = target.position - transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        Instantiate(bullet, transform.position, rotation);
+        anim.SetBool("shoot", false);        
+        int random = Random.Range(1, 3);
+        if(random == 1 && canShootTwice == true){
+             yield return new WaitForSeconds(0.3f);
+            anim.SetBool("shoot", true); 
+            Vector3 dir1 = target.position - transform.position;
+        float angle1 = Mathf.Atan2(dir1.y, dir1.x) * Mathf.Rad2Deg;
+        Quaternion rotation1 = Quaternion.AngleAxis(angle1, Vector3.forward);
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(bullet, transform.position, rotation1);
+        anim.SetBool("shoot", false);
+        }
+        else{
+        }
+
         yield return new WaitForSeconds(0.5f);
         GetComponent<Pathfinding.AIPath>().maxSpeed = 3f;
         if(enraged==true){
             GetComponent<Pathfinding.AIPath>().maxSpeed = 3.5f;
         }
-
+        canShootTwice = false;
     }
    
     public IEnumerator SpawnLogi()
