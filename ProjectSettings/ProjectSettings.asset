@@ -735,7 +735,7 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
-    Unity Ads: 1
+    Legacy Analytics: 1
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 

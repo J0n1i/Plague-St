@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Analytics;
 using TMPro;
 
 public enum PlayerState
@@ -55,10 +56,12 @@ public class PlayerMovement : MonoBehaviour
     public GameObject powerupEffect;
     public Collider2D triggerCollider;
     public bool inputEnabled = true;
+    private int enemiesKilled;
 
     // Use this for initialization
     void Start()
     {
+        enemiesKilled = 0;
         closestEnemy = null;
         rollSpeed = speed * 2.5f;
         activeMoveSpeed = speed;
@@ -166,7 +169,10 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(RollCo());
         }
     }
-
+    public void EnemiesKilled()
+    {
+        enemiesKilled++;
+    }
 
     private IEnumerator AttackCo()
     {
@@ -299,7 +305,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
         float rollCooldownUpgrade;
-        rollCooldownUpgrade = (originalRollCooldown * 1.1f) - originalRollCooldown;
+        rollCooldownUpgrade = (originalRollCooldown * 1.2f) - originalRollCooldown;
         if (rollCooldown - rollCooldownUpgrade <= 0)
         {
             return;
@@ -314,8 +320,8 @@ public class PlayerMovement : MonoBehaviour
         //
         float speedUpgrade;
         float rollUpgrade;
-        speedUpgrade = (originalSpeed * 1.1f) - originalSpeed;
-        rollUpgrade = (originalRollSpeed * 1.1f) - originalRollSpeed;
+        speedUpgrade = (originalSpeed * 1.2f) - originalSpeed;
+        rollUpgrade = (originalRollSpeed * 1.2f) - originalRollSpeed;
         speed += speedUpgrade;
         rollSpeed += rollUpgrade;
         activeMoveSpeed = speed;
@@ -349,6 +355,8 @@ public class PlayerMovement : MonoBehaviour
         {
 
             this.gameObject.SetActive(false);
+            AnalyticsResult analyticsResult = Analytics.CustomEvent("EnemiesKilled" + enemiesKilled);
+            Debug.Log("analyticsresult:" + analyticsResult);
             PlayerIsDead = true;
             deatscreen.ShowDeathScreen();
             FindObjectOfType<LevelMusic>().DeathMusic();
