@@ -356,7 +356,21 @@ public class PlayerMovement : MonoBehaviour
 
             this.gameObject.SetActive(false);
             AnalyticsResult analyticsResult = Analytics.CustomEvent("EnemiesKilled" + enemiesKilled);
+            AnalyticsResult analyticsResult2 = AnalyticsEvent.Custom("TimePlayed" + "testiii");
+            AnalyticsResult analyticsResult3 = Analytics.CustomEvent("EnemiesKilled2" + enemiesKilled);
             Debug.Log("analyticsresult:" + analyticsResult);
+            Debug.Log("analyticsresult2:" + analyticsResult2);
+            Debug.Log("analyticsresult3:" + analyticsResult3);
+            AnalyticsResult analyticsResult4 = Analytics.CustomEvent("EnemiesKilled3", new Dictionary<string, object>
+            {
+                {"EnemiesKilled4", enemiesKilled},
+            });
+            Debug.Log("analyticsresult4:" + analyticsResult4);
+            AnalyticsResult analyticsResult5 = Analytics.CustomEvent("EnemiesKilled5", new Dictionary<string, object>
+            {
+                {"EnemiesKilled5", enemiesKilled},
+            });
+            Debug.Log("analyticsresult5:" + analyticsResult5);
             PlayerIsDead = true;
             deatscreen.ShowDeathScreen();
             FindObjectOfType<LevelMusic>().DeathMusic();
