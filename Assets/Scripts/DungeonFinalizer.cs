@@ -25,6 +25,7 @@ public class DungeonFinalizer : MonoBehaviour
 
     public List<GameObject> enemies;
 
+    static public Transform bossSpawnPoint;
     void Start()
     {
         dungeonGenerator = GetComponent<DungeonGenerator>();
@@ -211,7 +212,11 @@ public class DungeonFinalizer : MonoBehaviour
         {
             if (rooms[i].roomType == RoomType.BossRoom)
             {
-                Instantiate(bossPrefab, rooms[i].roomPrefab.transform.position, Quaternion.identity, rooms[i].roomPrefab.transform.Find("Enemies"));
+                
+               GameObject newEnemy = Instantiate(bossPrefab, rooms[i].roomPrefab.transform.position, Quaternion.identity, rooms[i].roomPrefab.transform.Find("Enemies"));
+                enemies.Add(newEnemy);
+                //get spawnlocation of boss
+                bossSpawnPoint = rooms[i].roomPrefab.transform.Find("Enemies").GetChild(0);
             }
         }
     }
