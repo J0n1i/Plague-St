@@ -368,22 +368,17 @@ public class PlayerMovement : MonoBehaviour
         else
         {
 
-            this.gameObject.SetActive(false);
-            Dictionary<string, object> analyticsData = new Dictionary<string, object>()
-    {
-              { "EnemiesKilled", enemiesKilled }
-    };
-// The ‘myEvent’ event will get queued up and sent every minute
-AnalyticsService.Instance.CustomData("EnemiesKilled", analyticsData);  
-// Optional - You can call Events.Flush() to send the event immediately
-AnalyticsService.Instance.Flush();
-UnityEngine.Analytics.AnalyticsEvent.LevelStart(enemiesKilled);
-print("enemieskillled: " +enemiesKilled);
-
+            
+        Dictionary<string, object> parameter = new Dictionary<string, object>()
+        {
+            { "Enemies_Killed", enemiesKilled }
+ 
+      };
+        Events.CustomData("EnemiesKilled", parameter);
             PlayerIsDead = true;
             deatscreen.ShowDeathScreen();
             FindObjectOfType<LevelMusic>().DeathMusic();
-            
+            this.gameObject.SetActive(false);
         }
 
     }
