@@ -16,16 +16,24 @@ public class BossEnemy : log
     public float closeRadius;
     private bool canShootTwice;
     public bool bossActive = false;
-
+private List<GameObject> enemies;
     [SerializeField] GameObject logi;
     Vector3 pos;
     Vector3 pos1;
     public float shootRadius;
-    
+    Vector3 posBoss;
+    //box collider
+    public BoxCollider2D boxCollider;
+    //capsule collider
+    public CapsuleCollider2D capsuleCollider;
+    private int bossMobsDead;    
     
    
     // Start is called before the first frame update
    void Start () {
+    //enemies list from dungeon finalizer
+    enemies = GameObject.FindGameObjectWithTag("DungeonGenerator").GetComponent<DungeonFinalizer>().enemies;
+
         currentState = EnemyState.idle;
         target = GameObject.FindWithTag("Player").transform;
         GetComponent<Pathfinding.AIPath>().enabled = false;
@@ -34,6 +42,11 @@ public class BossEnemy : log
         fireTimer = 5f;
         Attacktimer = 2f;
         shootRadius = 6f;
+        //get location of boss
+        posBoss = transform.position;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalMaterial = spriteRenderer.material;
+        bossMobsDead = 0;
 	}
     // Update is called once per frame
     void Update()
@@ -45,6 +58,7 @@ public class BossEnemy : log
             StartCoroutine(SpawnLogi());
             }
         }
+        
         if(isTimer == true){
             timer -= Time.deltaTime;
             if(timer <= 0){
@@ -97,7 +111,7 @@ public class BossEnemy : log
             //FindObjectOfType<LevelMusic>().BossMusic();
             if (currentState == EnemyState.walk
                 && currentState != EnemyState.stagger && isFire==false && isAttacked==false && Vector3.Distance(target.position,
-                               transform.position) > shootRadius)
+                               transform.position) > shootRadius && currentState != EnemyState.attack)
             {
                 canShootTwice = true;
                 StartCoroutine(ShootCo());
@@ -124,7 +138,7 @@ public class BossEnemy : log
                     )
         {
             if (currentState == EnemyState.walk
-                && currentState != EnemyState.stagger && isTimer==false && isAttacked==false)
+                && currentState != EnemyState.stagger && isTimer==false && isAttacked==false && currentState != EnemyState.attack)
             {
                 int random = Random.Range(0, 2);
                 if(random == 0){
@@ -156,7 +170,7 @@ public class BossEnemy : log
                     transform.position) <= closeRadius)
         {   
             if (currentState == EnemyState.walk
-                && currentState != EnemyState.stagger && isSpin == false && isAttacked==false)
+                && currentState != EnemyState.stagger && isSpin == false && isAttacked==false && currentState != EnemyState.attack)
             {
                 StartCoroutine(SpinCo());
                 
@@ -174,6 +188,24 @@ public class BossEnemy : log
 
             }
         }
+    }
+    public void bossMobDead(){
+        bossMobsDead++;
+        if(bossMobsDead == 2){
+            StartCoroutine(WakeUp());
+        
+        }
+    }
+    public IEnumerator WakeUp(){
+        yield return new WaitForSeconds(0.5f);
+        boxCollider.enabled = true;
+        capsuleCollider.enabled = true;
+        currentState = EnemyState.walk;
+        anim.SetBool("enrage", false);
+        GetComponent<Pathfinding.AIPath>().maxSpeed = 3.5f;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        enraged=true;
+
     }
 
     public IEnumerator AttackCo()
@@ -228,13 +260,14 @@ public class BossEnemy : log
         anim.SetBool("shoot", false);        
         int random = Random.Range(1, 3);
         if(random == 1 && canShootTwice == true){
-             yield return new WaitForSeconds(0.3f);
-            anim.SetBool("shoot", true); 
+        yield return new WaitForSeconds(0.2f); 
+        anim.SetBool("shoot", true);
+        yield return new WaitForSeconds(0.5f); 
             Vector3 dir1 = target.position - transform.position;
         float angle1 = Mathf.Atan2(dir1.y, dir1.x) * Mathf.Rad2Deg;
         Quaternion rotation1 = Quaternion.AngleAxis(angle1, Vector3.forward);
-        yield return new WaitForSeconds(0.5f);
         Instantiate(bullet, transform.position, rotation1);
+
         anim.SetBool("shoot", false);
         }
         else{
@@ -250,22 +283,26 @@ public class BossEnemy : log
    
     public IEnumerator SpawnLogi()
     {
-        logiSpawned = true;
+        logiSpawned = true;        
         anim.SetBool("enrage", true);
+        yield return new WaitForSeconds(0.25f);
+        boxCollider.enabled = false;
+        capsuleCollider.enabled = false;
+        transform.position = posBoss;
         GetComponent<Pathfinding.AIPath>().maxSpeed = 0f;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         currentState = EnemyState.attack;
         pos = new Vector3(transform.position.x + Random.Range(-2,2), transform.position.y + Random.Range(-2,2), transform.position.z);
         pos1 = new Vector3(transform.position.x + Random.Range(-2,2), transform.position.y + Random.Range(-2,2), transform.position.z);
-        yield return new WaitForSeconds(0.5f);
-        Instantiate(logi, pos, Quaternion.identity);
-        yield return new WaitForSeconds(0.5f);
-        Instantiate(logi, pos1, Quaternion.identity);
-        yield return new WaitForSeconds(2f);
-        currentState = EnemyState.walk;
-        anim.SetBool("enrage", false);
-        GetComponent<Pathfinding.AIPath>().maxSpeed = 3.5f;
-        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        enraged=true;
+        yield return new WaitForSeconds(1f);
+        GameObject logi1 = Instantiate(logi, pos, Quaternion.identity);
+        logi1.transform.parent = transform;
+        enemies.Add(logi1);
+        yield return new WaitForSeconds(3f);
+        GameObject logi2 = Instantiate(logi, pos1, Quaternion.identity);
+        logi2.transform.parent = transform;
+        enemies.Add(logi2);
+
+        
     }
 }

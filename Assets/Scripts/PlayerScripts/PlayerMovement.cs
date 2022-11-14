@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Analytics;
+using Unity.Services.Core;
+using Unity.Services.Analytics;
+using System.Collections.Generic;
 using TMPro;
 
 public enum PlayerState
@@ -58,9 +60,21 @@ public class PlayerMovement : MonoBehaviour
     public bool inputEnabled = true;
     private int enemiesKilled;
 
+    async void Start2(){
+        try
+        {
+            await UnityServices.InitializeAsync();
+            List<string> consentIdentifiers = await AnalyticsService.Instance.CheckForRequiredConsents();
+        }
+        catch (ConsentCheckException e)
+        {
+          // Something went wrong when checking the GeoIP, check the e.Reason and handle appropriately.
+        }
+    }
     // Use this for initialization
     void Start()
     {
+        Start2();
         enemiesKilled = 0;
         closestEnemy = null;
         rollSpeed = speed * 2.5f;
@@ -355,27 +369,23 @@ public class PlayerMovement : MonoBehaviour
         {
 
             this.gameObject.SetActive(false);
-            AnalyticsResult analyticsResult = Analytics.CustomEvent("EnemiesKilled" + enemiesKilled);
-            AnalyticsResult analyticsResult2 = AnalyticsEvent.Custom("TimePlayed" + "testiii");
-            AnalyticsResult analyticsResult3 = Analytics.CustomEvent("EnemiesKilled2" + enemiesKilled);
-            Debug.Log("analyticsresult:" + analyticsResult);
-            Debug.Log("analyticsresult2:" + analyticsResult2);
-            Debug.Log("analyticsresult3:" + analyticsResult3);
-            AnalyticsResult analyticsResult4 = Analytics.CustomEvent("EnemiesKilled3", new Dictionary<string, object>
-            {
-                {"EnemiesKilled4", enemiesKilled},
-            });
-            Debug.Log("analyticsresult4:" + analyticsResult4);
-            AnalyticsResult analyticsResult5 = Analytics.CustomEvent("EnemiesKilled5", new Dictionary<string, object>
-            {
-                {"EnemiesKilled5", enemiesKilled},
-            });
-            Debug.Log("analyticsresult5:" + analyticsResult5);
+            Dictionary<string, object> analyticsData = new Dictionary<string, object>()
+    {
+              { "EnemiesKilled", enemiesKilled }
+    };
+// The ‘myEvent’ event will get queued up and sent every minute
+AnalyticsService.Instance.CustomData("EnemiesKilled", analyticsData);  
+// Optional - You can call Events.Flush() to send the event immediately
+AnalyticsService.Instance.Flush();
+UnityEngine.Analytics.AnalyticsEvent.LevelStart(enemiesKilled);
+print("enemieskillled: " +enemiesKilled);
+
             PlayerIsDead = true;
             deatscreen.ShowDeathScreen();
             FindObjectOfType<LevelMusic>().DeathMusic();
-
+            
         }
+
     }
 
     private IEnumerator KnockCo(float knockTime)

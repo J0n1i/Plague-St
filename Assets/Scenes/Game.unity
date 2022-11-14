@@ -819,10 +819,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.08174387
-    y: 0
-    width: 0.83671665
-    height: 1
+    x: 0
+    y: 0.10643821
+    width: 0.99888813
+    height: 0.7883229
   near clip plane: -2.85
   far clip plane: 1000
   field of view: 60
