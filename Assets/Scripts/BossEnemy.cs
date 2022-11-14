@@ -294,21 +294,14 @@ private List<GameObject> enemies;
         currentState = EnemyState.attack;
         pos = new Vector3(transform.position.x + Random.Range(-2,2), transform.position.y + Random.Range(-2,2), transform.position.z);
         pos1 = new Vector3(transform.position.x + Random.Range(-2,2), transform.position.y + Random.Range(-2,2), transform.position.z);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         GameObject logi1 = Instantiate(logi, pos, Quaternion.identity);
         logi1.transform.parent = transform;
         enemies.Add(logi1);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(3f);
         GameObject logi2 = Instantiate(logi, pos1, Quaternion.identity);
         logi2.transform.parent = transform;
         enemies.Add(logi2);
-        yield return new WaitForSeconds(0.3f);
-        flashDuration = 0.1f;
-        Flash();
-        flashDuration = 0.1f;
-        Flash();
-        
-
 
         
     }

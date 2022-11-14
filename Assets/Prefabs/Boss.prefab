@@ -1991,7 +1991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a69d0f16b88ef243a0177230251dd49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killedSignal: {fileID: 0}
+  killedSignal: {fileID: 11400000, guid: 93fe4b712df78fb4ea60b24613296b85, type: 2}
   Elite: 0
   sprite: {fileID: 8279953100408016395}
   currentState: 0
@@ -2002,7 +2002,7 @@ MonoBehaviour:
   moveSpeed: 3
   CoinDrop: {fileID: 1920694392575528832, guid: 1327b3039c883a24e853986571ed791f, type: 3}
   HeartDrop: {fileID: 5282864384341969437, guid: 15ba91fe25b09f3479ee7e782c3553c3, type: 3}
-  deathEffect: {fileID: 0}
+  deathEffect: {fileID: 7223149412690510492, guid: 2f1d66385a0fe7b4f96617e6b0d7bdb1, type: 3}
   hitEffect: {fileID: 5900786407453424581, guid: 1976633dc7bb01a4a8ee0af66e125115, type: 3}
   damageSound: {fileID: 0}
   anim: {fileID: 8279953100408016397}

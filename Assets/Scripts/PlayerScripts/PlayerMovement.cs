@@ -60,9 +60,21 @@ public class PlayerMovement : MonoBehaviour
     public bool inputEnabled = true;
     private int enemiesKilled;
 
+    async void Start2(){
+        try
+        {
+            await UnityServices.InitializeAsync();
+            List<string> consentIdentifiers = await AnalyticsService.Instance.CheckForRequiredConsents();
+        }
+        catch (ConsentCheckException e)
+        {
+          // Something went wrong when checking the GeoIP, check the e.Reason and handle appropriately.
+        }
+    }
     // Use this for initialization
     void Start()
     {
+        Start2();
         enemiesKilled = 0;
         closestEnemy = null;
         rollSpeed = speed * 2.5f;
@@ -362,12 +374,12 @@ public class PlayerMovement : MonoBehaviour
               { "EnemiesKilled", enemiesKilled }
     };
 // The ‘myEvent’ event will get queued up and sent every minute
-AnalyticsService.Instance.CustomData("EnemiesKilled", analyticsData); 
-
+AnalyticsService.Instance.CustomData("EnemiesKilled", analyticsData);  
 // Optional - You can call Events.Flush() to send the event immediately
 AnalyticsService.Instance.Flush();
 UnityEngine.Analytics.AnalyticsEvent.LevelStart(enemiesKilled);
 print("enemieskillled: " +enemiesKilled);
+
             PlayerIsDead = true;
             deatscreen.ShowDeathScreen();
             FindObjectOfType<LevelMusic>().DeathMusic();

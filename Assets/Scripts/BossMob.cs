@@ -11,6 +11,7 @@ public class BossMob : log
     private bool raised;
     // Start is called before the first frame update
    void Start () {
+    anim.SetBool("idle", true);
     timer = 4f;
         currentState = EnemyState.idle;
         target = GameObject.FindWithTag("Player").transform;
@@ -19,7 +20,10 @@ public class BossMob : log
         GetComponent<Pathfinding.AIPath>().maxSpeed = 3f+randomNum;
          spriteRenderer = GetComponent<SpriteRenderer>();
         originalMaterial = spriteRenderer.material;
-        anim.SetBool("idle", true);
+        //turn off spriterenderer
+        spriteRenderer.enabled = false;
+    
+        
 
         //enable pathfinding
         
@@ -27,6 +31,10 @@ public class BossMob : log
     // Update is called once per frame
     void Update()
     {
+        if(Spawned == false){
+            anim.SetBool("idle", true);
+                StartCoroutine(SpawnCo());
+            }
         if(health <= 0 && raised == false){
             bossMobSignal.Raise();
             raised = true;
@@ -39,9 +47,7 @@ public class BossMob : log
                 timer = Random.Range(3.5f, 4.5f);
             }
         }
-     if(Spawned == false){
-                StartCoroutine(SpawnCo());
-            }
+     
 
     }
     public override void CheckDistance()
@@ -49,10 +55,10 @@ public class BossMob : log
         if (Vector3.Distance(target.position,
                             transform.position) <= chaseRadius
              && Vector3.Distance(target.position,
-                               transform.position) > attackRadius)
+                               transform.position) > attackRadius && Spawned!=false)
         {
             if (currentState == EnemyState.idle || currentState == EnemyState.walk
-                && currentState != EnemyState.stagger && currentState != EnemyState.attack)
+                && currentState != EnemyState.stagger && currentState != EnemyState.attack && Spawned!=false)
             {
                 
             Vector3 temp = Vector3.MoveTowards(transform.position,
@@ -66,10 +72,10 @@ public class BossMob : log
         else if (Vector3.Distance(target.position,
                     transform.position) <= chaseRadius
                     && Vector3.Distance(target.position,
-                    transform.position) <= attackRadius)
+                    transform.position) <= attackRadius && Spawned!=false)
         {
              if (currentState == EnemyState.walk
-                && currentState != EnemyState.stagger && isTimer==true) 
+                && currentState != EnemyState.stagger && isTimer==true && Spawned!=false) 
             {
                 
                 Vector3 temp = Vector3.MoveTowards(transform.position,
@@ -79,7 +85,7 @@ public class BossMob : log
             }
             
             if (currentState == EnemyState.walk
-                && currentState != EnemyState.stagger && isTimer==false) 
+                && currentState != EnemyState.stagger && isTimer==false && Spawned!=false) 
             {
                 
                 StartCoroutine(AttackCo());
@@ -91,7 +97,7 @@ public class BossMob : log
                     && Vector3.Distance(target.position,
                     transform.position) <= attackRadius &&
                     Vector3.Distance(target.position,
-                    transform.position) <= closeRadius)
+                    transform.position) <= closeRadius && Spawned!=false)
         {
             Vector3 temp = Vector3.MoveTowards(transform.position,
                                                          target.position,
@@ -107,9 +113,10 @@ public class BossMob : log
 
     public IEnumerator SpawnCo()
     {
+        spriteRenderer.enabled = true;
         GetComponent<Pathfinding.AIPath>().maxSpeed = 0f;
         Spawned=true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.3f);
         anim.SetBool("idle", false);
         GetComponent<Pathfinding.AIPath>().maxSpeed = 3.2f;
                 
