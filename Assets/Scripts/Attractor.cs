@@ -38,6 +38,7 @@ public class Attractor : MonoBehaviour
             playerInRange = true;
             player = GameObject.FindWithTag("Player");
 			target = player.transform;
+            //RandomSoundPlayer.instance.OnCollisionEnter(paska, 1f);
         }
     }
 }

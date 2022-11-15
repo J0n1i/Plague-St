@@ -198,6 +198,7 @@ MonoBehaviour:
   AttractorSpeed: 4
   playerInRange: 0
   target: {fileID: 0}
+  paska: {fileID: 0}
 --- !u!61 &6680052287498490673
 BoxCollider2D:
   m_ObjectHideFlags: 0

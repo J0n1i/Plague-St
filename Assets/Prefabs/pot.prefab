@@ -147,3 +147,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CoinDrop: {fileID: 5162334954366387716, guid: 820502067b4040b45bff6941f0850231, type: 3}
   HeartDrop: {fileID: 1920694392575528832, guid: 1327b3039c883a24e853986571ed791f, type: 3}
+  breakSound: {fileID: 8300000, guid: 984ef18ba8756e44292cb3098faa03e1, type: 3}

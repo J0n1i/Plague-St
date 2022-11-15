@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
     private DeathScreen deatscreen;
     public Inventory playerInventory;
     public AudioClip attackSound;
+    public AudioClip playerDies;
     public Joystick joystick;
     public Transform closestEnemy;
     private List<GameObject> enemies;
@@ -178,6 +179,7 @@ public class PlayerMovement : MonoBehaviour
       && currentState != PlayerState.stagger)
         {
             StartCoroutine(AttackCo());
+            RandomSoundPlayer.RandomSndP.PlayWeaponSound();
         }
     }
     public void pressedDash()
@@ -369,6 +371,7 @@ public class PlayerMovement : MonoBehaviour
         {
 
             StartCoroutine(KnockCo(knockTime));
+            RandomSoundPlayer.RandomSndP.PlayPlayerSound();
         }
         else
         {
@@ -384,6 +387,7 @@ public class PlayerMovement : MonoBehaviour
       };
         Events.CustomData("EnemiesKilled", parameter);
             PlayerIsDead = true;
+            AudioPlayer.instance.PlaySound(playerDies, 1f);
             deatscreen.ShowDeathScreen();
             FindObjectOfType<LevelMusic>().DeathMusic();
             this.gameObject.SetActive(false);
