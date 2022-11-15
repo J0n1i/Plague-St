@@ -18,7 +18,7 @@ public enum PlayerState
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    private bool bossKilled = false;
     public bool PlayerIsDead = false;
     public SpriteRenderer sprite;
     public PlayerState currentState;
@@ -59,6 +59,8 @@ public class PlayerMovement : MonoBehaviour
     public Collider2D triggerCollider;
     public bool inputEnabled = true;
     private int enemiesKilled;
+    private float timePlayed;
+    private string totalTimePlayed;
 
     async void Start2(){
         try
@@ -82,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
         originalSpeed = speed;
         originalRollSpeed = rollSpeed;
         originalRollCooldown = rollCooldown;
+        timePlayed = 0;
 
         currentState = PlayerState.walk;
         animator = GetComponent<Animator>();
@@ -98,6 +101,8 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
+        timePlayed += Time.deltaTime;
+       
         if (inputEnabled == true)
         {
             if (Input.GetButtonDown("attack") && currentState != PlayerState.attack
@@ -367,11 +372,14 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-
-            
+            int minutes = Mathf.FloorToInt(timePlayed / 60F);
+            int seconds = Mathf.FloorToInt(timePlayed - minutes * 60);
+             string niceTime = string.Format("{0:00}:{1:00}", minutes, seconds);
         Dictionary<string, object> parameter = new Dictionary<string, object>()
         {
-            { "Enemies_Killed", enemiesKilled }
+            { "Enemies_Killed", enemiesKilled },
+            { "Time_Played", niceTime},
+            { "Boss_Killed", bossKilled}
  
       };
         Events.CustomData("EnemiesKilled", parameter);
@@ -381,6 +389,9 @@ public class PlayerMovement : MonoBehaviour
             this.gameObject.SetActive(false);
         }
 
+    }
+    public void BossKilled(){
+        bossKilled = true;
     }
 
     private IEnumerator KnockCo(float knockTime)
