@@ -61,7 +61,6 @@ public class PlayerMovement : MonoBehaviour
     public bool inputEnabled = true;
     private int enemiesKilled;
     private float timePlayed;
-    private string totalTimePlayed;
 
     async void Start2(){
         try
@@ -376,6 +375,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
           SendAnalytics();
+
             PlayerIsDead = true;
             AudioPlayer.instance.PlaySound(playerDies, 1f);
             deatscreen.ShowDeathScreen();
@@ -385,13 +385,11 @@ public class PlayerMovement : MonoBehaviour
 
     }
     public void SendAnalytics(){
-          int minutes = Mathf.FloorToInt(timePlayed / 60F);
-            int seconds = Mathf.FloorToInt(timePlayed - minutes * 60);
-             string niceTime = string.Format("{0:00}:{1:00}", minutes, seconds);
+         
         Dictionary<string, object> parameter = new Dictionary<string, object>()
         {
             { "Enemies_Killed", enemiesKilled },
-            { "Time_Played", niceTime},
+            { "Time_Playeddd", (int)timePlayed},
             { "Boss_Killed", bossKilled}
  
       };
