@@ -8,14 +8,17 @@ public class BossEnemy : log
     private bool isSpin;
     private bool isFire;
     private bool isAttacked;
+    private bool isDashed;
     private bool logiSpawned;
-    private bool enraged;
+    public bool enraged;
     private float fireTimer;
     private float Attacktimer;
     public Slider healthBar;
     public float closeRadius;
     private bool canShootTwice;
     public bool bossActive = false;
+    public GameObject dashEffect;
+    public GameObject bossAura;
 private List<GameObject> enemies;
     [SerializeField] GameObject logi;
     Vector3 pos;
@@ -26,7 +29,9 @@ private List<GameObject> enemies;
     public BoxCollider2D boxCollider;
     //capsule collider
     public CapsuleCollider2D capsuleCollider;
-    private int bossMobsDead;    
+    private int bossMobsDead;  
+    private float DashTimer;  
+    private bool spawningEnemies;
     
    
     // Start is called before the first frame update
@@ -51,6 +56,7 @@ private List<GameObject> enemies;
     // Update is called once per frame
     void Update()
     {
+        DashTimer -= Time.deltaTime;
         healthBar.value = health;
         if(health <= 5)
         {
@@ -85,7 +91,7 @@ private List<GameObject> enemies;
                 isFire = false;
                 fireTimer = 5f;
                 if(enraged == true){
-                    fireTimer= 3f;
+                    fireTimer= 4.5f;
                 }
             }
         }
@@ -99,8 +105,26 @@ private List<GameObject> enemies;
                 }
             }
         }
+        if(isDashed ==true && enraged == true){
+        DashTimer -= Time.deltaTime;
+            if(DashTimer <= 0){
+                isDashed = false;
+                DashTimer = 6.5f;
+            }
+        }
+
     }
-       
+    public IEnumerator Dash(){
+                isDashed = true;
+                currentState = EnemyState.attack;
+                GetComponent<Pathfinding.AIPath>().maxSpeed = 10f;
+                dashEffect.SetActive(true);
+                yield return new WaitForSeconds(0.25f);
+                dashEffect.SetActive(false);
+                GetComponent<Pathfinding.AIPath>().maxSpeed = 3.5f;
+                currentState = EnemyState.walk;
+                DashTimer = 6f;
+    }
    
     public override void CheckDistance()
     {
@@ -111,7 +135,7 @@ private List<GameObject> enemies;
             //FindObjectOfType<LevelMusic>().BossMusic();
             if (currentState == EnemyState.walk
                 && currentState != EnemyState.stagger && isFire==false && isAttacked==false && Vector3.Distance(target.position,
-                               transform.position) > shootRadius && currentState != EnemyState.attack)
+                               transform.position) > shootRadius && currentState != EnemyState.attack && spawningEnemies == false)
             {
                 canShootTwice = true;
                 StartCoroutine(ShootCo());
@@ -127,6 +151,9 @@ private List<GameObject> enemies;
                 changeAnim(temp - transform.position);
                 GetComponent<Pathfinding.AIPath>().enabled = true;
                 ChangeState(EnemyState.walk);
+                if(enraged == true && isDashed == false){
+                    StartCoroutine(Dash());
+                }
             }
         }
         else if (Vector3.Distance(target.position,
@@ -138,7 +165,7 @@ private List<GameObject> enemies;
                     )
         {
             if (currentState == EnemyState.walk
-                && currentState != EnemyState.stagger && isTimer==false && isAttacked==false && currentState != EnemyState.attack)
+                && currentState != EnemyState.stagger && isTimer==false && isAttacked==false && currentState != EnemyState.attack && spawningEnemies == false)
             {
                 int random = Random.Range(0, 2);
                 if(random == 0){
@@ -198,12 +225,14 @@ private List<GameObject> enemies;
     }
     public IEnumerator WakeUp(){
         yield return new WaitForSeconds(0.5f);
-        boxCollider.enabled = true;
-        capsuleCollider.enabled = true;
+         int LayerNotIgnoreRaycast = LayerMask.NameToLayer("Default");
+        gameObject.layer = LayerNotIgnoreRaycast;
         currentState = EnemyState.walk;
         anim.SetBool("enrage", false);
+        spawningEnemies = false;
         GetComponent<Pathfinding.AIPath>().maxSpeed = 3.5f;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        bossAura.SetActive(true);
         enraged=true;
 
     }
@@ -250,6 +279,7 @@ private List<GameObject> enemies;
     {
         isFire=true;
         isAttacked=true;
+        currentState = EnemyState.attack;
         GetComponent<Pathfinding.AIPath>().maxSpeed = 0f;
         anim.SetBool("shoot", true); 
         yield return new WaitForSeconds(0.5f);
@@ -259,7 +289,7 @@ private List<GameObject> enemies;
         Instantiate(bullet, transform.position, rotation);
         anim.SetBool("shoot", false);        
         int random = Random.Range(1, 3);
-        if(random == 1 && canShootTwice == true){
+        if(random == 1 && canShootTwice == true || enraged==true && canShootTwice == true){
         yield return new WaitForSeconds(0.2f); 
         anim.SetBool("shoot", true);
         yield return new WaitForSeconds(0.5f); 
@@ -267,7 +297,7 @@ private List<GameObject> enemies;
         float angle1 = Mathf.Atan2(dir1.y, dir1.x) * Mathf.Rad2Deg;
         Quaternion rotation1 = Quaternion.AngleAxis(angle1, Vector3.forward);
         Instantiate(bullet, transform.position, rotation1);
-
+        
         anim.SetBool("shoot", false);
         }
         else{
@@ -275,6 +305,7 @@ private List<GameObject> enemies;
 
         yield return new WaitForSeconds(0.5f);
         GetComponent<Pathfinding.AIPath>().maxSpeed = 3f;
+        currentState = EnemyState.walk;
         if(enraged==true){
             GetComponent<Pathfinding.AIPath>().maxSpeed = 3.5f;
         }
@@ -285,13 +316,14 @@ private List<GameObject> enemies;
     {
         logiSpawned = true;        
         anim.SetBool("enrage", true);
+        spawningEnemies = true;
+        int LayerIgnoreRaycast = LayerMask.NameToLayer("enemy");
+        gameObject.layer = LayerIgnoreRaycast;
+        currentState = EnemyState.attack;
         yield return new WaitForSeconds(0.25f);
-        boxCollider.enabled = false;
-        capsuleCollider.enabled = false;
         transform.position = posBoss;
         GetComponent<Pathfinding.AIPath>().maxSpeed = 0f;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-        currentState = EnemyState.attack;
         pos = new Vector3(transform.position.x + Random.Range(-2,2), transform.position.y + Random.Range(-2,2), transform.position.z);
         pos1 = new Vector3(transform.position.x + Random.Range(-2,2), transform.position.y + Random.Range(-2,2), transform.position.z);
         yield return new WaitForSeconds(1f);

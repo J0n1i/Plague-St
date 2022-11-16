@@ -375,7 +375,17 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            int minutes = Mathf.FloorToInt(timePlayed / 60F);
+          SendAnalytics();
+            PlayerIsDead = true;
+            AudioPlayer.instance.PlaySound(playerDies, 1f);
+            deatscreen.ShowDeathScreen();
+            FindObjectOfType<LevelMusic>().DeathMusic();
+            this.gameObject.SetActive(false);
+        }
+
+    }
+    public void SendAnalytics(){
+          int minutes = Mathf.FloorToInt(timePlayed / 60F);
             int seconds = Mathf.FloorToInt(timePlayed - minutes * 60);
              string niceTime = string.Format("{0:00}:{1:00}", minutes, seconds);
         Dictionary<string, object> parameter = new Dictionary<string, object>()
@@ -386,16 +396,10 @@ public class PlayerMovement : MonoBehaviour
  
       };
         Events.CustomData("EnemiesKilled", parameter);
-            PlayerIsDead = true;
-            AudioPlayer.instance.PlaySound(playerDies, 1f);
-            deatscreen.ShowDeathScreen();
-            FindObjectOfType<LevelMusic>().DeathMusic();
-            this.gameObject.SetActive(false);
-        }
-
     }
     public void BossKilled(){
         bossKilled = true;
+        SendAnalytics();
     }
 
     private IEnumerator KnockCo(float knockTime)
