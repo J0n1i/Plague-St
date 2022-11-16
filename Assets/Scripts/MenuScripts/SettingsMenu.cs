@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
@@ -12,9 +11,6 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private Slider musicSlider, sfxSlider;
 
     private SaveManager saveManager;
-
-    [SerializeField] private GameObject PauseMenuUi;
-    [SerializeField] private GameObject SettingsBg;
 
     [SerializeField] private GameObject MainMenu;
     [SerializeField] private GameObject ModifyMenu;
@@ -28,51 +24,17 @@ public class SettingsMenu : MonoBehaviour
 
     public void ShowSettings()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
-        int buildIndex = currentScene.buildIndex;
-        Debug.Log(buildIndex);
-
-        if (buildIndex == 0)
-        {
-            MainMenu.SetActive(false);
-            ModifyMenu.SetActive(true);
-        }
-        else if (buildIndex == 1)
-        {
-            PauseMenuUi.SetActive(false);
-            ModifyMenu.SetActive(true);
-            SettingsBg.SetActive(true);
-        }
-
-        
+        MainMenu.SetActive(false);
+        ModifyMenu.SetActive(true);
     }
 
     public void HideSettings()
     {
-
-        Scene currentScene = SceneManager.GetActiveScene();
-        int buildIndex = currentScene.buildIndex;
-
-        if (buildIndex == 0)
-        {
-            MainMenu.SetActive(true);
-            ModifyMenu.SetActive(false);
-            saveManager.saveData.sfxVolume = sfxSlider.value;
-            saveManager.saveData.musicVolume = musicSlider.value;
-            saveManager.SaveGame();
-        }
-        else if (buildIndex == 1)
-        {
-            PauseMenuUi.SetActive(true);
-            ModifyMenu.SetActive(false);
-            SettingsBg.SetActive(false);
-            saveManager.saveData.sfxVolume = sfxSlider.value;
-            saveManager.saveData.musicVolume = musicSlider.value;
-            saveManager.SaveGame();
-        }
-
-
-     
+        MainMenu.SetActive(true);
+        ModifyMenu.SetActive(false);
+        saveManager.saveData.sfxVolume = sfxSlider.value;
+        saveManager.saveData.musicVolume = musicSlider.value;
+        saveManager.SaveGame();
     }
 
     public void VolumeBar()
