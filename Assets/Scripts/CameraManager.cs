@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    private GameObject player;
+    public GameObject followTarget;
     private GameStateManager gameStateManager;
     // Start is called before the first frame update
     void Start()
@@ -22,14 +22,14 @@ public class CameraManager : MonoBehaviour
     }
 
     void FixedUpdate(){
-        if (player == null)
+        if (followTarget == null)
         {
-            player = GameObject.FindWithTag("Player");
+            followTarget = GameObject.FindWithTag("Player");
         }
 
-        if (gameStateManager.currentGameState == GameState.Playing && player != null)
+        if (gameStateManager.currentGameState == GameState.Playing && followTarget != null)
         {
-                        transform.position = Vector3.Lerp(transform.position, player.transform.position, 0.125f);
+                        transform.position = Vector3.Lerp(transform.position, followTarget.transform.position, 0.125f);
         }
     }
 
@@ -40,6 +40,10 @@ public class CameraManager : MonoBehaviour
     public void ShakeAttack()
     {
         StartCoroutine(Shake(transform.position, 0.05f, 0.05f));
+    }
+    public void ShakeAttackHit()
+    {
+        StartCoroutine(Shake(transform.position, 0.1f, 0.1f));
     }
     public void ShakeDamage()
     {

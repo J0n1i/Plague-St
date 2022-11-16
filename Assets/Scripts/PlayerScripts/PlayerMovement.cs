@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.Services.Core;
+using Unity.Services.Analytics;
+using System.Collections.Generic;
 using TMPro;
 
 public enum PlayerState
@@ -15,7 +18,7 @@ public enum PlayerState
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    private bool bossKilled = false;
     public bool PlayerIsDead = false;
     public SpriteRenderer sprite;
     public PlayerState currentState;
@@ -48,19 +51,41 @@ public class PlayerMovement : MonoBehaviour
     private DeathScreen deatscreen;
     public Inventory playerInventory;
     public AudioClip attackSound;
+    public AudioClip playerDies;
     public Joystick joystick;
-    private GameObject[] multipleEnemies;
     public Transform closestEnemy;
+    private List<GameObject> enemies;
+    public AudioSource footstepSound;
+    public GameObject powerupEffect;
+    public Collider2D triggerCollider;
+    public bool inputEnabled = true;
+    private int enemiesKilled;
+    private float timePlayed;
+    private string totalTimePlayed;
 
+    async void Start2(){
+        try
+        {
+            await UnityServices.InitializeAsync();
+            List<string> consentIdentifiers = await AnalyticsService.Instance.CheckForRequiredConsents();
+        }
+        catch (ConsentCheckException e)
+        {
+          // Something went wrong when checking the GeoIP, check the e.Reason and handle appropriately.
+        }
+    }
     // Use this for initialization
     void Start()
     {
+        Start2();
+        enemiesKilled = 0;
         closestEnemy = null;
         rollSpeed = speed * 2.5f;
         activeMoveSpeed = speed;
         originalSpeed = speed;
         originalRollSpeed = rollSpeed;
         originalRollCooldown = rollCooldown;
+        timePlayed = 0;
 
         currentState = PlayerState.walk;
         animator = GetComponent<Animator>();
@@ -73,38 +98,47 @@ public class PlayerMovement : MonoBehaviour
         specialCooldownImageNotAvailable = GameObject.Find("specialCooldownNotAvailable").GetComponent<Image>();
         specialCooldownImageNotAvailable.enabled = true;
 
-        
+        enemies = GameObject.FindGameObjectWithTag("DungeonGenerator").GetComponent<DungeonFinalizer>().enemies;
+    }
+    void Update()
+    {
+        timePlayed += Time.deltaTime;
+       
+        if (inputEnabled == true)
+        {
+            if (Input.GetButtonDown("attack") && currentState != PlayerState.attack
+                && currentState != PlayerState.stagger)
+            {
+                StartCoroutine(AttackCo());
+            }
+            else if (Input.GetButtonDown("special") && currentState != PlayerState.attack
+               && currentState != PlayerState.stagger && isSpecial == false && playerInventory.specialCharge != 0)
+            {
+                StartCoroutine(SpecialCo());
+
+            }
+            else if (Input.GetButtonDown("roll") && currentState != PlayerState.attack
+               && currentState != PlayerState.stagger && isRolling == false)
+            {
+                StartCoroutine(RollCo());
+            }
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        closestEnemy = getClosestEnemy(closestEnemy);
-        if (closestEnemy != null)
-        {
-           // closestEnemy.GetComponent<SpriteRenderer>().color = Color.red;
-        }
-        
-        
+        closestEnemy = getClosestEnemy(enemies);
+
+
         change = Vector3.zero;
         //change.x = Input.GetAxisRaw("Horizontal");
         //change.y = Input.GetAxisRaw("Vertical");
         //n채채 ylemm채t pois kommentista nii toimii n채ppis ja alemmat kommenteiks
         change.x = joystick.Horizontal;
         change.y = joystick.Vertical;
-        if (Input.GetButtonDown("attack") && currentState != PlayerState.attack
-            && currentState != PlayerState.stagger)
-        {
-            StartCoroutine(AttackCo());
-        }
-        else if (Input.GetButtonDown("special") && currentState != PlayerState.attack
-           && currentState != PlayerState.stagger && isSpecial == false && playerInventory.specialCharge != 0)
-        {
-            StartCoroutine(SpecialCo());
 
-        }
-
-        else if (currentState == PlayerState.walk || currentState == PlayerState.idle)
+        if (currentState == PlayerState.walk || currentState == PlayerState.idle)
         {
 
             UpdateAnimationAndMove();
@@ -116,17 +150,16 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        
+
     }
 
 
-    public Transform getClosestEnemy(Transform oldclosestEnemy)
+    public Transform getClosestEnemy(List<GameObject> enemies)
     {
 
-        multipleEnemies = GameObject.FindGameObjectsWithTag("enemy");
         float distance = Mathf.Infinity;
         Vector3 position = transform.position;
-        foreach (GameObject enemy in multipleEnemies)
+        foreach (GameObject enemy in enemies)
         {
             Vector3 diff = enemy.transform.position - position;
             float curDistance = diff.sqrMagnitude;
@@ -135,10 +168,6 @@ public class PlayerMovement : MonoBehaviour
                 closestEnemy = enemy.transform;
                 distance = curDistance;
             }
-        }
-        if (oldclosestEnemy != closestEnemy && oldclosestEnemy!=null)
-        {
-            oldclosestEnemy.GetComponent<SpriteRenderer>().color = Color.white;
         }
         return closestEnemy;
     }
@@ -150,6 +179,7 @@ public class PlayerMovement : MonoBehaviour
       && currentState != PlayerState.stagger)
         {
             StartCoroutine(AttackCo());
+            RandomSoundPlayer.RandomSndP.PlayWeaponSound();
         }
     }
     public void pressedDash()
@@ -160,41 +190,44 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(RollCo());
         }
     }
-
+    public void EnemiesKilled()
+    {
+        enemiesKilled++;
+    }
 
     private IEnumerator AttackCo()
     {
-      
+
         float xDistance = closestEnemy.transform.position.x - transform.position.x;
         float yDistance = closestEnemy.transform.position.y - transform.position.y;
         if (closestEnemy != null && Vector3.Distance(closestEnemy.position, transform.position) < 3f)
         {
-        if (Mathf.Abs(xDistance) > Mathf.Abs(yDistance))
-        {
-            if (xDistance > 0)
+            if (Mathf.Abs(xDistance) > Mathf.Abs(yDistance))
             {
-                animator.SetFloat("moveX", 1);
-                animator.SetFloat("moveY", 0);
+                if (xDistance > 0)
+                {
+                    animator.SetFloat("moveX", 1);
+                    animator.SetFloat("moveY", 0);
+                }
+                else
+                {
+                    animator.SetFloat("moveX", -1);
+                    animator.SetFloat("moveY", 0);
+                }
             }
             else
             {
-                animator.SetFloat("moveX", -1);
-                animator.SetFloat("moveY", 0);
+                if (yDistance > 0)
+                {
+                    animator.SetFloat("moveX", 0);
+                    animator.SetFloat("moveY", 1);
+                }
+                else
+                {
+                    animator.SetFloat("moveX", 0);
+                    animator.SetFloat("moveY", -1);
+                }
             }
-        }
-        else
-        {
-            if (yDistance > 0)
-            {
-                animator.SetFloat("moveX", 0);
-                animator.SetFloat("moveY", 1);
-            }
-            else
-            {
-                animator.SetFloat("moveX", 0);
-                animator.SetFloat("moveY", -1);
-            }
-        }
         }
 
 
@@ -264,16 +297,18 @@ public class PlayerMovement : MonoBehaviour
     }
     void UpdateAnimationAndMove()
     {
-        if (change != Vector3.zero)
+        if (change != Vector3.zero && inputEnabled == true)
         {
             MoveCharacter();
             animator.SetFloat("moveX", change.x);
             animator.SetFloat("moveY", change.y);
             animator.SetBool("moving", true);
+            footstepSound.enabled = true;
         }
         else
         {
             animator.SetBool("moving", false);
+            footstepSound.enabled = false;
         }
     }
 
@@ -285,17 +320,13 @@ public class PlayerMovement : MonoBehaviour
             transform.position + change * activeMoveSpeed * Time.fixedDeltaTime
         );
 
-        if (Input.GetButtonDown("roll") && currentState != PlayerState.attack
-           && currentState != PlayerState.stagger && isRolling == false)
-        {
-            StartCoroutine(RollCo());
-        }
+
     }
     public void RollCooldownPowerup()
     {
 
         float rollCooldownUpgrade;
-        rollCooldownUpgrade = (originalRollCooldown * 1.1f) - originalRollCooldown;
+        rollCooldownUpgrade = (originalRollCooldown * 1.2f) - originalRollCooldown;
         if (rollCooldown - rollCooldownUpgrade <= 0)
         {
             return;
@@ -310,13 +341,25 @@ public class PlayerMovement : MonoBehaviour
         //
         float speedUpgrade;
         float rollUpgrade;
-        speedUpgrade = (originalSpeed * 1.1f) - originalSpeed;
-        rollUpgrade = (originalRollSpeed * 1.1f) - originalRollSpeed;
+        speedUpgrade = (originalSpeed * 1.2f) - originalSpeed;
+        rollUpgrade = (originalRollSpeed * 1.2f) - originalRollSpeed;
         speed += speedUpgrade;
         rollSpeed += rollUpgrade;
         activeMoveSpeed = speed;
         print(speed);
         print(rollSpeed);
+
+    }
+    public void PowerupEffect()
+    {
+        StartCoroutine(PowerupEffectCo());
+    }
+    public IEnumerator PowerupEffectCo()
+    {
+        powerupEffect.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        powerupEffect.SetActive(false);
+
 
     }
 
@@ -328,14 +371,35 @@ public class PlayerMovement : MonoBehaviour
         {
 
             StartCoroutine(KnockCo(knockTime));
+            RandomSoundPlayer.RandomSndP.PlayPlayerSound();
         }
         else
         {
-            this.gameObject.SetActive(false);
+          SendAnalytics();
             PlayerIsDead = true;
+            AudioPlayer.instance.PlaySound(playerDies, 1f);
             deatscreen.ShowDeathScreen();
-
+            FindObjectOfType<LevelMusic>().DeathMusic();
+            this.gameObject.SetActive(false);
         }
+
+    }
+    public void SendAnalytics(){
+          int minutes = Mathf.FloorToInt(timePlayed / 60F);
+            int seconds = Mathf.FloorToInt(timePlayed - minutes * 60);
+             string niceTime = string.Format("{0:00}:{1:00}", minutes, seconds);
+        Dictionary<string, object> parameter = new Dictionary<string, object>()
+        {
+            { "Enemies_Killed", enemiesKilled },
+            { "Time_Played", niceTime},
+            { "Boss_Killed", bossKilled}
+ 
+      };
+        Events.CustomData("EnemiesKilled", parameter);
+    }
+    public void BossKilled(){
+        bossKilled = true;
+        SendAnalytics();
     }
 
     private IEnumerator KnockCo(float knockTime)
@@ -343,10 +407,12 @@ public class PlayerMovement : MonoBehaviour
         if (myRigidbody != null)
         {
             playerDamageSignal.Raise();
+            triggerCollider.enabled = false;
             sprite.color = Color.red;
             yield return new WaitForSeconds(0.1f);
             sprite.color = Color.white;
             yield return new WaitForSeconds(knockTime);
+            triggerCollider.enabled = true;
             myRigidbody.velocity = Vector2.zero;
             currentState = PlayerState.idle;
             myRigidbody.velocity = Vector2.zero;

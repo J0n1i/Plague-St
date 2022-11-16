@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 8433158962445273155}
   - component: {fileID: 8433158962445273167}
   - component: {fileID: 8433158962445273164}
+  - component: {fileID: 1889575428748114644}
   - component: {fileID: 8433158962445273166}
-  - component: {fileID: 8433158962445273161}
   - component: {fileID: 2400791632778252816}
   - component: {fileID: 299989654420258321}
   - component: {fileID: -6359330454135487939}
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 661605760, guid: b6ca3afb7801d6c4ab966e85d56bb8ad, type: 3}
+  m_Sprite: {fileID: 622584954, guid: 6f41c2596399d3541acd6e384fccfdbd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -146,19 +146,35 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.006685257, y: -0.15482725}
+  m_Offset: {x: 0.006685257, y: -0.45348907}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    oldSize: {x: 3, y: 3}
     newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6500101, y: 1.1429172}
+  m_Size: {x: 0.6500101, y: 1.1553614}
   m_EdgeRadius: 0
+--- !u!70 &1889575428748114644
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8433158962445273152}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0034987926, y: -0.13674952}
+  m_Size: {x: 0.787607, y: 1.8351085}
+  m_Direction: 0
 --- !u!114 &8433158962445273166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,23 +187,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eace9e578117db46837294f689f45db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomSignal: {fileID: 11400000, guid: f04aeb8356d58534fa8a3a66e8107a2f, type: 2}
+  killedSignal: {fileID: 11400000, guid: 001802ce5c50dc246b833a37651181c1, type: 2}
+  Elite: 0
   sprite: {fileID: 8433158962445273154}
   currentState: 0
-  maxHealth: {fileID: 11400000, guid: ff4831900bba255428844020b5c2149a, type: 2}
+  maxHealth: {fileID: 11400000, guid: 817a43925b4439146a1d5a29ce6ff765, type: 2}
   health: 3
   enemyName: Larry
   baseAttack: 1
   moveSpeed: 1.5
-  CoinDrop: {fileID: 5282864384341969437, guid: 15ba91fe25b09f3479ee7e782c3553c3, type: 3}
+  CoinDrop: {fileID: 5162334954366387716, guid: 820502067b4040b45bff6941f0850231, type: 3}
   HeartDrop: {fileID: 1920694392575528832, guid: 1327b3039c883a24e853986571ed791f, type: 3}
   deathEffect: {fileID: 7223149412690510492, guid: 2f1d66385a0fe7b4f96617e6b0d7bdb1, type: 3}
+  hitEffect: {fileID: 5900786407453424581, guid: 1976633dc7bb01a4a8ee0af66e125115, type: 3}
   damageSound: {fileID: 0}
+  anim: {fileID: 8433158962445273155}
+  isDead: 0
+  playerAttackSignal: {fileID: 11400000, guid: 2287684f6a93d764db7b71a0194f3e7f, type: 2}
+  myRigidbody: {fileID: 0}
   target: {fileID: 8045719978935814808, guid: 4378ec4075ca9324fb7a3820f63c0c76, type: 3}
   chaseRadius: 8
   attackRadius: 6
   homePosition: {fileID: 0}
-  anim: {fileID: 8433158962445273155}
   timer: 0
   isTimer: 0
   bullet: {fileID: 3737559277776224656, guid: 1738af77deb065d4baced7965a5b2300, type: 3}
@@ -195,32 +216,6 @@ MonoBehaviour:
   flashDuration: 0.1
   spriteRenderer: {fileID: 8433158962445273154}
   originalMaterial: {fileID: 2100000, guid: 69a0f8c402126b246bb176bc22646c36, type: 2}
---- !u!61 &8433158962445273161
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8433158962445273152}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0040814877, y: -0.088582635}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
-    newSize: {x: 2, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.8028617, y: 1.1828346}
-  m_EdgeRadius: 0
 --- !u!114 &2400791632778252816
 MonoBehaviour:
   m_ObjectHideFlags: 0

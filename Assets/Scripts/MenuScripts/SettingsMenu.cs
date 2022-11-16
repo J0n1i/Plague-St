@@ -21,8 +21,12 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private TMP_Text VolumeText;
     [SerializeField] private TMP_Text MusicText;
 
+    void Awake()
+    {
+        saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
+    }
 
-    public void ShowSettings ()
+    public void ShowSettings()
     {
         Scene currentScene = SceneManager.GetActiveScene();
         int buildIndex = currentScene.buildIndex;
@@ -43,7 +47,7 @@ public class SettingsMenu : MonoBehaviour
         
     }
 
-    public void HideSettings ()
+    public void HideSettings()
     {
 
         Scene currentScene = SceneManager.GetActiveScene();
@@ -71,7 +75,7 @@ public class SettingsMenu : MonoBehaviour
      
     }
 
-    public void VolumeBar ()
+    public void VolumeBar()
     {
         VolumeText.text = (int)(sfxSlider.value * 100f) + "%";
     }

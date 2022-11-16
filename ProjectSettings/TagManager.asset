@@ -15,6 +15,7 @@ TagManager:
   - ghostt
   - ghosttt
   - ghostttt
+  - BossRoomEnterTrigger
   layers:
   - Default
   - TransparentFX

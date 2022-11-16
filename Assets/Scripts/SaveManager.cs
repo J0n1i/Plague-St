@@ -13,9 +13,6 @@ public class SaveData
 class SaveManager : MonoBehaviour
 {
 
-
-    public static SaveManager instance;
-
     public SaveData saveData = new SaveData();
 
 
@@ -24,6 +21,10 @@ class SaveManager : MonoBehaviour
     {
         //SaveGame();
         LoadGame();
+    }
+
+    void Awake(){
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public void SaveGame()

@@ -10,8 +10,8 @@ public enum EnemyState{
 }
 
 public class Enemy : MonoBehaviour {
-    public SignalSender roomSignal;
-
+    public SignalSender killedSignal;
+    public bool Elite;
     public SpriteRenderer sprite;
     public EnemyState currentState;
     public FloatValue maxHealth;
@@ -22,34 +22,53 @@ public class Enemy : MonoBehaviour {
     public GameObject CoinDrop;
     public GameObject HeartDrop;
     public GameObject deathEffect;
+    public GameObject hitEffect;
     public AudioClip damageSound;
+    public Animator anim;
+    public bool isDead;
+    public SignalSender playerAttackSignal;
+    void Start(){
+        anim = GetComponent<Animator>();
+    }
+
     private void Awake(){
         health = maxHealth.initialValue;
+        
     }
     private void TakeDamage(float damage)
     {
         health -= damage;
+        playerAttackSignal.Raise();
+        
+        GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+        Destroy(effect, 0.15f);
         if(health <= 0)
         {
-             if (roomSignal != null)
-            {
-                roomSignal.Raise();
-            }
         int dice = Random.Range(1, 101);
-        if(dice < 71){
+        if(dice < 71 && Elite==false){
             Instantiate(CoinDrop, transform.position, Quaternion.identity);
             AudioPlayer.instance.PlaySound(damageSound, 1f);
 
             }
-            else if (dice>70 && dice<80) {
+            else if (dice>70 && dice<80 && Elite==false) {
             Instantiate(HeartDrop, transform.position, Quaternion.identity);
             AudioPlayer.instance.PlaySound(damageSound, 1f);
 
-        } else {
+        } else if(Elite==true){
+            Instantiate(CoinDrop, transform.position, Quaternion.identity);
+            Instantiate(CoinDrop, transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity);
+            Instantiate(CoinDrop, transform.position + new Vector3(-0.5f, 0, 0), Quaternion.identity);
+            Instantiate(HeartDrop, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+            AudioPlayer.instance.PlaySound(damageSound, 1f);
+
             
+            
+            AudioPlayer.instance.PlaySound(damageSound, 1f);
         }
+            GameObject.FindGameObjectWithTag("DungeonGenerator").GetComponent<DungeonFinalizer>().enemies.Remove(gameObject);
             DeathEffect();
-            this.gameObject.SetActive(false);
+            
+
             AudioPlayer.instance.PlaySound(damageSound, 1f);
 
         }
@@ -57,6 +76,8 @@ public class Enemy : MonoBehaviour {
     public void DeathEffect(){
         if(deathEffect != null){
             GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
+            killedSignal.Raise();
+            StartCoroutine(DeadCo());
             Destroy(effect, 0.33f);
         }
     }
@@ -82,5 +103,12 @@ public class Enemy : MonoBehaviour {
             myRigidbody.velocity = Vector2.zero;
             GetComponent<Pathfinding.AIPath>().enabled = true;
         }
+    }
+    private IEnumerator DeadCo()
+    {
+        anim.SetBool("dead", true);
+        isDead=true;
+        GetComponent<Pathfinding.AIPath>().enabled = false;
+        yield return new WaitForSeconds(0.5f);
     }
 }
