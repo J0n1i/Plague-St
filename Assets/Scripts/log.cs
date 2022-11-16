@@ -19,9 +19,10 @@ public class log : Enemy {
     public SpriteRenderer spriteRenderer;
     public Material originalMaterial;
     public Coroutine flashRoutine;
+    public AudioClip damageSound;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         timer = 4f;
         escapeRadius = 5f;
         currentState = EnemyState.idle;

@@ -1248,6 +1248,7 @@ MonoBehaviour:
   cooldownImage: {fileID: 5632188709207419171}
   playerInventory: {fileID: 11400000, guid: a29e048e0907c4f40b545b159a0849da, type: 2}
   attackSound: {fileID: 8300000, guid: e8aea9ac2da169e4e98cb28873258d42, type: 3}
+  playerDies: {fileID: 8300000, guid: 70eee32c5b15b2f48b0eea32b057aae4, type: 3}
   joystick: {fileID: 0}
   closestEnemy: {fileID: 0}
   footstepSound: {fileID: 8470358418221113043}

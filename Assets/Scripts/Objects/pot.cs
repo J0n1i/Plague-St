@@ -7,6 +7,7 @@ public class pot : MonoBehaviour
     public GameObject CoinDrop;
     public GameObject HeartDrop;
     private Animator animator;
+    public AudioClip breakSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,7 @@ public class pot : MonoBehaviour
     {
         animator.SetBool("smash", true);
         StartCoroutine(breakCo());
+        AudioPlayer.instance.PlaySound(breakSound, 1f);
     }
 
     IEnumerator breakCo()
