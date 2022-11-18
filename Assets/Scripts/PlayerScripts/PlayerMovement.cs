@@ -61,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
     public bool inputEnabled = true;
     private int enemiesKilled;
     private float timePlayed;
+    private bool bossRoomEntered;
 
     async void Start2(){
         try
@@ -85,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
         originalRollSpeed = rollSpeed;
         originalRollCooldown = rollCooldown;
         timePlayed = 0;
-
+        bossRoomEntered = false;
         currentState = PlayerState.walk;
         animator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -390,7 +391,8 @@ public class PlayerMovement : MonoBehaviour
         {
             { "Enemies_Killed", enemiesKilled },
             { "Time_Playeddd", (int)timePlayed},
-            { "Boss_Killed", bossKilled}
+            { "Boss_Killed", bossKilled},
+            {"BossRoom_Entered", bossRoomEntered}
  
       };
         Events.CustomData("EnemiesKilled", parameter);
@@ -398,6 +400,9 @@ public class PlayerMovement : MonoBehaviour
     public void BossKilled(){
         bossKilled = true;
         SendAnalytics();
+    }
+    public void BossRoomEntered(){
+        bossRoomEntered = true;
     }
 
     private IEnumerator KnockCo(float knockTime)

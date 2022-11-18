@@ -2212,6 +2212,7 @@ MonoBehaviour:
   flashDuration: 0
   spriteRenderer: {fileID: 8279953100408016395}
   originalMaterial: {fileID: 0}
+  damageSound: {fileID: 0}
   enraged: 0
   healthBar: {fileID: 7998709309039872010}
   closeRadius: 3
@@ -2222,6 +2223,7 @@ MonoBehaviour:
   shootRadius: 6
   boxCollider: {fileID: 8279953100408016393}
   capsuleCollider: {fileID: 6215557915045435167}
+  playerEnterRoom: {fileID: 11400000, guid: 4a69871668c5f9647962de5865798b95, type: 2}
 --- !u!70 &6215557915045435167
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
