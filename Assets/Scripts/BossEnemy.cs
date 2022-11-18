@@ -32,6 +32,7 @@ private List<GameObject> enemies;
     private int bossMobsDead;  
     private float DashTimer;  
     private bool spawningEnemies;
+    public SignalSender playerEnterRoom;
     
    
     // Start is called before the first frame update
@@ -58,7 +59,7 @@ private List<GameObject> enemies;
     {
         DashTimer -= Time.deltaTime;
         healthBar.value = health;
-        if(health <= 5)
+        if(health <= 7)
         {
             if(logiSpawned == false && currentState != EnemyState.stagger && currentState != EnemyState.attack){
             StartCoroutine(SpawnLogi());
@@ -109,7 +110,7 @@ private List<GameObject> enemies;
         DashTimer -= Time.deltaTime;
             if(DashTimer <= 0){
                 isDashed = false;
-                DashTimer = 6.5f;
+                DashTimer = 7.5f;
             }
         }
 
@@ -131,7 +132,7 @@ private List<GameObject> enemies;
         if (Vector3.Distance(target.position,transform.position) <= chaseRadius && Vector3.Distance(target.position,transform.position) > attackRadius)
         {
             //Bossimusiikki alkaa
-
+            playerEnterRoom.Raise();
             //FindObjectOfType<LevelMusic>().BossMusic();
             if (currentState == EnemyState.walk
                 && currentState != EnemyState.stagger && isFire==false && isAttacked==false && Vector3.Distance(target.position,
