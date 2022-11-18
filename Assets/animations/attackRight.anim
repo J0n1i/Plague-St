@@ -48,15 +48,15 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 1630291583, guid: da852dc3debe1b84f921f707efcde918, type: 3}
-    - time: 0.1
-      value: {fileID: 919168833, guid: da852dc3debe1b84f921f707efcde918, type: 3}
+      value: {fileID: -1167938896, guid: 036b68f97447a294e975038aa0504a76, type: 3}
+    - time: 0.083333336
+      value: {fileID: -1789707529, guid: 036b68f97447a294e975038aa0504a76, type: 3}
     - time: 0.18333334
-      value: {fileID: 664490812, guid: da852dc3debe1b84f921f707efcde918, type: 3}
-    - time: 0.28333333
-      value: {fileID: -1307808988, guid: da852dc3debe1b84f921f707efcde918, type: 3}
+      value: {fileID: -500571690, guid: 036b68f97447a294e975038aa0504a76, type: 3}
+    - time: 0.25
+      value: {fileID: -81287661, guid: 036b68f97447a294e975038aa0504a76, type: 3}
     - time: 0.33333334
-      value: {fileID: -1307808988, guid: da852dc3debe1b84f921f707efcde918, type: 3}
+      value: {fileID: -81287661, guid: 036b68f97447a294e975038aa0504a76, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -83,11 +83,11 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 1630291583, guid: da852dc3debe1b84f921f707efcde918, type: 3}
-    - {fileID: 919168833, guid: da852dc3debe1b84f921f707efcde918, type: 3}
-    - {fileID: 664490812, guid: da852dc3debe1b84f921f707efcde918, type: 3}
-    - {fileID: -1307808988, guid: da852dc3debe1b84f921f707efcde918, type: 3}
-    - {fileID: -1307808988, guid: da852dc3debe1b84f921f707efcde918, type: 3}
+    - {fileID: -1167938896, guid: 036b68f97447a294e975038aa0504a76, type: 3}
+    - {fileID: -1789707529, guid: 036b68f97447a294e975038aa0504a76, type: 3}
+    - {fileID: -500571690, guid: 036b68f97447a294e975038aa0504a76, type: 3}
+    - {fileID: -81287661, guid: 036b68f97447a294e975038aa0504a76, type: 3}
+    - {fileID: -81287661, guid: 036b68f97447a294e975038aa0504a76, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
