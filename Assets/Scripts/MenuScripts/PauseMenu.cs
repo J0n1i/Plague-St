@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
     private GameManager gameManager;
     public GameObject PauseMenuUi;
     public SignalSender healthResetSignal;
+    public GameObject MenuWarningUi;
 
     void Start(){
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -32,6 +33,19 @@ public class PauseMenu : MonoBehaviour
         healthResetSignal.Raise();
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
+    }
+
+
+    public void MenuWarning ()
+    {
+        PauseMenuUi.SetActive(false);
+        MenuWarningUi.SetActive(true);
+    }
+
+    public void MenuWarningGoBack ()
+    {
+        PauseMenuUi.SetActive(true);
+        MenuWarningUi.SetActive(false);
     }
 
 
