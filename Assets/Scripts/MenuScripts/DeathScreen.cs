@@ -8,6 +8,14 @@ public class DeathScreen : MonoBehaviour
 
     public GameObject deathScreenUi;
     public SignalSender healthResetSignal;
+    public GameObject[] DeathControls;
+    public GameObject PauseButton;
+
+
+    public void Awake()
+    {
+        DeathControls = GameObject.Find("PauseMenuCanvas").GetComponent<PauseMenu>().Controls;
+    }
 
     public void ShowDeathScreen ()
     {
@@ -19,6 +27,13 @@ public class DeathScreen : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         Time.timeScale = 0f;
         deathScreenUi.SetActive(true);
+        PauseButton.SetActive(false);
+
+        for (int i = 0; i < DeathControls.Length; i++)
+        {
+            DeathControls[i].SetActive(false);
+        }
+
     }
 
     public void Menu()
@@ -35,6 +50,10 @@ public class DeathScreen : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(1);
         deathScreenUi.SetActive(false);
+
+
+
+
     }
 
     void Update()

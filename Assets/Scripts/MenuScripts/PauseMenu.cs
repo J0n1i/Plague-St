@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject PauseMenuUi;
     public SignalSender healthResetSignal;
     public GameObject MenuWarningUi;
+    public GameObject[] Controls;
 
     void Start(){
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -40,12 +41,26 @@ public class PauseMenu : MonoBehaviour
     {
         PauseMenuUi.SetActive(false);
         MenuWarningUi.SetActive(true);
+
+        for (int i = 0; i < Controls.Length; i++)
+        {
+            Controls[i].SetActive(false);
+        }
+
+
     }
 
     public void MenuWarningGoBack ()
     {
         PauseMenuUi.SetActive(true);
         MenuWarningUi.SetActive(false);
+
+
+        for (int i = 0; i < Controls.Length; i++)
+        {
+            Controls[i].SetActive(true);
+        }
+
     }
 
 
