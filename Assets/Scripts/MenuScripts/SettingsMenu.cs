@@ -80,11 +80,13 @@ public class SettingsMenu : MonoBehaviour
     public void VolumeBar()
     {
         VolumeText.text = (int)(sfxSlider.value * 100f) + "%";
+        audioMixer.SetFloat("vfx", Mathf.Log10(sfxSlider.value) * 20);
     }
 
     public void MusicBar()
     {
         MusicText.text = (int)(musicSlider.value * 100f) + "%";
+        audioMixer.SetFloat("music", Mathf.Log10(musicSlider.value) * 20);
     }
 
 
