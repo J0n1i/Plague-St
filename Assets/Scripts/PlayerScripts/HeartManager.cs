@@ -17,6 +17,11 @@ public class HeartManager : MonoBehaviour
         InitHearts();
     }
 
+    public void revivePlayer(){
+        playerCurrentHealth.RuntimeValue = heartContainers.RuntimeValue * 2;
+        UpdateHearts();
+    }
+
     // Update is called once per frame
     public void InitHearts()
     {

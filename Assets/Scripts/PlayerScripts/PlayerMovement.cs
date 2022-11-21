@@ -376,7 +376,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
           SendAnalytics();
-
             PlayerIsDead = true;
             AudioPlayer.instance.PlaySound(playerDies, 1f);
             deatscreen.ShowDeathScreen();

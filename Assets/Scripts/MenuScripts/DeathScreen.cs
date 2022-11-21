@@ -17,6 +17,15 @@ public class DeathScreen : MonoBehaviour
         DeathControls = GameObject.Find("PauseMenuCanvas").GetComponent<PauseMenu>().Controls;
     }
 
+        public void HideDeathScreen ()
+    {
+        Debug.Log("A");
+        Time.timeScale = 1f;
+
+        StartCoroutine(Revive());
+    }
+
+
     public void ShowDeathScreen ()
     {
         StartCoroutine(Death());
@@ -32,6 +41,21 @@ public class DeathScreen : MonoBehaviour
         for (int i = 0; i < DeathControls.Length; i++)
         {
             DeathControls[i].SetActive(false);
+        }
+
+    }
+
+
+        private IEnumerator Revive()
+    {
+        Debug.Log("B"); 
+        yield return new WaitForSeconds(.5f);
+        deathScreenUi.SetActive(false);
+        PauseButton.SetActive(true);
+
+        for (int i = 0; i < DeathControls.Length; i++)
+        {
+            DeathControls[i].SetActive(true);
         }
 
     }
