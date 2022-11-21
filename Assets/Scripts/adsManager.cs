@@ -79,6 +79,7 @@ public class adsManager : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLis
     public void OnUnityAdsShowClick(string adUnitId) { }
     public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState)
     {
+        Debug.Log("Ad finished. Result: " + showCompletionState);
     }
 
 
