@@ -1,14 +1,36 @@
 using UnityEngine;
 using UnityEngine.Advertisements;
+using System.Collections;
 
 public class adsManager : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
     string gameId = "5011365";
 
+    [SerializeField] private GameObject player;
+    [SerializeField] private DeathScreen deathScreen;
+    private GameObject healthHolder;
+
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
-        Advertisement.Initialize(gameId, true, this);
+        Advertisement.Initialize(gameId, true);
+    }
+
+    void Start()
+    {
+        StartCoroutine(LateFindPlayer());
+    }
+
+    private IEnumerator LateFindPlayer()
+    {
+        yield return new WaitForSeconds(1f);
+        player = GameObject.FindGameObjectWithTag("Player");
+        deathScreen = GameObject.Find("DeathScreenCanvas").GetComponent<DeathScreen>();
+        healthHolder = GameObject.Find("HealthHolder");
+        if (player == null)
+        {
+            StartCoroutine(LateFindPlayer());
+        }
     }
 
     void Update()
@@ -77,9 +99,37 @@ public class adsManager : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLis
     {
     }
     public void OnUnityAdsShowClick(string adUnitId) { }
+
     public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState)
     {
-        Debug.Log("Ad finished. Result: " + showCompletionState);
+        if (adUnitId.Equals("Rewarded_Android") && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
+        {
+            Debug.Log("Unity Ads Rewarded Ad Completed");
+            // Grant a reward.
+
+            player.SetActive(true);
+            healthHolder.SetActive(true);
+
+            GameObject.Find("HeartContainers").GetComponent<HeartManager>().revivePlayer();
+
+            player.GetComponent<PlayerMovement>().PlayerIsDead = false;
+            player.GetComponent<PlayerMovement>().currentState = PlayerState.idle;
+            StartCoroutine(DeathIFrames());
+
+
+            Debug.Log("C");
+            deathScreen.HideDeathScreen();
+            FindObjectOfType<LevelMusic>().SceneMusic();
+
+            // Load another ad:
+            Advertisement.Load("Rewarded_Android", this);
+        }
+    }
+
+    IEnumerator DeathIFrames(){
+        player.GetComponent<PlayerMovement>().triggerCollider.enabled = false;
+        yield return new WaitForSeconds(1f);
+        player.GetComponent<PlayerMovement>().triggerCollider.enabled = true;
     }
 
 

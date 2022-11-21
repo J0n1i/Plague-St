@@ -1731,9 +1731,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.053903345
+    x: 0.05648148
     y: 0
-    width: 0.89244884
+    width: 0.8875
     height: 1
   near clip plane: -2.85
   far clip plane: 1000
@@ -2188,6 +2188,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+--- !u!1 &582613193 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6503545000353385145, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+  m_PrefabInstance: {fileID: 549206529}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &609475969
 GameObject:
   m_ObjectHideFlags: 0
@@ -5265,6 +5270,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c665f32ca5ac517489eaa51b70d4b75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  deathScreen: {fileID: 0}
 --- !u!4 &1700642608
 Transform:
   m_ObjectHideFlags: 0
@@ -5939,6 +5946,7 @@ MonoBehaviour:
   - {fileID: 2070546862}
   - {fileID: 1894250582}
   - {fileID: 1695962405}
+  - {fileID: 582613193}
   - {fileID: 1911952290}
   - {fileID: 663072490}
   - {fileID: 63709303}
