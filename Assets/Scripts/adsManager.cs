@@ -13,7 +13,7 @@ public class adsManager : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLis
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
-        Advertisement.Initialize(gameId, true);
+        Advertisement.Initialize(gameId, false);
     }
 
     void Start()
