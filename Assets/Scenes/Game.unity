@@ -5236,6 +5236,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1684414750}
   m_CullTransparentMesh: 1
+--- !u!1 &1695962405 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6503545000353385145, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+  m_PrefabInstance: {fileID: 549206529}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1700642606
 GameObject:
   m_ObjectHideFlags: 0
@@ -5933,12 +5938,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseMenuUi: {fileID: 1351428858}
+  PauseButton: {fileID: 0}
   healthResetSignal: {fileID: 11400000, guid: 24ae93a7fdb66c14ba690447c7c4fb07, type: 2}
   MenuWarningUi: {fileID: 725934178}
   Controls:
   - {fileID: 1121242584}
   - {fileID: 2070546862}
   - {fileID: 1894250582}
+  - {fileID: 1695962405}
   - {fileID: 582613193}
   - {fileID: 1911952290}
   - {fileID: 663072490}
