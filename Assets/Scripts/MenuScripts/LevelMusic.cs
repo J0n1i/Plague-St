@@ -28,6 +28,7 @@ public class LevelMusic : MonoBehaviour
         levelSong = true;
         deathSong = false;
         levelMusic.Play();
+        deathMusic.Stop();
     }
 
     public void DeathMusic()
