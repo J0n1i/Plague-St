@@ -124,7 +124,7 @@ private List<GameObject> enemies;
                 dashEffect.SetActive(false);
                 GetComponent<Pathfinding.AIPath>().maxSpeed = 3.5f;
                 currentState = EnemyState.walk;
-                DashTimer = 6f;
+                DashTimer = 7f;
     }
    
     public override void CheckDistance()
@@ -228,6 +228,8 @@ private List<GameObject> enemies;
         yield return new WaitForSeconds(0.5f);
          int LayerNotIgnoreRaycast = LayerMask.NameToLayer("Default");
         gameObject.layer = LayerNotIgnoreRaycast;
+        boxCollider.enabled = true;
+        capsuleCollider.enabled = true;
         currentState = EnemyState.walk;
         anim.SetBool("enrage", false);
         spawningEnemies = false;
@@ -320,6 +322,8 @@ private List<GameObject> enemies;
         spawningEnemies = true;
         int LayerIgnoreRaycast = LayerMask.NameToLayer("enemy");
         gameObject.layer = LayerIgnoreRaycast;
+        boxCollider.enabled = false;
+        capsuleCollider.enabled = false;
         currentState = EnemyState.attack;
         yield return new WaitForSeconds(0.25f);
         transform.position = posBoss;

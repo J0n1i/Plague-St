@@ -1110,9 +1110,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 10
+  m_MaxValue: 20
   m_WholeNumbers: 0
-  m_Value: 10
+  m_Value: 2
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1308,7 +1308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1909454717410003025}
   - component: {fileID: 765413640731470601}
-  - component: {fileID: 3918676344987798029}
+  - component: {fileID: 3132858397671005069}
   m_Layer: 0
   m_Name: Heal_2
   m_TagString: Untagged
@@ -1383,7 +1383,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &3918676344987798029
+--- !u!95 &3132858397671005069
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -1393,7 +1393,7 @@ Animator:
   m_GameObject: {fileID: 5608346353035106227}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b7edb0b7c86b6a94f96f3234591ee1f8, type: 2}
+  m_Controller: {fileID: 9100000, guid: 30a24e0a6d0dfab42bc01ca5905061db, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

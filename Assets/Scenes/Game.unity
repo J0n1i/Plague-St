@@ -1475,6 +1475,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6950644345181636764, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
   m_PrefabInstance: {fileID: 549206529}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &370608978 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6950644346175939415, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+  m_PrefabInstance: {fileID: 549206529}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d55b6c139b5442f4d8db0824883261f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &411187559
 GameObject:
   m_ObjectHideFlags: 0
@@ -1731,10 +1742,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.03900709
+    x: 0.10611593
     y: 0
-    width: 0.9214893
-    height: 1
+    width: 0.7878537
+    height: 0.9994861
   near clip plane: -2.85
   far clip plane: 1000
   field of view: 60
@@ -2186,7 +2197,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7635542189021660058, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+      propertyPath: signalEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7635542189021660058, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+    - {fileID: 2454325498793689166, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+    - {fileID: 1885475049379399184, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+    - {fileID: 8372180200390196805, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+    - {fileID: 6432966770308077849, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+    - {fileID: 370711364127361275, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+    - {fileID: 1362860084, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
 --- !u!1 &582613193 stripped
 GameObject:
@@ -3452,6 +3474,34 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6950644346032902602, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
   m_PrefabInstance: {fileID: 549206529}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1121242597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121242584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4716569c7e735ee4ba0148d55f5a8739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signal: {fileID: 11400000, guid: 24ae93a7fdb66c14ba690447c7c4fb07, type: 2}
+  signalEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 370608978}
+        m_TargetAssemblyTypeName: HeartManager, Assembly-CSharp
+        m_MethodName: resetHealth
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1177494993
 GameObject:
   m_ObjectHideFlags: 0
@@ -4505,6 +4555,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1743019620}
         m_TargetAssemblyTypeName: DeathScreen, Assembly-CSharp
         m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 370608978}
+        m_TargetAssemblyTypeName: HeartManager, Assembly-CSharp
+        m_MethodName: resetHealth
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

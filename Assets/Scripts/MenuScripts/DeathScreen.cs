@@ -62,16 +62,18 @@ public class DeathScreen : MonoBehaviour
 
     public void Menu()
     {
-        healthResetSignal.Raise();
+        
         Time.timeScale = 1f;
+        healthResetSignal.Raise();
         SceneManager.LoadScene(0);
     }
 
     public void Restart()
     {
         FindObjectOfType<LevelMusic>().SceneMusic();
-        healthResetSignal.Raise();
+        
         Time.timeScale = 1f;
+        healthResetSignal.Raise();
         SceneManager.LoadScene(1);
         deathScreenUi.SetActive(false);
 
