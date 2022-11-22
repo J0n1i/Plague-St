@@ -1030,8 +1030,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -183.23}
-  m_SizeDelta: {x: 160, y: 54.4937}
+  m_AnchoredPosition: {x: 0, y: -162.80635}
+  m_SizeDelta: {x: 160, y: 49.141}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &314685314
 MonoBehaviour:
@@ -1742,10 +1742,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.10611593
+    x: 0.03900709
     y: 0
-    width: 0.7878537
-    height: 0.9994861
+    width: 0.9214893
+    height: 1
   near clip plane: -2.85
   far clip plane: 1000
   field of view: 60
@@ -5527,7 +5527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -5995,14 +5995,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseMenuUi: {fileID: 1351428858}
-  PauseButton: {fileID: 0}
+  PauseButton: {fileID: 2077614227}
   healthResetSignal: {fileID: 11400000, guid: 24ae93a7fdb66c14ba690447c7c4fb07, type: 2}
   MenuWarningUi: {fileID: 725934178}
   Controls:
   - {fileID: 1121242584}
   - {fileID: 2070546862}
   - {fileID: 1894250582}
-  - {fileID: 0}
   - {fileID: 582613193}
   - {fileID: 1911952290}
   - {fileID: 663072490}

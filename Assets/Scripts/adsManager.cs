@@ -19,6 +19,7 @@ public class adsManager : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLis
     void Start()
     {
         StartCoroutine(LateFindPlayer());
+        LoadRewardedAd();
     }
 
     private IEnumerator LateFindPlayer()
@@ -72,7 +73,7 @@ public class adsManager : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLis
 
     public void ShowRewardedAd()
     {
-        LoadRewardedAd();
+        //LoadRewardedAd();
         // Note that if the ad content wasn't previously loaded, this method will fail
         Debug.Log("Showing Ad: " + "Rewarded_Android");
         Advertisement.Show("Rewarded_Android", this);
