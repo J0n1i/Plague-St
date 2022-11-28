@@ -62,24 +62,12 @@ public class PauseMenu : MonoBehaviour
         PauseMenuUi.SetActive(false);
         MenuWarningUi.SetActive(true);
 
-        for (int i = 0; i < Controls.Length; i++)
-        {
-            Controls[i].SetActive(false);
-        }
-
-
     }
 
     public void MenuWarningGoBack ()
     {
         PauseMenuUi.SetActive(true);
         MenuWarningUi.SetActive(false);
-
-
-        for (int i = 0; i < Controls.Length; i++)
-        {
-            Controls[i].SetActive(true);
-        }
 
     }
 
