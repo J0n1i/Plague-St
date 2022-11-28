@@ -34,7 +34,7 @@ public class BossEncounter : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
 
         mainCamera.GetComponent<CameraManager>().ShakeDamage();
-        bossRoom = GameObject.Find("Boss_Room(Clone)");
+        bossRoom = GameObject.FindGameObjectWithTag("bossroom");
         for (int i = 0; i < 4; i++)
         {
             bossRoom.transform.GetChild(1).GetChild(i).gameObject.SetActive(true);

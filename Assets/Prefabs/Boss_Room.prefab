@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 342571693353753315}
   m_Layer: 0
   m_Name: Boss_Room
-  m_TagString: Untagged
+  m_TagString: bossroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
