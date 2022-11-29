@@ -19,7 +19,7 @@ public class log : Enemy {
     public SpriteRenderer spriteRenderer;
     public Material originalMaterial;
     public Coroutine flashRoutine;
-    public AudioClip damageSound;
+    //public AudioClip damageSound;
 
     // Use this for initialization
     void Start () {

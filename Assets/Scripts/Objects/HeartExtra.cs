@@ -6,6 +6,7 @@ public class HeartExtra : Powerup
 {
      public FloatValue playerHealth;
       public FloatValue heartContainers;
+    public AudioClip heartBeat;
 
 public void OnTriggerEnter2D(Collider2D other)
     { 
@@ -22,6 +23,7 @@ public void OnTriggerEnter2D(Collider2D other)
             print(heartContainers.RuntimeValue);
             powerupSignal.Raise();
             powerupEffectSignal.Raise();
+            AudioPlayer.instance.PlaySound(heartBeat, 1f);
             Destroy(this.gameObject);
         }
 

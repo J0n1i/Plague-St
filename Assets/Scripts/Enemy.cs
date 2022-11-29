@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour {
     public EnemyState currentState;
     public FloatValue maxHealth;
     public float health;
+    public AudioClip dyingScream;
     public string enemyName;
     public int baseAttack;
     public float moveSpeed;
@@ -39,37 +40,33 @@ public class Enemy : MonoBehaviour {
     {
         health -= damage;
         playerAttackSignal.Raise();
-        
+        AudioPlayer.instance.PlaySound(damageSound, 1f);
+
         GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
         Destroy(effect, 0.15f);
         if(health <= 0)
         {
-        int dice = Random.Range(1, 101);
+            //Bossille tää huuto vaan
+            AudioPlayer.instance.PlaySound(dyingScream, 6f);
+
+            int dice = Random.Range(1, 101);
         if(dice < 71 && Elite==false){
             Instantiate(CoinDrop, transform.position, Quaternion.identity);
-            AudioPlayer.instance.PlaySound(damageSound, 1f);
 
             }
             else if (dice>70 && dice<80 && Elite==false) {
             Instantiate(HeartDrop, transform.position, Quaternion.identity);
-            AudioPlayer.instance.PlaySound(damageSound, 1f);
 
         } else if(Elite==true){
             Instantiate(CoinDrop, transform.position, Quaternion.identity);
             Instantiate(CoinDrop, transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity);
             Instantiate(CoinDrop, transform.position + new Vector3(-0.5f, 0, 0), Quaternion.identity);
             Instantiate(HeartDrop, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
-            AudioPlayer.instance.PlaySound(damageSound, 1f);
 
-            
-            
-            AudioPlayer.instance.PlaySound(damageSound, 1f);
         }
             GameObject.FindGameObjectWithTag("DungeonGenerator").GetComponent<DungeonFinalizer>().enemies.Remove(gameObject);
             DeathEffect();
             
-
-            AudioPlayer.instance.PlaySound(damageSound, 1f);
 
         }
     }
