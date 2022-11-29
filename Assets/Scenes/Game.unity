@@ -1156,7 +1156,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -7350307408274774908, guid: 77fcd684411c3424cb792adbfc58a183, type: 2}
   m_audioClip: {fileID: 8300000, guid: 878c25d3e4a81364f8f6163bd65ff8cb, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1515,7 +1515,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -7350307408274774908, guid: 77fcd684411c3424cb792adbfc58a183, type: 2}
   m_audioClip: {fileID: 8300000, guid: b90bf3ed68286e641aef3b867155aff4, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1742,10 +1742,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.0760095
     y: 0
-    width: 0
-    height: 0
+    width: 0.8474465
+    height: 1
   near clip plane: -2.85
   far clip plane: 1000
   field of view: 60
@@ -5003,7 +5003,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -7350307408274774908, guid: 77fcd684411c3424cb792adbfc58a183, type: 2}
   m_audioClip: {fileID: 8300000, guid: d7743988dc6ed034e9a6372c0b7c412d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 1
   Mute: 0

@@ -33,6 +33,9 @@ private List<GameObject> enemies;
     private float DashTimer;  
     private bool spawningEnemies;
     public SignalSender playerEnterRoom;
+    public AudioClip fireBall;
+    public AudioClip fireExplosion;
+    public AudioClip lightAura;
     
    
     // Start is called before the first frame update
@@ -133,7 +136,7 @@ private List<GameObject> enemies;
         {
             //Bossimusiikki alkaa
             playerEnterRoom.Raise();
-            //FindObjectOfType<LevelMusic>().BossMusic();
+            FindObjectOfType<LevelMusic>().BossMusic();
             if (currentState == EnemyState.walk
                 && currentState != EnemyState.stagger && isFire==false && isAttacked==false && Vector3.Distance(target.position,
                                transform.position) > shootRadius && currentState != EnemyState.attack && spawningEnemies == false)
@@ -221,7 +224,7 @@ private List<GameObject> enemies;
         bossMobsDead++;
         if(bossMobsDead == 2){
             StartCoroutine(WakeUp());
-        
+
         }
     }
     public IEnumerator WakeUp(){
@@ -250,6 +253,7 @@ private List<GameObject> enemies;
         }
         currentState = EnemyState.attack;
         anim.SetBool("attack", true);
+        AudioPlayer.instance.PlaySound(fireExplosion, 1f);
         yield return new WaitForSeconds(1f);
         currentState = EnemyState.walk;
         anim.SetBool("attack", false);
@@ -269,6 +273,7 @@ private List<GameObject> enemies;
         }
         currentState = EnemyState.attack;
         anim.SetBool("spin", true);
+        AudioPlayer.instance.PlaySound(fireExplosion, 1f);
         yield return new WaitForSeconds(1f);
         currentState = EnemyState.walk;
         anim.SetBool("spin", false);
@@ -284,7 +289,8 @@ private List<GameObject> enemies;
         isAttacked=true;
         currentState = EnemyState.attack;
         GetComponent<Pathfinding.AIPath>().maxSpeed = 0f;
-        anim.SetBool("shoot", true); 
+        anim.SetBool("shoot", true);
+        AudioPlayer.instance.PlaySound(fireBall, 1f);
         yield return new WaitForSeconds(0.5f);
         Vector3 dir = target.position - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -295,7 +301,8 @@ private List<GameObject> enemies;
         if(random == 1 && canShootTwice == true || enraged==true && canShootTwice == true){
         yield return new WaitForSeconds(0.2f); 
         anim.SetBool("shoot", true);
-        yield return new WaitForSeconds(0.5f); 
+            AudioPlayer.instance.PlaySound(fireBall, 1f);
+            yield return new WaitForSeconds(0.5f); 
             Vector3 dir1 = target.position - transform.position;
         float angle1 = Mathf.Atan2(dir1.y, dir1.x) * Mathf.Rad2Deg;
         Quaternion rotation1 = Quaternion.AngleAxis(angle1, Vector3.forward);
@@ -329,6 +336,7 @@ private List<GameObject> enemies;
         transform.position = posBoss;
         GetComponent<Pathfinding.AIPath>().maxSpeed = 0f;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        AudioPlayer.instance.PlaySound(lightAura, 1f);
         pos = new Vector3(transform.position.x + Random.Range(-2,2), transform.position.y + Random.Range(-2,2), transform.position.z);
         pos1 = new Vector3(transform.position.x + Random.Range(-2,2), transform.position.y + Random.Range(-2,2), transform.position.z);
         yield return new WaitForSeconds(1f);
