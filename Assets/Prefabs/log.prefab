@@ -200,7 +200,7 @@ MonoBehaviour:
   HeartDrop: {fileID: 1920694392575528832, guid: 1327b3039c883a24e853986571ed791f, type: 3}
   deathEffect: {fileID: 7223149412690510492, guid: 2f1d66385a0fe7b4f96617e6b0d7bdb1, type: 3}
   hitEffect: {fileID: 5900786407453424581, guid: 1976633dc7bb01a4a8ee0af66e125115, type: 3}
-  damageSound: {fileID: 0}
+  damageSound: {fileID: 8300000, guid: 1b42bf4418cb8584690312d4084255b9, type: 3}
   anim: {fileID: 8433158962445273155}
   isDead: 0
   playerAttackSignal: {fileID: 11400000, guid: 2287684f6a93d764db7b71a0194f3e7f, type: 2}

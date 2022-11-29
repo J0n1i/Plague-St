@@ -7,6 +7,7 @@ public class Heart : Powerup
       public FloatValue playerHealth;
       public FloatValue heartContainers;
       public float amountToIncrease;
+    public AudioClip healing;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ if(playerHealth.RuntimeValue > heartContainers.RuntimeValue *2f) {
         playerHealth.RuntimeValue = heartContainers.RuntimeValue * 2f;
 }
             powerupSignal.Raise();
+            AudioPlayer.instance.PlaySound(healing, 1f);
             Destroy(this.gameObject);
         }
     }

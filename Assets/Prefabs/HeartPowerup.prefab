@@ -129,6 +129,7 @@ MonoBehaviour:
   powerupEffectSignal: {fileID: 11400000, guid: 9c00f6a5f6a8a6a4a805fb237d11c9f4, type: 2}
   playerHealth: {fileID: 11400000, guid: 560e642d3d224fd459fd2b52f06b574e, type: 2}
   heartContainers: {fileID: 11400000, guid: 077c25cd8926c93449e2faafe753169c, type: 2}
+  heartBeat: {fileID: 8300000, guid: 1bd7c2d99163c454d89d73fe5bdc0f0b, type: 3}
 --- !u!1 &5963745360787113217
 GameObject:
   m_ObjectHideFlags: 0
