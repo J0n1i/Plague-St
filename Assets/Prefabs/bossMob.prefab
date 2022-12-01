@@ -1345,6 +1345,7 @@ MonoBehaviour:
   currentState: 0
   maxHealth: {fileID: 11400000, guid: 61f52921479cef34e8feb77e49143f29, type: 2}
   health: 4
+  dyingScream: {fileID: 0}
   enemyName: bossmob
   baseAttack: 1
   moveSpeed: 3
@@ -1358,7 +1359,7 @@ MonoBehaviour:
   playerAttackSignal: {fileID: 11400000, guid: 2287684f6a93d764db7b71a0194f3e7f, type: 2}
   myRigidbody: {fileID: 8279953100408016392}
   target: {fileID: 0}
-  chaseRadius: 20
+  chaseRadius: 50
   attackRadius: 2.3
   homePosition: {fileID: 0}
   timer: 4

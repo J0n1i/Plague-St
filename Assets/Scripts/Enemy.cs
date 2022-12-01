@@ -36,6 +36,9 @@ public class Enemy : MonoBehaviour {
         health = maxHealth.initialValue;
         
     }
+    public void Boss1TakeDamage(){
+        TakeDamage(1f);
+    }
     private void TakeDamage(float damage)
     {
         health -= damage;
@@ -46,7 +49,7 @@ public class Enemy : MonoBehaviour {
         Destroy(effect, 0.15f);
         if(health <= 0)
         {
-            //Bossille tää huuto vaan
+            //Bossille tï¿½ï¿½ huuto vaan
             AudioPlayer.instance.PlaySound(dyingScream, 6f);
 
             int dice = Random.Range(1, 101);

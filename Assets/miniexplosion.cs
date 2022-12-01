@@ -8,7 +8,7 @@ public class miniexplosion : MonoBehaviour
     void Start()
     {
 
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject, 0.6f);
     }
 
     // Update is called once per frame
