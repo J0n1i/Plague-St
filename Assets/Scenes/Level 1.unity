@@ -489,7 +489,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0.00012207031, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &119917126
@@ -1742,10 +1742,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.0760095
-    y: 0
-    width: 0.8474465
-    height: 1
+    x: 0
+    y: 0.1072523
+    width: 0.9985368
+    height: 0.7855098
   near clip plane: -2.85
   far clip plane: 1000
   field of view: 60
@@ -1901,7 +1901,7 @@ MonoBehaviour:
   m_RefResolutionX: 426
   m_RefResolutionY: 240
   m_CropFrame: 4
-  m_GridSnapping: 2
+  m_GridSnapping: 0
   m_UpscaleRT: 0
   m_PixelSnapping: 0
   m_CropFrameX: 0
@@ -3464,7 +3464,7 @@ MonoBehaviour:
   - {fileID: 8279953100408016391, guid: 88e92016138ca1449a58d159795aa64b, type: 3}
   enemyElitePrefab:
   - {fileID: 8279953100408016391, guid: 29f3eee67be01754899b64a5912fc919, type: 3}
-  bossPrefab: {fileID: 8279953100408016391, guid: b95f5be0bef699d4cb05e16fd94ca371, type: 3}
+  bossPrefab: {fileID: 8279953100408016391, guid: c27a241347376934b8c686f5a51eb4d3, type: 3}
   treasurePrefab: {fileID: 3446665502613183302, guid: a34fa35588d5f844dacdeb36b00bfe0f, type: 3}
   tutorialPrefab: {fileID: 8675695251296673639, guid: 67af0a6a8fb0687468acfd753772771e, type: 3}
   rooms: []
@@ -6319,7 +6319,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 34.924, y: -34.64325}
+  m_AnchoredPosition: {x: 34.92395, y: -34.64325}
   m_SizeDelta: {x: 69.848816, y: 69.2865}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2077614229

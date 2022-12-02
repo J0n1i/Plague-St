@@ -2203,7 +2203,7 @@ MonoBehaviour:
   playerAttackSignal: {fileID: 11400000, guid: 2287684f6a93d764db7b71a0194f3e7f, type: 2}
   myRigidbody: {fileID: 0}
   target: {fileID: 0}
-  chaseRadius: 12
+  chaseRadius: 5
   attackRadius: 5
   homePosition: {fileID: 0}
   timer: 0
