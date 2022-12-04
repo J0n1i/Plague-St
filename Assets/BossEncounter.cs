@@ -13,6 +13,10 @@ public class BossEncounter : MonoBehaviour
         {
             player = col.gameObject;
             boss = GameObject.Find("Boss(Clone)");
+            if (boss == null)
+            {
+                boss = GameObject.Find("Boss 1(Clone)");
+            }
             mainCamera = Camera.main.gameObject;
             if (encounterStarted == false)
             {
@@ -51,6 +55,13 @@ public class BossEncounter : MonoBehaviour
 
 
         //Enable boss AI
-        boss.GetComponent<BossEnemy>().chaseRadius = 100f;
+        if (boss.GetComponent<BossEnemy>() != null)
+        {
+            boss.GetComponent<BossEnemy>().chaseRadius = 100f;
+        } else {
+            boss.GetComponent<BossEnemy1>().chaseRadius = 100f; 
+            boss.GetComponent<BossEnemy1>().attackRadius = 100f; 
+        }
+        
     }
 }
