@@ -182,6 +182,9 @@ private List<GameObject> enemies;
                     transform.position) > closeRadius
                     )
         {
+            if(logiSpawned == false){
+            StartCoroutine(SpawnLogi());
+        }
             if (currentState == EnemyState.walk
                 && currentState != EnemyState.stagger && isTimer==false && isAttacked==false && currentState != EnemyState.attack && spawningEnemies == false)
             {
