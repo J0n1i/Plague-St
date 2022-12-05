@@ -1744,8 +1744,8 @@ Camera:
     serializedVersion: 2
     x: 0.07356547
     y: 0
-    width: 0.85311425
-    height: 1.0010215
+    width: 0.8509379
+    height: 0.99846786
   near clip plane: -2.85
   far clip plane: 1000
   field of view: 60
