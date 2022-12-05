@@ -36,7 +36,7 @@ public class SettingsMenu : MonoBehaviour
             MainMenu.SetActive(false);
             ModifyMenu.SetActive(true);
         }
-        else if (buildIndex == 1)
+        else if (buildIndex == 1 || buildIndex == 2)
         {
             PauseMenuUi.SetActive(false);
             ModifyMenu.SetActive(true);
@@ -61,7 +61,7 @@ public class SettingsMenu : MonoBehaviour
             saveManager.saveData.musicVolume = musicSlider.value;
             saveManager.SaveGame();
         }
-        else if (buildIndex == 1)
+        else if (buildIndex == 1 || buildIndex == 2)
         {
             PauseMenuUi.SetActive(true);
             ModifyMenu.SetActive(false);
