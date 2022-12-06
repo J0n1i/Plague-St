@@ -35,7 +35,7 @@ private List<GameObject> enemies;
     private float DashTimer;  
     private bool spawningEnemies;
     public SignalSender playerEnterRoom;
-    
+    public bool hurt;
    
     // Start is called before the first frame update
    void Start () {
@@ -47,7 +47,7 @@ private List<GameObject> enemies;
         currentState = EnemyState.idle;
         target = GameObject.FindWithTag("Player").transform;
         GetComponent<Pathfinding.AIPath>().enabled = false;
-        timer = 5f;
+        timer = 7f;
         //enable pathfinding
         fireTimer = 5f;
         Attacktimer = 2f;
@@ -63,7 +63,7 @@ private List<GameObject> enemies;
     void Update()
     {
         
-        if(currentState!=EnemyState.stagger && currentState!=EnemyState.attack){
+        if(currentState!=EnemyState.stagger && currentState!=EnemyState.attack && hurt!=true){
              Vector3 temp = Vector3.MoveTowards(transform.position,
                                                          target.position,
                                                          moveSpeed * Time.deltaTime);
@@ -76,7 +76,7 @@ private List<GameObject> enemies;
             timer -= Time.deltaTime;
             if(timer <= 0){
                 isTimer = false;
-                timer = 5f;
+                timer = 6.5f;
                 if(enraged == true){
                     timer= 4f;
                 }
@@ -86,7 +86,7 @@ private List<GameObject> enemies;
             timer -= Time.deltaTime;
             if(timer <= 0){
                 isSpin = false;
-                timer = 5f;
+                timer = 5.5f;
                 if(enraged == true){
                     timer= 4f;
                 }
@@ -96,7 +96,7 @@ private List<GameObject> enemies;
             fireTimer -= Time.deltaTime;
             if(fireTimer <= 0){
                 isFire = false;
-                fireTimer = 5f;
+                fireTimer = 5.5f;
                 if(enraged == true){
                     fireTimer= 4.5f;
                 }
@@ -106,7 +106,7 @@ private List<GameObject> enemies;
             Attacktimer -= Time.deltaTime;
             if(Attacktimer <= 0){
                 isAttacked = false;
-                Attacktimer = 3f;
+                Attacktimer = 3.2f;
                 if(enraged == true){
                     Attacktimer= 2.5f;
                 }
@@ -146,7 +146,7 @@ private List<GameObject> enemies;
             //FindObjectOfType<LevelMusic>().BossMusic();
             if (currentState == EnemyState.walk
                 && currentState != EnemyState.stagger && isFire==false && isAttacked==false && Vector3.Distance(target.position,
-                               transform.position) > shootRadius && currentState != EnemyState.attack && spawningEnemies == false)
+                               transform.position) > shootRadius && currentState != EnemyState.attack && spawningEnemies == false && hurt!=true)
             {
                 int random = Random.Range(1, 4);
                 if(random == 1){
@@ -161,7 +161,7 @@ private List<GameObject> enemies;
                 
             }
             else if (currentState == EnemyState.idle || currentState == EnemyState.walk
-                && currentState != EnemyState.stagger && currentState != EnemyState.attack)
+                && currentState != EnemyState.stagger && currentState != EnemyState.attack && hurt!=true)
             {
                 Vector3 temp = Vector3.MoveTowards(transform.position,
                                                          target.position,
@@ -186,7 +186,7 @@ private List<GameObject> enemies;
             StartCoroutine(SpawnLogi());
         }
             if (currentState == EnemyState.walk
-                && currentState != EnemyState.stagger && isTimer==false && isAttacked==false && currentState != EnemyState.attack && spawningEnemies == false)
+                && hurt!=true && currentState != EnemyState.stagger && isTimer==false && isAttacked==false && currentState != EnemyState.attack && spawningEnemies == false)
             {
                  int random = Random.Range(1, 4);
                 if(random == 1){
@@ -200,7 +200,7 @@ private List<GameObject> enemies;
                 
                 
             }
-            else if (currentState == EnemyState.idle || currentState == EnemyState.walk
+            else if (hurt!=true && currentState == EnemyState.idle || currentState == EnemyState.walk
                 && currentState != EnemyState.stagger && currentState != EnemyState.attack)
             {
                 Vector3 temp = Vector3.MoveTowards(transform.position,
@@ -221,7 +221,7 @@ private List<GameObject> enemies;
                     transform.position) <= closeRadius)
         {   
             if (currentState == EnemyState.walk
-                && currentState != EnemyState.stagger && isSpin == false && isAttacked==false && currentState != EnemyState.attack)
+                && currentState != EnemyState.stagger && hurt!=true  && isSpin == false && isAttacked==false && currentState != EnemyState.attack)
             {
                  int random = Random.Range(1, 4);
                 if(random == 1){
@@ -236,7 +236,7 @@ private List<GameObject> enemies;
                 
             }
             else if (currentState == EnemyState.idle || currentState == EnemyState.walk
-                && currentState != EnemyState.stagger && currentState != EnemyState.attack)
+                && currentState != EnemyState.stagger && hurt!=true &&  currentState != EnemyState.attack)
             {
                 Vector3 temp = Vector3.MoveTowards(transform.position,
                                                          target.position,
@@ -252,10 +252,19 @@ private List<GameObject> enemies;
     public void bossMobDead(){
         bossMobsDead++;
         Boss1TakeDamage();
+        StartCoroutine(hurtCo());
         if(bossMobsDead % 2 == 0 && health > 0){
             StartCoroutine(SpawnLogi());
         
         }
+    }
+    
+    public IEnumerator hurtCo(){
+        hurt=true;
+        anim.SetBool("hurt", true);
+        yield return new WaitForSeconds(0.2f);
+        anim.SetBool("hurt", false);
+        hurt=false;    
     }
 
     public IEnumerator AttackCo()
@@ -346,9 +355,10 @@ private List<GameObject> enemies;
    
     public IEnumerator SpawnLogi()
     {
-        logiSpawned = true;        
+        logiSpawned = true;  
+        spawningEnemies = true;  
         anim.SetBool("spin", true);
-        spawningEnemies = true;
+        
         
         currentState = EnemyState.attack;
         yield return new WaitForSeconds(0.25f);

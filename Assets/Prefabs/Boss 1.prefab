@@ -2491,7 +2491,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4734676305907492871}
   - component: {fileID: 2541972420580151150}
-  - component: {fileID: 2643417348067250600}
+  - component: {fileID: 3673516883370927838}
   m_Layer: 0
   m_Name: Implosion_3
   m_TagString: Untagged
@@ -2566,7 +2566,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &2643417348067250600
+--- !u!95 &3673516883370927838
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0

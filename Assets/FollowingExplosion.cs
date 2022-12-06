@@ -32,8 +32,8 @@ public class FollowingExplosion : MonoBehaviour
         
         if (timer < 5f)
         {
-            transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
-            moveSpeed += 0.01f;
+            transform.localScale += new Vector3(0.35f, 0.35f, 0f) * Time.deltaTime;
+            moveSpeed += 0.3f * Time.deltaTime;
         }
         if(timer >= 7f){
             StartCoroutine(Explosion());
