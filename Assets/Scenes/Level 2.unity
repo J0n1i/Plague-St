@@ -485,7 +485,7 @@ RectTransform:
   - {fileID: 1430279755}
   - {fileID: 1457008683}
   m_Father: {fileID: 367067219}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1742,9 +1742,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.07356547
+    x: 0.081770085
     y: 0
-    width: 0.8509379
+    width: 0.8345659
     height: 0.99846786
   near clip plane: -2.85
   far clip plane: 1000
@@ -1901,7 +1901,7 @@ MonoBehaviour:
   m_RefResolutionX: 426
   m_RefResolutionY: 240
   m_CropFrame: 4
-  m_GridSnapping: 2
+  m_GridSnapping: 0
   m_UpscaleRT: 0
   m_PixelSnapping: 0
   m_CropFrameX: 0
@@ -2063,7 +2063,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 367067219}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5951,11 +5951,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1894250582 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1590323813, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
-  m_PrefabInstance: {fileID: 549206529}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1911952290 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1587381125, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
@@ -6001,7 +5996,7 @@ MonoBehaviour:
   Controls:
   - {fileID: 1121242584}
   - {fileID: 2070546862}
-  - {fileID: 1894250582}
+  - {fileID: 0}
   - {fileID: 582613193}
   - {fileID: 1911952290}
   - {fileID: 663072490}
