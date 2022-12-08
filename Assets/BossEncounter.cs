@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BossEncounter : MonoBehaviour
 {
@@ -58,10 +60,54 @@ public class BossEncounter : MonoBehaviour
         if (boss.GetComponent<BossEnemy>() != null)
         {
             boss.GetComponent<BossEnemy>().chaseRadius = 100f;
-        } else {
-            boss.GetComponent<BossEnemy1>().chaseRadius = 100f; 
-            boss.GetComponent<BossEnemy1>().attackRadius = 100f; 
         }
-        
+        else
+        {
+            boss.GetComponent<BossEnemy1>().chaseRadius = 100f;
+            boss.GetComponent<BossEnemy1>().attackRadius = 100f;
+        }
+
     }
+
+
+    public void BossDeath()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<PlayerMovement>().inputEnabled = false;
+        player.GetComponent<PlayerMovement>().triggerCollider.enabled = false;
+        Debug.Log("Boss Died");
+        StartCoroutine(BossDeathCo());
+        DontDestroyOnLoad(player);
+        GameObject.Find("HeartContainers").GetComponent<HeartManager>().revivePlayer();
+
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            BossDeath();
+        }
+
+        if (fadeScreen != null)
+        {
+            fadeScreen.color = Color.Lerp(fadeScreen.color, Color.black, 4 * Time.deltaTime);
+        }
+    }
+
+
+    private Image fadeScreen;
+    IEnumerator BossDeathCo()
+    {
+        yield return new WaitForSeconds(3f);
+        fadeScreen = GameObject.Find("FadeOut").GetComponent<Image>();
+
+        yield return new WaitForSeconds(3f);
+        player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<PlayerMovement>().inputEnabled = true;
+        player.GetComponent<PlayerMovement>().triggerCollider.enabled = true;
+        SceneManager.LoadScene(2);
+    }
+
+
 }

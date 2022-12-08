@@ -306,6 +306,7 @@ GameObject:
   - component: {fileID: 82680331}
   - component: {fileID: 82680330}
   - component: {fileID: 82680333}
+  - component: {fileID: 82680334}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -366,6 +367,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ffea86d1fe9b9e40997899cd97b3943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &82680334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82680329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 912cc4333191a174ba15fc77e4837680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &111288426
@@ -1742,10 +1755,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.07356547
+    x: 0.33049643
     y: 0
-    width: 0.85311425
-    height: 1.0010215
+    width: 0.66719854
+    height: 0.72108847
   near clip plane: -2.85
   far clip plane: 1000
   field of view: 60
@@ -2104,6 +2117,26 @@ PrefabInstance:
     - target: {fileID: 1403817965, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1403817967, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1403817967, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1403817967, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1403817967, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535543845, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6950644345181636760, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
       propertyPath: m_Name

@@ -40,7 +40,12 @@ public class GameManager : MonoBehaviour
     }
 
     private void SpawnPlayer(){
-        player = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        if(GameObject.FindWithTag("Player") == null){
+            player = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);    
+        }else{
+            player = GameObject.FindWithTag("Player");
+        }
+
         playerSpawned = true;
         canvas.gameObject.SetActive(true);
     }

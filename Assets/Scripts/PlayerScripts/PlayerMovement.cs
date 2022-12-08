@@ -63,7 +63,8 @@ public class PlayerMovement : MonoBehaviour
     private float timePlayed;
     private bool bossRoomEntered;
 
-    async void Start2(){
+    async void Start2()
+    {
         try
         {
             await UnityServices.InitializeAsync();
@@ -71,12 +72,13 @@ public class PlayerMovement : MonoBehaviour
         }
         catch (ConsentCheckException e)
         {
-          // Something went wrong when checking the GeoIP, check the e.Reason and handle appropriately.
+            // Something went wrong when checking the GeoIP, check the e.Reason and handle appropriately.
         }
     }
     // Use this for initialization
     void Start()
     {
+        Initialize();
         Start2();
         enemiesKilled = 0;
         closestEnemy = null;
@@ -92,18 +94,32 @@ public class PlayerMovement : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
         animator.SetFloat("moveX", 0);
         animator.SetFloat("moveY", -1);
-        joystick = GameObject.Find("Canvas").GetComponentInChildren<Joystick>();
+        specialCooldownImageNotAvailable.enabled = true;
+    }
+
+    public void Initialize()
+    {
+        gameObject.transform.position = Vector2.zero;
+        Debug.Log("Initialized");
+        joystick = GameObject.Find("Fixed Joystick").GetComponent<Joystick>();
         deatscreen = GameObject.Find("DeathScreenCanvas").GetComponent<DeathScreen>();
         specialCooldownImage = GameObject.Find("specialCooldown").GetComponent<Image>();
         specialCooldownImageNotAvailable = GameObject.Find("specialCooldownNotAvailable").GetComponent<Image>();
-        specialCooldownImageNotAvailable.enabled = true;
-
         enemies = GameObject.FindGameObjectWithTag("DungeonGenerator").GetComponent<DungeonFinalizer>().enemies;
     }
+
     void Update()
     {
+        if(joystick == null)
+        {
+            Initialize();
+        }
+
+
+
+
         timePlayed += Time.deltaTime;
-       
+
         if (inputEnabled == true)
         {
             if (Input.GetButtonDown("attack") && currentState != PlayerState.attack
@@ -375,7 +391,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-          SendAnalytics();
+            SendAnalytics();
             PlayerIsDead = true;
             AudioPlayer.instance.PlaySound(playerDies, 1f);
             deatscreen.ShowDeathScreen();
@@ -384,23 +400,26 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
-    public void SendAnalytics(){
-         
+    public void SendAnalytics()
+    {
+
         Dictionary<string, object> parameter = new Dictionary<string, object>()
         {
             { "Enemies_Killed", enemiesKilled },
             { "Time_Playeddd", (int)timePlayed},
             { "Boss_Killed", bossKilled},
             {"BossRoom_Entered", bossRoomEntered}
- 
+
       };
         Events.CustomData("EnemiesKilled", parameter);
     }
-    public void BossKilled(){
+    public void BossKilled()
+    {
         bossKilled = true;
         SendAnalytics();
     }
-    public void BossRoomEntered(){
+    public void BossRoomEntered()
+    {
         bossRoomEntered = true;
     }
 

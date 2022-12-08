@@ -60,6 +60,12 @@ private List<GameObject> enemies;
     // Update is called once per frame
     void Update()
     {
+        if(health <= 0){
+            GameObject.Find("EnterTrigger").GetComponent<BossEncounter>().BossDeath();
+        }
+
+
+
         DashTimer -= Time.deltaTime;
         healthBar.value = health;
         if(health <= 7)
@@ -116,7 +122,6 @@ private List<GameObject> enemies;
                 DashTimer = 7.5f;
             }
         }
-
     }
     public IEnumerator Dash(){
                 isDashed = true;
