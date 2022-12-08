@@ -485,7 +485,7 @@ RectTransform:
   - {fileID: 1430279755}
   - {fileID: 1457008683}
   m_Father: {fileID: 367067219}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -793,7 +793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAQIexFF0rydgIAADMFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1zokAQ/SvWnNcUGCKyt11izB6SWDFbuXAZoZEphxlqPqIm5X/fngGEuF4cXne/ef264YswoRvIjVQrxYonWQD5OSHuTH5MhuAjHOlOig37hD7nnRWmcknU57xSwyTioSvTsgajWP5L7LhLDhC0gpVS1ctiB6nURiNcUq4BQ0oaVy0Q+pqQI/5NE1dywtMsdqdPPCXB5IzHHIQBNaQGNwn+FlEchV1JcBN5aHG76EoXN0kU3M6T5TRYeBIrck7rBgrX0cAVBZdrg9AnCuy2y3H0ueSc6U4qMafGW5HSRltsFBMKRrF1r8/lV8B2lXF84+KXstRgOl8UPd0zhQ62rOS3bG2tqd63yj4ot17ArBXfkj79F5+2kksl68f+3tB3ZCqW71/pKafajHwfw/ffhVtxoHxPtxzeKxDPcqWkFQUGjbKu1GqY3Q+Pl9bSCvL9gLdSr0DbjKbXz6yblOvh7Ls/ppzV23acLbDh0vvtdwMUTuYPCvabozsKRJ2Kvxre6G68Yl3ggSltMNR1KZy8rbTKpZKl98x1Y00qlQAPd6IbEJSb0xppzPUIr2Kja68iD9S9TN3lXax/R65KPDzkB8FVaC0Pl2HpSh6eQFcv1nAmYBDtAs/oUyqFaDds7ElftrGqpPmobGdZ8X21SHEXzmdRvA2j+SKI78op3G2TZBvDPKRlHFMgfveYwD4pX7dCO3twamIgF7hn/TdmslK08dteKHpYsc9ajixnopSbXAGIl5bhIhwUXoJvZbEsGBq0AWOY8PMmXxnhMt9DkV2IMt/p8mgUzQaWjDTsQxqHZCT1H5WMOPiyy2sFHwwO7vKe7EzO/wBQSwMEFAAACAgAABAh7NUletZtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tFKKqaGZkYl5kqGJmYWBuWmabqppkqVlknmqmWFimrl5YqpSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAABAh7EUXSvJ2AgAAMwUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAABAh7NUletZtAAAAeAAAAAkAJAAAAAAAAAAAAAAAwwIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAAB7AwAAAAA=
+    dataString: UEsDBBQAAAgIAAAIIey7BnaleQIAADEFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1zokAQ/SvWnFcLjErY2y4as4ckVsxWLlxGaGTKYYaaj6hJ+d+3ZwAhrheH97p7Xr9u+CJM6BoyI9VasfxJ5kB+jog7kx+jnnyEE91LsWWf0MW8s9yULoj6mFdqmEQ8dGlaVmAUy36JPXfBAYJWsEKqapXvIZHaaIQLyjUgpaRx2QKhrxE54d84dilnPE0jd/rEUxyMLnjMQBhQfeh8MovjeD5r48f3k9j9ojZrHE4WQXwXRmG4GgcLX8KKjNOqhtz1M6g0Ddsid2ETKLDXNsZRmeSc6VYoMefaG5HQWltsEwNyRrFxr87Fl8D2pXFNDJNfikKDaV1R9LxkCv1rqpLfsjG1ovrQKPug3HoB03uvqSn69B8/Dj1dKFk9dveGgbvDlCw7vNJzRrUZuD6El9+FW3Gk/EB3HN5LEM9yraQVOZJGWZdqNUyX/eO1taSE7NDjjdQb0Na9492Qg+uwRpeL7/6UcFbtHDWZNcCWS++33wxQOJk/KNjvjW5LIOpU/NXwRvfDBWuJB6a0QartUjh5O2mVCyUr75nrxppEKgEebkXXICg35w2WMbcjvOEG194wD9S9Su3lLde9ITcpHu7jg+CG2sjjdVi6lMcn0OWLNZwJ6EU74hl9SqQQzYYNPenStlYVNBuk7S3Lv68WyefhYjqLduFscR9E82IM810c7yJYhLSIIgrE7x4T2Cflm0Zoaw9OTfTFBe5Z94UZrRWt/bbnih7X7LOSA8uZKOQ2UwDipalwFQ4KL8G3Ml/lDA3agjFM+HmTr5RwmR0gT6+FUt/p6mQUTfsqKanZhzQOSUniPykpcfB1lzcKPhgc3eVdsQu5/ANQSwMEFAAACAgAAAgh7NUletZtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tFKKqaGZkYl5kqGJmYWBuWmabqppkqVlknmqmWFimrl5YqpSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAAgh7LsGdqV5AgAAMQUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAAgh7NUletZtAAAAeAAAAAkAJAAAAAAAAAAAAAAAxgIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAAB+AwAAAAA=
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -1742,10 +1742,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.07356547
+    x: 0.081770085
     y: 0
-    width: 0.8509379
-    height: 0.99846786
+    width: 0.8367003
+    height: 1.0010215
   near clip plane: -2.85
   far clip plane: 1000
   field of view: 60
@@ -1901,7 +1901,7 @@ MonoBehaviour:
   m_RefResolutionX: 426
   m_RefResolutionY: 240
   m_CropFrame: 4
-  m_GridSnapping: 2
+  m_GridSnapping: 0
   m_UpscaleRT: 0
   m_PixelSnapping: 0
   m_CropFrameX: 0
@@ -2063,7 +2063,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 367067219}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5951,11 +5951,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1894250582 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1590323813, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
-  m_PrefabInstance: {fileID: 549206529}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1911952290 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1587381125, guid: 17dfd371c8f2ea347acf3d017d509cac, type: 3}
@@ -6001,7 +5996,7 @@ MonoBehaviour:
   Controls:
   - {fileID: 1121242584}
   - {fileID: 2070546862}
-  - {fileID: 1894250582}
+  - {fileID: 0}
   - {fileID: 582613193}
   - {fileID: 1911952290}
   - {fileID: 663072490}

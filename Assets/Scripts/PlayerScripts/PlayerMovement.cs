@@ -29,12 +29,12 @@ public class PlayerMovement : MonoBehaviour
     public FloatValue currentHealth;
     public SignalSender playerHealthSignal;
     public SignalSender playerAttackSignal;
-    public SignalSender playerSpecialSignal;
+ 
     public SignalSender playerDamageSignal;
     private float rollSpeed;
     public float rollLength = .6f;
     public float rollCooldown = 5f;
-    public float specialCooldown = 30f;
+
     private float originalSpeed;
     private float originalRollSpeed;
     private float originalRollCooldown;
@@ -43,11 +43,12 @@ public class PlayerMovement : MonoBehaviour
     private float timer;
     private bool isTimer;
     public bool isRolling;
-    public bool isSpecial;
+
     public int coins;
     public Image cooldownImage;
-    private Image specialCooldownImage;
-    private Image specialCooldownImageNotAvailable;
+    public Image cooldownImage2;
+    public Image cooldownImage3;
+
     private DeathScreen deatscreen;
     public Inventory playerInventory;
     public AudioClip attackSound;
@@ -94,9 +95,6 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("moveY", -1);
         joystick = GameObject.Find("Canvas").GetComponentInChildren<Joystick>();
         deatscreen = GameObject.Find("DeathScreenCanvas").GetComponent<DeathScreen>();
-        specialCooldownImage = GameObject.Find("specialCooldown").GetComponent<Image>();
-        specialCooldownImageNotAvailable = GameObject.Find("specialCooldownNotAvailable").GetComponent<Image>();
-        specialCooldownImageNotAvailable.enabled = true;
 
         enemies = GameObject.FindGameObjectWithTag("DungeonGenerator").GetComponent<DungeonFinalizer>().enemies;
     }
@@ -111,12 +109,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 StartCoroutine(AttackCo());
             }
-            else if (Input.GetButtonDown("special") && currentState != PlayerState.attack
-               && currentState != PlayerState.stagger && isSpecial == false && playerInventory.specialCharge != 0)
-            {
-                StartCoroutine(SpecialCo());
-
-            }
+            
             else if (Input.GetButtonDown("roll") && currentState != PlayerState.attack
                && currentState != PlayerState.stagger && isRolling == false)
             {
@@ -143,10 +136,7 @@ public class PlayerMovement : MonoBehaviour
 
             UpdateAnimationAndMove();
         }
-        if (isTimer == true)
-        {
-            StartCoroutine(SpecialCooldownCo());
-        }
+      
 
 
 
@@ -241,33 +231,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private IEnumerator SpecialCo()
-    {
-        isSpecial = true;
-
-        playerSpecialSignal.Raise();
-        currentState = PlayerState.attack;
-        animator.SetBool("special", true);
-        yield return null;
-        animator.SetBool("special", false);
-        yield return new WaitForSeconds(.5f);
-        currentState = PlayerState.walk;
-        isTimer = true;
-        timer = specialCooldown;
-        yield return new WaitForSeconds(specialCooldown);
-        isSpecial = false;
-    }
-    private IEnumerator SpecialCooldownCo()
-    {
-        timer -= Time.deltaTime;
-        specialCooldownImage.fillAmount = 1;
-        while (specialCooldownImage.fillAmount > 0)
-        {
-            specialCooldownImage.fillAmount = timer / specialCooldown;
-            yield return null;
-        }
-    }
-
+    
     private IEnumerator RollCo()
     {
         isRolling = true;
@@ -277,21 +241,33 @@ public class PlayerMovement : MonoBehaviour
         dashEffect.SetActive(false);
         activeMoveSpeed = speed;
         cooldownImage.enabled = true;
+        cooldownImage2.enabled = true;
+        cooldownImage3.enabled = true;
         StartCoroutine(RollCooldownCo());
 
 
         yield return new WaitForSeconds(rollCooldown);
         cooldownImage.enabled = false;
+        cooldownImage2.enabled = false;
+        cooldownImage3.enabled = false;
         isRolling = false;
     }
 
     private IEnumerator RollCooldownCo()
     {
-        float alpha = 1f;
+        /*float alpha = 1f;
         while (alpha > 0)
         {
             alpha -= Time.deltaTime / rollCooldown;
             cooldownImage.color = new Color(1, 1, 1, alpha);
+            yield return null;
+        }*/
+        //fill cooldownimage2 while rollcooldown active
+        float alpha = 1f;
+        while (alpha > 0)
+        {
+            alpha -= Time.deltaTime / rollCooldown;
+            cooldownImage2.fillAmount = alpha;
             yield return null;
         }
     }
