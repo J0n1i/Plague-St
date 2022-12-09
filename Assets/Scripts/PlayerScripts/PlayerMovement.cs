@@ -45,6 +45,10 @@ public class PlayerMovement : MonoBehaviour
     public bool isRolling;
 
     public int coins;
+    public int spd;
+    public int cd;
+    public int dmg;
+
     public Image cooldownImage;
     public Image cooldownImage2;
     public Image cooldownImage3;
