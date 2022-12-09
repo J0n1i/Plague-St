@@ -12,15 +12,30 @@ public class PowerupTextManager : MonoBehaviour
     public FloatValue playerDamage;
     public FloatValue specialDamage;
     private float baseStat;
+    private GameObject player;
 
     private void Start()
     {
         playerInventory.speedPowerup = 0;
          playerInventory.rollCooldownPowerup = 0;
          playerInventory.damagePowerup = 0;
-         baseStat=1;
+          player = GameObject.FindGameObjectWithTag("Player");
+          baseStat=1;
          playerDamage.RuntimeValue = playerDamage.initialValue;
          specialDamage.RuntimeValue = specialDamage.initialValue;
+         if(player.GetComponent<PlayerMovement>().spd != 0 || player.GetComponent<PlayerMovement>().cd != 0 || player.GetComponent<PlayerMovement>().dmg != 0)
+         {
+            playerInventory.speedPowerup =  player.GetComponent<PlayerMovement>().spd;
+            playerInventory.rollCooldownPowerup =  player.GetComponent<PlayerMovement>().cd;
+            playerInventory.damagePowerup =  player.GetComponent<PlayerMovement>().dmg;
+            playerDamage.RuntimeValue = playerDamage.initialValue + playerInventory.damagePowerup * 0.5f;    
+            speedPowerupDisplay.text = (baseStat + playerInventory.speedPowerup * 0.2).ToString("F1");
+            rollCooldownDisplay.text = (baseStat - playerInventory.rollCooldownPowerup * 0.2).ToString("F1");
+            damagePowerupDisplay.text = (playerDamage.RuntimeValue).ToString("F1");
+            
+         }
+         
+         
     }
 
     public void UpdateSpeedPowerupCount()

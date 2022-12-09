@@ -8,6 +8,7 @@ public class BossEncounter : MonoBehaviour
 {
     private GameObject player, boss, mainCamera, bossRoom;
     private bool encounterStarted = false;
+    public Inventory playerInventory;
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -75,6 +76,12 @@ public class BossEncounter : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<PlayerMovement>().inputEnabled = false;
         player.GetComponent<PlayerMovement>().triggerCollider.enabled = false;
+        player.GetComponent<PlayerMovement>().coins = playerInventory.coins;
+        player.GetComponent<PlayerMovement>().spd = playerInventory.speedPowerup;
+        player.GetComponent<PlayerMovement>().cd = playerInventory.rollCooldownPowerup;
+        player.GetComponent<PlayerMovement>().dmg = playerInventory.damagePowerup;
+
+
         Debug.Log("Boss Died");
         StartCoroutine(BossDeathCo());
         DontDestroyOnLoad(player);
