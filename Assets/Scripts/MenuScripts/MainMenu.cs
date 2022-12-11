@@ -7,12 +7,19 @@ public class MainMenu : MonoBehaviour
 {
 
     public Animator anime, fading;
+    public Inventory playerInventory;
+    private GameObject player;
     
 
     public void PlayGame()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         anime.SetBool("Onclick", true);
         fading.SetBool("Fade", true);
+        if(player != null){
+            Destroy(player);
+        }
+        
         StartCoroutine(Startgame());
         
            

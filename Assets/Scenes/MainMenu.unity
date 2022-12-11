@@ -1423,6 +1423,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c665f32ca5ac517489eaa51b70d4b75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  deathScreen: {fileID: 0}
 --- !u!4 &777902726
 Transform:
   m_ObjectHideFlags: 0
@@ -3052,6 +3054,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anime: {fileID: 1830212688}
   fading: {fileID: 1672887031}
+  playerInventory: {fileID: 11400000, guid: a29e048e0907c4f40b545b159a0849da, type: 2}
 --- !u!95 &1830212688
 Animator:
   serializedVersion: 4
