@@ -186,6 +186,7 @@ MonoBehaviour:
   powerupSignal: {fileID: 11400000, guid: a527028bea6da614488822878bfe6cef, type: 2}
   powerupEffectSignal: {fileID: 11400000, guid: 9c00f6a5f6a8a6a4a805fb237d11c9f4, type: 2}
   playerInventory: {fileID: 11400000, guid: a29e048e0907c4f40b545b159a0849da, type: 2}
+  pickUp: {fileID: 8300000, guid: c3ecc0ae0de744c439e1738b9348fb25, type: 3}
 --- !u!61 &4353966960105759839
 BoxCollider2D:
   m_ObjectHideFlags: 0

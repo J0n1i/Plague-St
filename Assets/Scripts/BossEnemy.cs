@@ -141,7 +141,7 @@ private List<GameObject> enemies;
         {
             //Bossimusiikki alkaa
             playerEnterRoom.Raise();
-            FindObjectOfType<LevelMusic>().BossMusic();
+            //FindObjectOfType<LevelMusic>().BossMusic();
             if (currentState == EnemyState.walk
                 && currentState != EnemyState.stagger && isFire==false && isAttacked==false && Vector3.Distance(target.position,
                                transform.position) > shootRadius && currentState != EnemyState.attack && spawningEnemies == false)

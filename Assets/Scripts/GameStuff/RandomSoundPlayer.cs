@@ -9,12 +9,14 @@ public class RandomSoundPlayer : MonoBehaviour
     public AudioClip[] boneSounds;
     public AudioClip[] playerSounds;
     public AudioClip[] weaponSounds;
+    public AudioClip[] roomSounds;
 
     private AudioSource audioSrc;
 
     private int randomBoneSound;
     private int randomPlayerSound;
     private int randomWeaponSound;
+    private int randomRoomSound;
 
     //private AudioSource source;
     //[Range(0.1f, 0.5f)]
@@ -30,6 +32,7 @@ public class RandomSoundPlayer : MonoBehaviour
         boneSounds = Resources.LoadAll<AudioClip>("BoneSounds");
         playerSounds = Resources.LoadAll<AudioClip>("PlayerSounds");
         weaponSounds = Resources.LoadAll<AudioClip>("WeaponSounds");
+        roomSounds = Resources.LoadAll<AudioClip>("RoomSounds");
     }
 
     public void PlayBoneSound()
@@ -48,6 +51,12 @@ public class RandomSoundPlayer : MonoBehaviour
     {
         randomWeaponSound = Random.Range(0, weaponSounds.Length);
         audioSrc.PlayOneShot(weaponSounds[randomWeaponSound]);
+    }
+
+    public void PlayRoomSound()
+    {
+        randomBoneSound = Random.Range(0, roomSounds.Length);
+        audioSrc.PlayOneShot(roomSounds[randomRoomSound]);
     }
 
 

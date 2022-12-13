@@ -2384,6 +2384,11 @@ MonoBehaviour:
   capsuleCollider: {fileID: 6215557915045435167}
   playerEnterRoom: {fileID: 0}
   hurt: 0
+  chanting: {fileID: 8300000, guid: 2092918166751ee4f9ae0fba61396fdf, type: 3}
+  fireBall: {fileID: 8300000, guid: 2ab194fb2ffc79b4489bac6262918600, type: 3}
+  skeletonSpawn: {fileID: 8300000, guid: ce4f0bef72365b74da3a716eb499bb22, type: 3}
+  explosion: {fileID: 8300000, guid: 64e44673661626b43b0582d0661cb35e, type: 3}
+  heavyExplosion: {fileID: 8300000, guid: b47e92ee086029040a1df80505aff54b, type: 3}
 --- !u!114 &8468177369357213718
 MonoBehaviour:
   m_ObjectHideFlags: 0

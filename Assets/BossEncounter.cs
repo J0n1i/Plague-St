@@ -39,6 +39,7 @@ public class BossEncounter : MonoBehaviour
         player.GetComponent<PlayerMovement>().inputEnabled = false;
 
         yield return new WaitForSeconds(0.6f);
+        RandomSoundPlayer.RandomSndP.PlayRoomSound();
 
         mainCamera.GetComponent<CameraManager>().ShakeDamage();
         bossRoom = GameObject.FindGameObjectWithTag("bossroom");
@@ -55,6 +56,8 @@ public class BossEncounter : MonoBehaviour
         //pan camera to player and enable input
         mainCamera.GetComponent<CameraManager>().followTarget = player;
         player.GetComponent<PlayerMovement>().inputEnabled = true;
+
+        FindObjectOfType<LevelMusic>().BossMusic();
 
 
         //Enable boss AI

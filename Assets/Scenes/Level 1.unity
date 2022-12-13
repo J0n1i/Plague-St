@@ -1108,7 +1108,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7350307408274774908, guid: 77fcd684411c3424cb792adbfc58a183, type: 2}
-  m_audioClip: {fileID: 8300000, guid: b90bf3ed68286e641aef3b867155aff4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8e575ac0e115e8646b85778825ee2025, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.8
   m_Pitch: 1
@@ -1348,9 +1348,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.037588652
+    x: 0.059922177
     y: 0
-    width: 0.9252659
+    width: 0.87990266
     height: 1
   near clip plane: -2.85
   far clip plane: 1000
@@ -3087,6 +3087,7 @@ MonoBehaviour:
   boneSounds: []
   playerSounds: []
   weaponSounds: []
+  roomSounds: []
 --- !u!82 &1455546504
 AudioSource:
   m_ObjectHideFlags: 0

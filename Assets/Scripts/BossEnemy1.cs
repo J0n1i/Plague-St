@@ -36,9 +36,14 @@ private List<GameObject> enemies;
     private bool spawningEnemies;
     public SignalSender playerEnterRoom;
     public bool hurt;
-   
+    public AudioClip chanting;
+    public AudioClip fireBall;
+    public AudioClip skeletonSpawn;
+    public AudioClip explosion;
+    public AudioClip heavyExplosion;
+
     // Start is called before the first frame update
-   void Start () {
+    void Start () {
      GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
     //enemies list from dungeon finalizer
     enemies = GameObject.FindGameObjectWithTag("DungeonGenerator").GetComponent<DungeonFinalizer>().enemies;
@@ -298,7 +303,7 @@ private List<GameObject> enemies;
         currentState = EnemyState.attack;
         anim.SetBool("spin", true);
         Vector3 explosiontarget = new Vector3(target.position.x+Random.Range(-0.5f,0.5f),target.position.y+Random.Range(-0.5f,0.5f),target.position.z);
-         yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.01f);
         Instantiate(miniexplosion, explosiontarget , Quaternion.identity);
         yield return new WaitForSeconds(0.2f);
         Vector3 explosiontarget1 = new Vector3(target.position.x+Random.Range(-0.5f,0.5f),target.position.y+Random.Range(-0.5f,0.5f),target.position.z);
@@ -312,6 +317,7 @@ private List<GameObject> enemies;
         Vector3 explosiontarget3 = new Vector3(target.position.x+Random.Range(-0.5f,0.5f),target.position.y+Random.Range(-0.5f,0.5f),target.position.z);
         yield return new WaitForSeconds(0.01f);
         Instantiate(miniexplosion, explosiontarget3 , Quaternion.identity);
+        AudioPlayer.instance.PlaySound(heavyExplosion, 1f);
         yield return new WaitForSeconds(0.2f);
         
         currentState = EnemyState.walk;
@@ -329,7 +335,7 @@ private List<GameObject> enemies;
         currentState = EnemyState.attack;
         GetComponent<Pathfinding.AIPath>().maxSpeed = 0f;
         anim.SetBool("shoot", true);
-        //AudioPlayer.instance.PlaySound(fireBall, 1f); 
+        AudioPlayer.instance.PlaySound(fireBall, 1f); 
         yield return new WaitForSeconds(0.5f);
         Vector3 dir = target.position - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -342,7 +348,7 @@ private List<GameObject> enemies;
                                                          moveSpeed * Time.deltaTime);
                 changeAnim(temp - transform.position);
         anim.SetBool("shoot", true);
-        //AudioPlayer.instance.PlaySound(fireBall, 1f);
+        AudioPlayer.instance.PlaySound(fireBall, 1f);
         yield return new WaitForSeconds(0.5f); 
         Vector3 dir1 = target.position - transform.position;
         float angle1 = Mathf.Atan2(dir1.y, dir1.x) * Mathf.Rad2Deg;
@@ -355,6 +361,7 @@ private List<GameObject> enemies;
    
     public IEnumerator SpawnLogi()
     {
+        AudioPlayer.instance.PlaySound(chanting, 1f);
         logiSpawned = true;  
         spawningEnemies = true;  
         anim.SetBool("spin", true);
@@ -364,6 +371,7 @@ private List<GameObject> enemies;
         yield return new WaitForSeconds(0.25f);
         pos = new Vector3(transform.position.x + Random.Range(-2,2), transform.position.y + Random.Range(-2,2), transform.position.z);
         pos1 = new Vector3(transform.position.x + Random.Range(-2,2), transform.position.y + Random.Range(-2,2), transform.position.z);
+        AudioPlayer.instance.PlaySound(skeletonSpawn, 1f);
         yield return new WaitForSeconds(1f);
         GameObject logi1 = Instantiate(logi, pos, Quaternion.identity);
         logi1.transform.parent = transform;
@@ -372,7 +380,8 @@ private List<GameObject> enemies;
         GameObject logi2 = Instantiate(logi, pos1, Quaternion.identity);
         logi2.transform.parent = transform;
         enemies.Add(logi2);
-        yield return new WaitForSeconds(0.5f);
+        AudioPlayer.instance.PlaySound(skeletonSpawn, 1f);
+        yield return new WaitForSeconds(0.5f);  
         currentState = EnemyState.walk;
         anim.SetBool("spin", false);
         spawningEnemies = false;
