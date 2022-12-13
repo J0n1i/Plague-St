@@ -79,15 +79,21 @@ public class BossEncounter : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<PlayerMovement>().inputEnabled = false;
         player.GetComponent<PlayerMovement>().triggerCollider.enabled = false;
-        player.GetComponent<PlayerMovement>().coins = playerInventory.coins;
-        player.GetComponent<PlayerMovement>().spd = playerInventory.speedPowerup;
-        player.GetComponent<PlayerMovement>().cd = playerInventory.rollCooldownPowerup;
-        player.GetComponent<PlayerMovement>().dmg = playerInventory.damagePowerup;
+
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            player.GetComponent<PlayerMovement>().coins = playerInventory.coins;
+            player.GetComponent<PlayerMovement>().spd = playerInventory.speedPowerup;
+            player.GetComponent<PlayerMovement>().cd = playerInventory.rollCooldownPowerup;
+            player.GetComponent<PlayerMovement>().dmg = playerInventory.damagePowerup;
+            DontDestroyOnLoad(player);
+        }
+
 
 
         Debug.Log("Boss Died");
         StartCoroutine(BossDeathCo());
-        DontDestroyOnLoad(player);
+
         GameObject.Find("HeartContainers").GetComponent<HeartManager>().revivePlayer();
 
     }
@@ -116,7 +122,18 @@ public class BossEncounter : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<PlayerMovement>().inputEnabled = true;
         player.GetComponent<PlayerMovement>().triggerCollider.enabled = true;
-        SceneManager.LoadScene(2);
+
+        //if current scene is 2, load scene 3
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            SceneManager.LoadScene(2);
+        }
+        else
+        {
+            Destroy(player);
+            SceneManager.LoadScene(0);
+        }
+
     }
 
 

@@ -1406,7 +1406,7 @@ GameObject:
   - component: {fileID: 777902725}
   m_Layer: 0
   m_Name: AdsManager
-  m_TagString: Untagged
+  m_TagString: AdsManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3773,6 +3773,10 @@ PrefabInstance:
       objectReference: {fileID: 2005109480}
     - target: {fileID: 7202940589557898977, guid: bbb18ddceddf29d4eba7e3e020013d84, type: 3}
       propertyPath: m_Name
+      value: SaveManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202940589557898977, guid: bbb18ddceddf29d4eba7e3e020013d84, type: 3}
+      propertyPath: m_TagString
       value: SaveManager
       objectReference: {fileID: 0}
     - target: {fileID: 7202940589557898983, guid: bbb18ddceddf29d4eba7e3e020013d84, type: 3}

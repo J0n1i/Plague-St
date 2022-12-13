@@ -117,9 +117,6 @@ public class PlayerMovement : MonoBehaviour
             Initialize();
         }
 
-
-
-
         timePlayed += Time.deltaTime;
 
         if (inputEnabled == true)

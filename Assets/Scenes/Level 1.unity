@@ -1348,9 +1348,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.059922177
+    x: 0.037588652
     y: 0
-    width: 0.87990266
+    width: 0.9252659
     height: 1
   near clip plane: -2.85
   far clip plane: 1000
@@ -3754,7 +3754,7 @@ GameObject:
   - component: {fileID: 1700642607}
   m_Layer: 0
   m_Name: AdsManager
-  m_TagString: Untagged
+  m_TagString: AdsManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4088,6 +4088,10 @@ PrefabInstance:
       objectReference: {fileID: 504842035}
     - target: {fileID: 7202940589557898977, guid: bbb18ddceddf29d4eba7e3e020013d84, type: 3}
       propertyPath: m_Name
+      value: SaveManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202940589557898977, guid: bbb18ddceddf29d4eba7e3e020013d84, type: 3}
+      propertyPath: m_TagString
       value: SaveManager
       objectReference: {fileID: 0}
     - target: {fileID: 7202940589557898983, guid: bbb18ddceddf29d4eba7e3e020013d84, type: 3}

@@ -12,6 +12,11 @@ public class adsManager : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLis
 
     void Awake()
     {
+        if (GameObject.FindGameObjectsWithTag("AdsManager").Length > 1){
+            Destroy(this.gameObject);
+        }
+
+
         DontDestroyOnLoad(this.gameObject);
         Advertisement.Initialize(gameId, false);
     }

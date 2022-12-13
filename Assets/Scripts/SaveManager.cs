@@ -27,6 +27,11 @@ class SaveManager : MonoBehaviour
     }
 
     void Awake(){
+        if(GameObject.FindGameObjectsWithTag("SaveManager").Length > 1){
+            Destroy(this.gameObject);
+        }
+
+
         DontDestroyOnLoad(this.gameObject);
     }
 
