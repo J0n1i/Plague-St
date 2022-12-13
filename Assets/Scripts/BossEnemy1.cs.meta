@@ -3,7 +3,37 @@ guid: 5e6a3e733d64f564aa73d2aa71f46e37
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - killedSignal: {instanceID: 0}
+  - sprite: {instanceID: 0}
+  - maxHealth: {instanceID: 0}
+  - dyingScream: {instanceID: 0}
+  - CoinDrop: {instanceID: 0}
+  - HeartDrop: {instanceID: 0}
+  - deathEffect: {instanceID: 0}
+  - hitEffect: {instanceID: 0}
+  - damageSound: {instanceID: 0}
+  - anim: {instanceID: 0}
+  - playerAttackSignal: {instanceID: 0}
+  - myRigidbody: {instanceID: 0}
+  - target: {instanceID: 0}
+  - homePosition: {instanceID: 0}
+  - bullet: {instanceID: 0}
+  - flashMaterial: {instanceID: 0}
+  - spriteRenderer: {instanceID: 0}
+  - originalMaterial: {instanceID: 0}
+  - healthBar: {instanceID: 0}
+  - dashEffect: {instanceID: 0}
+  - bossAura: {instanceID: 0}
+  - miniexplosion: {instanceID: 0}
+  - FollowingExplosion: {instanceID: 0}
+  - logi: {instanceID: 0}
+  - boxCollider: {instanceID: 0}
+  - capsuleCollider: {instanceID: 0}
+  - playerEnterRoom: {instanceID: 0}
+  - chanting: {instanceID: 0}
+  - enemySpawn: {instanceID: 0}
+  - fireBall: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
